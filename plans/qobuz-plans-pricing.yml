@@ -1,0 +1,161 @@
+specification: API Commons Plans
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/Plans
+provider: Qobuz
+providerId: qobuz
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - Music Streaming
+  - Hi-Res Audio
+  - FLAC
+  - Lossless Audio
+description: >
+  Qobuz consumer subscription plans that govern access entitlements for the Qobuz
+  Music API. API partner access requires contacting api@qobuz.com for separate
+  app credentials; the user's active subscription tier determines which audio
+  formats and content are accessible through the API. Qobuz offers Studio and
+  Sublime tiers in Solo, Duo, and Family variants. Prices shown in USD as of 2026.
+sources:
+  - https://www.qobuz.com/us-en/music/streaming/offers
+  - https://www.qobuz.com/us-en/music/streaming/offers/sublime/hifi-sublime-plus-yearly-streaming
+  - https://subger.com/en/us/service/qobuz
+  - https://musconv.com/qobuz-plans-and-pricing-high-quality-music-streaming-for-audiophiles/
+plans:
+  - id: qobuz-studio-solo
+    name: Studio Solo
+    type: subscription
+    description: >
+      Individual hi-res streaming subscription. Provides access to the full Qobuz
+      catalog in lossless FLAC quality up to 24-bit/192 kHz for one account. Includes
+      API streaming URL access via the Qobuz Music API for authenticated single users.
+    entries:
+      - label: Monthly subscription (solo)
+        name: studio_solo_monthly
+        type: flat
+        metric: subscription
+        limit: 1
+        timeFrame: month
+        geo: US
+        unit: 1
+        price: '12.99'
+        userMultiplied: false
+      - label: Annual subscription (solo)
+        name: studio_solo_annual
+        type: flat
+        metric: subscription
+        limit: 1
+        timeFrame: year
+        geo: US
+        unit: 1
+        price: '129.99'
+        userMultiplied: false
+
+  - id: qobuz-studio-duo
+    name: Studio Duo
+    type: subscription
+    description: >
+      Two-person hi-res streaming subscription with two separate user accounts
+      under a single billing relationship. Each account holder can independently
+      authenticate against the Qobuz API.
+    entries:
+      - label: Monthly subscription (duo)
+        name: studio_duo_monthly
+        type: flat
+        metric: subscription
+        limit: 2
+        timeFrame: month
+        geo: US
+        unit: 1
+        price: '17.98'
+        userMultiplied: false
+
+  - id: qobuz-studio-family
+    name: Studio Family
+    type: subscription
+    description: >
+      Family hi-res streaming subscription supporting up to six separate user
+      accounts. Each account holder can independently authenticate via the Qobuz API
+      using their own credentials.
+    entries:
+      - label: Monthly subscription (family, up to 6 accounts)
+        name: studio_family_monthly
+        type: flat
+        metric: subscription
+        limit: 6
+        timeFrame: month
+        geo: US
+        unit: 1
+        price: '21.57'
+        userMultiplied: false
+
+  - id: qobuz-sublime
+    name: Sublime
+    type: subscription
+    description: >
+      Annual-only premium subscription providing all Studio streaming features plus
+      discounts on hi-res album purchases from the Qobuz download store. Includes
+      access to streaming URLs for all available audio quality tiers (MP3-320,
+      FLAC-CD, FLAC-HiRes up to 24-bit/192 kHz) via the API. Only available as a
+      12-month annual commitment.
+    entries:
+      - label: Annual subscription (sublime, billed yearly)
+        name: sublime_annual
+        type: flat
+        metric: subscription
+        limit: 1
+        timeFrame: year
+        geo: US
+        unit: 1
+        price: '179.99'
+        userMultiplied: false
+      - label: Hi-res album purchase discount
+        name: sublime_purchase_discount
+        type: included
+        metric: discount
+        limit: -1
+        timeFrame: subscription
+        geo: global
+        unit: 1
+        price: 'variable'
+        userMultiplied: false
+
+  - id: qobuz-sublime-family
+    name: Sublime Family
+    type: subscription
+    description: >
+      Annual-only premium family subscription supporting up to six accounts with
+      all Sublime benefits including hi-res purchase discounts. Provides multi-user
+      API access with the highest available audio quality tiers.
+    entries:
+      - label: Annual subscription (sublime family, up to 6 accounts)
+        name: sublime_family_annual
+        type: flat
+        metric: subscription
+        limit: 6
+        timeFrame: year
+        geo: US
+        unit: 1
+        price: '419.76'
+        userMultiplied: false
+
+  - id: qobuz-api-partner
+    name: API Partner Access
+    type: contract
+    description: >
+      Developer and partner API access granted by Qobuz upon request via api@qobuz.com.
+      Provides app_id and app_secret credentials that must accompany all API requests.
+      Partners must agree to the Qobuz API Terms of Use (French law). No public pricing;
+      terms negotiated directly with Qobuz.
+    entries:
+      - label: Partner app credentials (app_id + app_secret)
+        name: api_partner_credentials
+        type: committed
+        metric: credentials
+        limit: 1
+        timeFrame: contract
+        geo: global
+        unit: 1
+        price: 'contact'
+        userMultiplied: false

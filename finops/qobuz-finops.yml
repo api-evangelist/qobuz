@@ -1,0 +1,104 @@
+specification: FinOps Framework
+specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
+provider: Qobuz
+providerId: qobuz
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: true
+tags:
+  - FinOps
+  - Cost Management
+  - FOCUS
+  - Music Streaming
+  - Hi-Res Audio
+description: >
+  FOCUS-aligned FinOps definition for Qobuz. Qobuz charges a flat subscription fee
+  per billing period (monthly or annual) per account tier — there are no usage-based
+  per-stream or per-download meters for streaming subscribers. The Sublime tier adds
+  per-album purchase discounts from the hi-res download store. API partner access is
+  governed by a separate partner agreement with no published per-call pricing. Cost
+  optimization centers on annual vs. monthly commitment choice, tier selection
+  (Studio vs. Sublime based on download purchase volume), and account consolidation
+  via Duo or Family plans.
+sources:
+  - https://www.qobuz.com/us-en/music/streaming/offers
+  - https://www.qobuz.com/us-en/music/streaming/offers/sublime/hifi-sublime-plus-yearly-streaming
+  - https://musconv.com/qobuz-plans-and-pricing-high-quality-music-streaming-for-audiophiles/
+alignedWith:
+  framework: FinOps Foundation Framework
+  frameworkUrl: https://www.finops.org/framework/
+  dataSpec: FOCUS
+  dataSpecVersion: '1.3'
+  dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
+publisherName: Qobuz (Xandrie SA)
+serviceCategory: Media and Entertainment
+billingModel:
+  pricingCategory: Subscription
+  pricingUnit: subscription-period
+  pricingCurrency: USD
+  invoicingCadence: monthly-or-annual
+  commitments:
+    - type: Monthly
+      description: >
+        Month-to-month subscriptions available for Studio Solo, Duo, and Family tiers.
+        No annual lock-in; cancel anytime.
+    - type: Annual
+      description: >
+        Annual-only commitment required for Sublime and Sublime Family tiers.
+        Approximately 17% discount vs monthly equivalent pricing.
+    - type: Partner Agreement
+      description: >
+        API partner credentials (app_id/app_secret) are issued under a separate
+        agreement negotiated directly with Qobuz. Contact api@qobuz.com.
+meters:
+  - name: subscription.studio-solo
+    description: Flat monthly fee for one Studio account (individual streaming).
+    unit: subscription-month
+    focusServiceCategory: Media and Entertainment
+  - name: subscription.studio-duo
+    description: Flat monthly fee covering two Studio accounts under shared billing.
+    unit: subscription-month
+    focusServiceCategory: Media and Entertainment
+  - name: subscription.studio-family
+    description: Flat monthly fee covering up to six Studio accounts under shared billing.
+    unit: subscription-month
+    focusServiceCategory: Media and Entertainment
+  - name: subscription.sublime-annual
+    description: Flat annual fee for one Sublime account with purchase discounts.
+    unit: subscription-year
+    focusServiceCategory: Media and Entertainment
+  - name: subscription.sublime-family-annual
+    description: Flat annual fee for up to six Sublime accounts with purchase discounts.
+    unit: subscription-year
+    focusServiceCategory: Media and Entertainment
+  - name: purchase.hires-album
+    description: >
+      Per-album purchase price from the Qobuz hi-res download store. Sublime
+      subscribers receive a discount on each purchase. Prices vary by title and
+      format (MP3, FLAC CD, FLAC Hi-Res).
+    unit: album
+    focusServiceCategory: Media and Entertainment
+chargebackRecommendation: >
+  Qobuz does not provide a cost allocation API or usage export. For teams or
+  organizations managing multiple Qobuz accounts, use the Duo or Family plan and
+  assign one account per cost center or team member. Track annual vs. monthly
+  commitment choices in an internal FinOps cost register. For Sublime subscribers,
+  track hi-res purchase receipts (emailed by Qobuz) against the purchase discount
+  benefit to validate that Sublime vs. Studio upgrade cost is recovered through
+  lower per-album prices. Contact api@qobuz.com for volume licensing or enterprise
+  arrangements.
+optimizationTips:
+  - tip: >
+      Upgrade to an annual plan (Studio Solo annual at ~$129.99/yr vs $155.88/yr monthly)
+      to save approximately 17% if committed usage is expected for 12+ months.
+  - tip: >
+      Evaluate Sublime vs. Studio based on hi-res download purchase frequency.
+      Sublime is cost-effective if purchase discount savings exceed the ~$47/yr
+      premium over Studio Solo annual.
+  - tip: >
+      Use Duo ($17.98/mo) or Family ($21.57/mo) plans to share a subscription across
+      two or six users respectively, rather than maintaining separate individual accounts.
+  - tip: >
+      Cache Qobuz API metadata responses (album/get, artist/get) locally to minimize
+      redundant API calls and avoid partner-rate-limit exposure.

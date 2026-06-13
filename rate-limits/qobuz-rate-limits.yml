@@ -1,0 +1,75 @@
+specification: API Commons Rate Limits
+specificationVersion: '0.1'
+schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main/schema/api-commons.yml#/$defs/RateLimits
+provider: Qobuz
+providerId: qobuz
+created: '2026-06-13'
+modified: '2026-06-13'
+reconciled: false
+tags:
+  - Music Streaming
+  - Rate Limiting
+  - Hi-Res Audio
+description: >
+  Rate-limit model for the Qobuz Music API v0.2. Qobuz does not publicly document
+  explicit per-endpoint rate limits or quota headers. The API is a partner-only
+  interface accessed via app_id and app_secret credentials issued by Qobuz; usage
+  boundaries are governed by the API Terms of Use and partner agreement rather than
+  published numeric thresholds. Community-developed client libraries (qobuz-dl,
+  QobuzApiSharp, gobuz) implement exponential backoff on HTTP 429 responses, indicating
+  that rate limiting does occur in practice. Streaming URL generation endpoints
+  (track/getFileUrl) require request signing and are the most latency-sensitive
+  operations.
+sources:
+  - https://github.com/DJDoubleD/QobuzApiSharp
+  - https://github.com/loxoron218/qobuz-api
+  - http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+algorithm: unspecified-fair-use
+responseCodes:
+  throttled: 429
+  quotaExceeded: 429
+  unauthorized: 401
+notes: >
+  HTTP 429 Too Many Requests is the documented throttle response. No standard
+  X-RateLimit-* headers are known to be returned. The Rust qobuz-api library
+  documents "automatic retry on rate limiting with exponential backoff," indicating
+  that retries with backoff are the expected client-side mitigation. Request signing
+  for streaming URL endpoints uses MD5(path + sorted_params + timestamp + app_secret)
+  and includes a timestamp; signatures are time-bounded and must be generated fresh
+  per request. Partners should cache auth tokens (user_auth_token) between requests
+  rather than re-authenticating per call.
+limits:
+  - id: api-throttle-requests
+    scope: application
+    label: Request throttle (per app_id)
+    value: unspecified
+    notes: >
+      Exact per-second or per-minute request caps are not publicly documented.
+      Community libraries use exponential backoff on HTTP 429. Partners should
+      implement respectful request pacing and cache metadata results to avoid
+      redundant catalog queries.
+  - id: streaming-url-ttl
+    scope: request
+    label: Streaming URL expiry (track/getFileUrl)
+    value: unspecified
+    notes: >
+      Streaming URLs returned by track/getFileUrl are time-limited signed URLs.
+      The TTL is not publicly documented but URLs must be used promptly after
+      generation. URL generation requires a fresh MD5 signature with the current
+      Unix timestamp.
+  - id: auth-token-session
+    scope: user
+    label: User auth token (user_auth_token) lifetime
+    value: unspecified
+    notes: >
+      The user_auth_token returned by user/login is cached by client libraries
+      for the duration of the session. The exact expiry is not publicly documented;
+      clients should handle 401 responses by re-authenticating.
+  - id: pagination-limit-max
+    scope: request
+    label: Maximum results per paginated request
+    value: unspecified
+    notes: >
+      Search and list endpoints accept limit and offset parameters for pagination.
+      Maximum page size is not publicly documented; community libraries default to
+      50 results per page for catalog search operations.

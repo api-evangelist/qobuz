@@ -1,0 +1,137 @@
+aid: qobuz
+url: https://raw.githubusercontent.com/api-evangelist/qobuz/refs/heads/main/apis.yml
+name: Qobuz
+kind: company
+image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+tags:
+  - Music Streaming
+  - Hi-Res Audio
+  - FLAC
+  - Lossless Audio
+  - Music Downloads
+  - Catalog Search
+  - Streaming URLs
+  - Music Metadata
+  - Audiophile
+  - France
+created: '2026-06-13'
+modified: '2026-06-13'
+specificationVersion: '0.19'
+description: >-
+  Qobuz is a French hi-res audio streaming and download platform founded in 2007 and operated by
+  Xandrie SA. It offers lossless FLAC streaming up to 24-bit/192 kHz and a hi-res download store
+  covering over 100 million tracks across all genres. The Qobuz REST API (v0.2) is a partner-only
+  interface that enables third-party applications — hi-fi hardware manufacturers, DAPs, music
+  players, and streaming integrators — to search the catalog, retrieve album and artist metadata,
+  generate authenticated streaming URLs, manage user playlists and favorites, and process
+  purchases from the hi-res download store. API access requires contacting Qobuz directly at
+  api@qobuz.com to obtain an app_id and app_secret. Consumer subscription plans (Studio Solo,
+  Studio Duo, Studio Family, Sublime) provide the underlying access entitlement; partners and
+  integrators are subject to the Qobuz API Terms of Use governed by French law. The service is
+  deployed across France, Germany, and Canada infrastructure nodes monitored via a public status
+  page.
+apis:
+  - aid: qobuz:music-api
+    name: Qobuz Music API
+    tags:
+      - Catalog Search
+      - Albums
+      - Artists
+      - Tracks
+      - Playlists
+      - Streaming URLs
+      - Hi-Res Audio
+      - User Favorites
+      - Authentication
+      - Downloads
+    image: https://kinlane-productions2.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    baseURL: https://www.qobuz.com/api.json/0.2
+    humanURL: https://github.com/DJDoubleD/QobuzApiSharp
+    description: >-
+      The Qobuz Music API (v0.2) is a REST interface served at
+      https://www.qobuz.com/api.json/0.2 returning JSON responses. It covers user
+      authentication (email/password or token-based with MD5-hashed credentials plus
+      app_id and app_secret), catalog operations (search albums, artists, tracks, and
+      playlists), detailed metadata retrieval (album/get, artist/get, track/get,
+      playlist/get), streaming and download URL generation (track/getFileUrl with
+      format codes 5=MP3-320, 6=FLAC-CD, 7=FLAC-HiRes-96kHz, 27=FLAC-HiRes-192kHz),
+      and user account management (favorite/getUserFavorites). Request signing for
+      protected endpoints uses an MD5 hash of concatenated path parameters, a timestamp,
+      and the app_secret. Access requires a valid Qobuz subscription (Studio or Sublime)
+      and partner credentials issued by Qobuz.
+    properties:
+      - type: Documentation
+        url: https://github.com/DJDoubleD/QobuzApiSharp
+      - type: Documentation
+        url: https://pkg.go.dev/github.com/markhc/gobuz
+      - type: TermsOfService
+        url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+      - type: Authentication
+        url: https://github.com/DJDoubleD/QobuzApiSharp#authentication
+    x-features:
+      - Catalog search across albums, artists, tracks, and playlists
+      - Album metadata retrieval with track listings and artwork
+      - Artist discography and biography retrieval
+      - Track metadata including ISRC and audio quality details
+      - Streaming URL generation for MP3 and FLAC formats (including 24-bit/192kHz)
+      - User authentication via email/password or auth token
+      - User favorites management (add, remove, retrieve)
+      - Playlist creation and retrieval
+      - Hi-res download URL generation for purchased content
+      - Paginated results with limit and offset parameters
+    x-use-cases:
+      - Hi-fi hardware integration (Roon, Volumio, Audirvana, DAPs)
+      - Third-party music player applications
+      - Music metadata enrichment tools
+      - Hi-res audio download automation
+      - Music library management applications
+      - Connected speaker and streaming device integration
+      - Audiophile-focused mobile and desktop applications
+    x-integrations:
+      - Roon (music player)
+      - Volumio (Linux audio player)
+      - Audirvana (audiophile player)
+      - Sonos (connected speaker)
+      - Squeezebox / Logitech Media Server
+      - Connected Hi-Fi hardware (Cambridge Audio, Naim, Bluesound, etc.)
+common:
+  - type: Portal
+    url: https://www.qobuz.com/
+  - type: Documentation
+    url: https://github.com/DJDoubleD/QobuzApiSharp
+  - type: TermsOfService
+    url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+  - type: IntegrationGuidelines
+    url: https://static.qobuz.com/apps/api/Qobuz-AppsGuidelines-V1.0.pdf
+  - type: Contact
+    url: mailto:api@qobuz.com
+  - type: SignUp
+    url: https://www.qobuz.com/us-en/music/streaming/offers
+  - type: Pricing
+    url: https://www.qobuz.com/us-en/music/streaming/offers
+  - type: StatusPage
+    url: https://status.qobuz.com/
+  - type: Blog
+    url: https://www.qobuz.com/us-en/magazine
+  - type: AppsPartners
+    url: https://www.qobuz.com/us-en/discover/apps-partners
+  - type: LinkedIn
+    url: https://www.linkedin.com/company/qobuz/
+  - type: Facebook
+    url: https://www.facebook.com/Qobuz
+  - type: Twitter
+    url: https://twitter.com/qobuz
+  - type: GitHub
+    url: https://github.com/DJDoubleD/QobuzApiSharp
+  - type: Plans
+    url: plans/qobuz-plans-pricing.yml
+  - type: RateLimits
+    url: rate-limits/qobuz-rate-limits.yml
+  - type: FinOps
+    url: finops/qobuz-finops.yml
+x-headquarters: Paris, France
+x-parent: Xandrie SA
+x-founded: '2007'
+maintainers:
+  - FN: Kin Lane
+    email: kin@apievangelist.com
