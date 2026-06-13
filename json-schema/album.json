@@ -1,0 +1,86 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/qobuz/main/json-schema/album.json",
+  "title": "Album",
+  "description": "Qobuz album metadata returned by /album/get",
+  "type": "object",
+  "properties": {
+    "id": { "type": "string", "description": "Qobuz album identifier (string form of qobuz_id)" },
+    "qobuz_id": { "type": "integer" },
+    "title": { "type": "string" },
+    "subtitle": { "type": "string" },
+    "version": { "type": ["string", "null"] },
+    "slug": { "type": "string" },
+    "url": { "type": "string", "format": "uri" },
+    "released_at": { "type": "integer", "description": "Unix timestamp of release" },
+    "release_date_original": { "type": "string" },
+    "release_date_download": { "type": "string" },
+    "release_date_stream": { "type": "string" },
+    "maximum_bit_depth": { "type": "integer", "enum": [16, 24] },
+    "maximum_sampling_rate": { "type": "number" },
+    "maximum_channel_count": { "type": "integer" },
+    "hires": { "type": "boolean" },
+    "hires_streamable": { "type": "boolean" },
+    "purchasable": { "type": "boolean" },
+    "streamable": { "type": "boolean" },
+    "previewable": { "type": "boolean" },
+    "sampleable": { "type": "boolean" },
+    "downloadable": { "type": "boolean" },
+    "displayable": { "type": "boolean" },
+    "parental_warning": { "type": "boolean" },
+    "description": { "type": "string" },
+    "description_language": { "type": "string" },
+    "catchline": { "type": "string" },
+    "copyright": { "type": "string" },
+    "recording_information": { "type": "string" },
+    "upc": { "type": "string" },
+    "popularity": { "type": "number" },
+    "tracks_count": { "type": "integer" },
+    "media_count": { "type": "integer" },
+    "duration": { "type": "integer", "description": "Total duration in seconds" },
+    "artist": {
+      "$ref": "artist.json"
+    },
+    "label": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "albums_count": { "type": "integer" }
+      }
+    },
+    "genre": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" },
+        "slug": { "type": "string" },
+        "color": { "type": "string" }
+      }
+    },
+    "image": {
+      "type": "object",
+      "properties": {
+        "small": { "type": "string", "format": "uri" },
+        "medium": { "type": "string", "format": "uri" },
+        "large": { "type": "string", "format": "uri" },
+        "extralarge": { "type": "string", "format": "uri" },
+        "mega": { "type": "string", "format": "uri" }
+      }
+    },
+    "tracks": {
+      "type": "object",
+      "properties": {
+        "limit": { "type": "integer" },
+        "offset": { "type": "integer" },
+        "total": { "type": "integer" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "track.json" }
+        }
+      }
+    }
+  },
+  "required": ["id", "title"]
+}

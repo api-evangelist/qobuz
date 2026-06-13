@@ -1,0 +1,129 @@
+vocabulary:
+  title: Qobuz API Vocabulary
+  description: >-
+    Domain terms and concepts used throughout the Qobuz Music API (v0.2).
+    Covers audio quality nomenclature, content entities, authentication
+    parameters, and platform-specific identifiers.
+  source: https://www.qobuz.com/api.json/0.2
+  terms:
+
+    - term: app_id
+      definition: >-
+        Partner application identifier issued by Qobuz. Required on every
+        API request as a query parameter. Obtained by contacting api@qobuz.com.
+
+    - term: app_secret
+      definition: >-
+        Partner application secret used together with app_id for request
+        signing. Never transmitted directly; used locally to generate the
+        request_sig MD5 hash.
+
+    - term: user_auth_token
+      definition: >-
+        Session token returned by /user/login and supplied in the
+        X-User-Auth-Token request header to authenticate user-specific
+        operations such as streaming URL generation and favorites management.
+
+    - term: request_sig
+      definition: >-
+        MD5 hex digest used to authenticate calls to /track/getFileUrl.
+        Computed as MD5(intent + "trackid" + track_id + "formatid" +
+        format_id + request_ts + app_secret).
+
+    - term: request_ts
+      definition: >-
+        Unix timestamp (seconds since epoch) sent alongside request_sig on
+        signed requests. The server rejects requests where the timestamp
+        deviates too far from server time.
+
+    - term: format_id
+      definition: >-
+        Integer code specifying the audio codec and quality level for
+        /track/getFileUrl. Values: 5 (MP3 320 kbps CBR), 6 (FLAC 16-bit
+        44.1 kHz — CD quality), 7 (FLAC 24-bit up to 96 kHz — Hi-Res),
+        27 (FLAC 24-bit up to 192 kHz — Hi-Res).
+
+    - term: hires
+      definition: >-
+        Boolean flag on Track and Album objects indicating whether the
+        content is available in a hi-res format (bit depth > 16 or sampling
+        rate > 48 kHz). True when maximum_bit_depth == 24.
+
+    - term: hires_streamable
+      definition: >-
+        Boolean flag indicating that the hi-res version of a track or album
+        is available for streaming (as opposed to download-only).
+
+    - term: maximum_bit_depth
+      definition: >-
+        Highest bit depth available for a track or album. Typical values
+        are 16 (CD) and 24 (hi-res). Returned as an integer on Track and
+        Album objects.
+
+    - term: maximum_sampling_rate
+      definition: >-
+        Highest sampling rate available in kHz for a track or album.
+        Common values: 44.1 (CD), 88.2, 96, 176.4, 192. Returned as a
+        float on Track and Album objects.
+
+    - term: isrc
+      definition: >-
+        International Standard Recording Code. A 12-character alphanumeric
+        identifier uniquely identifying a specific recording. Present on
+        Track objects.
+
+    - term: upc
+      definition: >-
+        Universal Product Code identifying a release (album). Present on
+        Album objects.
+
+    - term: intent
+      definition: >-
+        Parameter on /track/getFileUrl controlling whether the URL is for
+        streaming ("stream") or download ("download"). Affects URL validity
+        window and DRM treatment.
+
+    - term: streamable
+      definition: >-
+        Boolean on Track and Album indicating the content may be streamed
+        under the user's current subscription. False for tracks that are
+        not yet available or are region-restricted.
+
+    - term: downloadable
+      definition: >-
+        Boolean on Track and Album indicating the content is available for
+        purchase and download from the hi-res store.
+
+    - term: parental_warning
+      definition: >-
+        Boolean on Track and Album. True when content carries an explicit
+        lyrics advisory.
+
+    - term: slug
+      definition: >-
+        URL-friendly string identifier used for human-readable resource URLs
+        on qobuz.com. Present on Album, Artist, Genre, Label, and Playlist
+        objects.
+
+    - term: extra
+      definition: >-
+        Query parameter accepting a comma-separated list of additional
+        fields to embed in the response (e.g. tracks, artist, biography).
+        Reduces round-trips by inlining related resources.
+
+    - term: blob
+      definition: >-
+        Opaque CDN delivery token returned within FileUrl responses. Used
+        internally by CDN infrastructure; clients should treat it as
+        read-only.
+
+    - term: Studio
+      definition: >-
+        Qobuz subscription tier (Solo, Duo, Family variants) providing
+        unlimited lossless and hi-res streaming. Required for streaming
+        hi-res content via the API.
+
+    - term: Sublime
+      definition: >-
+        Qobuz premium subscription tier that combines Studio streaming with
+        discounted hi-res download purchases.

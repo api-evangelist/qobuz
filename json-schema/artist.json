@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/qobuz/main/json-schema/artist.json",
+  "title": "Artist",
+  "description": "Qobuz artist metadata returned by /artist/get",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer" },
+    "name": { "type": "string" },
+    "albums_as_primary_artist_count": { "type": "integer" },
+    "albums_as_primary_composer_count": { "type": "integer" },
+    "albums_count": { "type": "integer" },
+    "slug": { "type": "string" },
+    "picture": { "type": "string", "format": "uri" },
+    "image": {
+      "type": "object",
+      "properties": {
+        "small": { "type": "string", "format": "uri" },
+        "medium": { "type": "string", "format": "uri" },
+        "large": { "type": "string", "format": "uri" },
+        "extralarge": { "type": "string", "format": "uri" },
+        "mega": { "type": "string", "format": "uri" }
+      }
+    },
+    "similar_artist_ids": {
+      "type": "array",
+      "items": { "type": "integer" }
+    },
+    "biography": {
+      "type": "object",
+      "properties": {
+        "summary": { "type": "string" },
+        "content": { "type": "string" },
+        "source": { "type": "string" },
+        "language": { "type": "string" }
+      }
+    }
+  },
+  "required": ["id", "name"]
+}

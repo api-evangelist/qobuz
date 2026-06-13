@@ -1,0 +1,70 @@
+{
+  "id": "0825646283590",
+  "qobuz_id": 825646283590,
+  "title": "Wish You Were Here",
+  "subtitle": null,
+  "slug": "wish-you-were-here-5571",
+  "url": "https://www.qobuz.com/us-en/album/wish-you-were-here-pink-floyd/0825646283590",
+  "released_at": 179539200,
+  "release_date_original": "1975-09-12",
+  "release_date_stream": "2014-09-01",
+  "maximum_bit_depth": 24,
+  "maximum_sampling_rate": 96.0,
+  "maximum_channel_count": 2,
+  "hires": true,
+  "hires_streamable": true,
+  "purchasable": true,
+  "streamable": true,
+  "previewable": true,
+  "sampleable": false,
+  "downloadable": true,
+  "displayable": true,
+  "parental_warning": false,
+  "description": "Wish You Were Here is the ninth studio album by the English rock band Pink Floyd.",
+  "description_language": "en",
+  "copyright": "© 1975 Pink Floyd Music Ltd.",
+  "upc": "0825646283590",
+  "tracks_count": 5,
+  "media_count": 1,
+  "duration": 2646,
+  "popularity": 92.5,
+  "artist": {
+    "id": 183536,
+    "name": "Pink Floyd",
+    "slug": "pink-floyd"
+  },
+  "label": {
+    "id": 17,
+    "name": "Columbia",
+    "slug": "columbia",
+    "albums_count": 4321
+  },
+  "genre": {
+    "id": 6,
+    "name": "Rock",
+    "slug": "rock",
+    "color": "#FF5733"
+  },
+  "image": {
+    "small": "https://static.qobuz.com/images/covers/90/35/0825646283590_230.jpg",
+    "medium": "https://static.qobuz.com/images/covers/90/35/0825646283590_300.jpg",
+    "large": "https://static.qobuz.com/images/covers/90/35/0825646283590_600.jpg",
+    "extralarge": "https://static.qobuz.com/images/covers/90/35/0825646283590_org.jpg"
+  },
+  "tracks": {
+    "limit": 1200,
+    "offset": 0,
+    "total": 5,
+    "items": [
+      {
+        "id": 47683831,
+        "title": "Shine On You Crazy Diamond (Parts I-V)",
+        "track_number": 1,
+        "duration": 1331,
+        "hires": true,
+        "hires_streamable": true,
+        "streamable": true
+      }
+    ]
+  }
+}

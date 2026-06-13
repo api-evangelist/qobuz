@@ -1,0 +1,76 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "schema": "https://schema.org/",
+    "qobuz": "https://www.qobuz.com/vocab#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "MusicRecording": "schema:MusicRecording",
+    "MusicAlbum": "schema:MusicAlbum",
+    "MusicGroup": "schema:MusicGroup",
+    "Person": "schema:Person",
+    "MusicPlaylist": "schema:MusicPlaylist",
+    "MediaObject": "schema:MediaObject",
+    "MusicRelease": "schema:MusicRelease",
+
+    "id": "@id",
+    "type": "@type",
+
+    "title": { "@id": "schema:name" },
+    "name": { "@id": "schema:name" },
+    "description": { "@id": "schema:description" },
+    "duration": {
+      "@id": "schema:duration",
+      "@type": "xsd:integer",
+      "comment": "Duration in seconds"
+    },
+    "isrc": { "@id": "schema:isrcCode" },
+    "upc": { "@id": "schema:gtin12" },
+    "slug": { "@id": "schema:url" },
+    "url": { "@id": "schema:url" },
+    "copyright": { "@id": "schema:copyrightNotice" },
+    "parental_warning": { "@id": "schema:contentRating" },
+
+    "artist": { "@id": "schema:byArtist", "@type": "@id" },
+    "performer": { "@id": "schema:performer", "@type": "@id" },
+    "composer": { "@id": "schema:composer", "@type": "@id" },
+    "label": { "@id": "schema:recordLabel", "@type": "@id" },
+    "genre": { "@id": "schema:genre" },
+    "album": { "@id": "schema:inAlbum", "@type": "@id" },
+    "tracks": { "@id": "schema:track" },
+    "track_number": { "@id": "schema:position" },
+
+    "image": { "@id": "schema:image" },
+    "picture": { "@id": "schema:image", "@type": "@id" },
+
+    "maximum_bit_depth": { "@id": "qobuz:maximumBitDepth", "@type": "xsd:integer" },
+    "maximum_sampling_rate": { "@id": "qobuz:maximumSamplingRate", "@type": "xsd:float" },
+    "maximum_channel_count": { "@id": "qobuz:maximumChannelCount", "@type": "xsd:integer" },
+    "hires": { "@id": "qobuz:hiRes", "@type": "xsd:boolean" },
+    "hires_streamable": { "@id": "qobuz:hiResStreamable", "@type": "xsd:boolean" },
+    "streamable": { "@id": "qobuz:streamable", "@type": "xsd:boolean" },
+    "purchasable": { "@id": "qobuz:purchasable", "@type": "xsd:boolean" },
+    "downloadable": { "@id": "qobuz:downloadable", "@type": "xsd:boolean" },
+    "displayable": { "@id": "qobuz:displayable", "@type": "xsd:boolean" },
+    "format_id": { "@id": "qobuz:formatId", "@type": "xsd:integer" },
+    "sampling_rate": { "@id": "qobuz:samplingRate", "@type": "xsd:float" },
+    "bit_depth": { "@id": "qobuz:bitDepth", "@type": "xsd:integer" },
+    "mime_type": { "@id": "schema:encodingFormat" },
+
+    "user_auth_token": { "@id": "qobuz:userAuthToken" },
+    "app_id": { "@id": "qobuz:appId" },
+    "biography": { "@id": "schema:description" },
+    "similar_artist_ids": { "@id": "schema:sameAs" },
+
+    "release_date_original": { "@id": "schema:datePublished", "@type": "xsd:date" },
+    "released_at": { "@id": "schema:datePublished", "@type": "xsd:integer" },
+
+    "tracks_count": { "@id": "qobuz:tracksCount", "@type": "xsd:integer" },
+    "media_count": { "@id": "qobuz:mediaCount", "@type": "xsd:integer" },
+    "popularity": { "@id": "qobuz:popularity", "@type": "xsd:float" },
+
+    "is_public": { "@id": "schema:isAccessibleForFree", "@type": "xsd:boolean" },
+    "is_collaborative": { "@id": "qobuz:isCollaborative", "@type": "xsd:boolean" },
+    "owner": { "@id": "schema:author", "@type": "@id" }
+  }
+}

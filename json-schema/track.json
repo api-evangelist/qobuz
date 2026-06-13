@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/qobuz/main/json-schema/track.json",
+  "title": "Track",
+  "description": "Qobuz track metadata returned by /track/get",
+  "type": "object",
+  "properties": {
+    "id": { "type": "integer", "description": "Qobuz track identifier" },
+    "title": { "type": "string" },
+    "version": { "type": ["string", "null"] },
+    "isrc": { "type": "string", "description": "International Standard Recording Code" },
+    "maximum_bit_depth": { "type": "integer", "enum": [16, 24] },
+    "maximum_channel_count": { "type": "integer" },
+    "maximum_sampling_rate": { "type": "number", "description": "Sampling rate in kHz" },
+    "performer": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" }
+      }
+    },
+    "performers": { "type": "string" },
+    "composer": {
+      "type": "object",
+      "properties": {
+        "id": { "type": "integer" },
+        "name": { "type": "string" }
+      }
+    },
+    "copyright": { "type": "string" },
+    "track_number": { "type": "integer" },
+    "media_number": { "type": "integer" },
+    "release_date_original": { "type": "string" },
+    "release_date_download": { "type": "string" },
+    "release_date_stream": { "type": "string" },
+    "release_date_purchase": { "type": "string" },
+    "purchasable": { "type": "boolean" },
+    "streamable": { "type": "boolean" },
+    "previewable": { "type": "boolean" },
+    "sampleable": { "type": "boolean" },
+    "downloadable": { "type": "boolean" },
+    "displayable": { "type": "boolean" },
+    "hires": { "type": "boolean" },
+    "hires_streamable": { "type": "boolean" },
+    "parental_warning": { "type": "boolean" },
+    "duration": { "type": "integer", "description": "Duration in seconds" }
+  },
+  "required": ["id", "title"]
+}

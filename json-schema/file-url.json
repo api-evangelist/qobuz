@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/qobuz/main/json-schema/file-url.json",
+  "title": "FileUrl",
+  "description": "Streaming or download URL returned by /track/getFileUrl",
+  "type": "object",
+  "properties": {
+    "track_id": { "type": "integer" },
+    "duration": { "type": "integer", "description": "Track duration in seconds" },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Authenticated CDN URL valid for a limited time window"
+    },
+    "format_id": {
+      "type": "integer",
+      "enum": [5, 6, 7, 27],
+      "description": "5=MP3-320, 6=FLAC-CD, 7=FLAC-HiRes-96kHz, 27=FLAC-HiRes-192kHz"
+    },
+    "mime_type": {
+      "type": "string",
+      "examples": ["audio/mpeg", "audio/flac"]
+    },
+    "sampling_rate": {
+      "type": "number",
+      "description": "Sampling rate in kHz (e.g. 44.1, 96.0, 192.0)"
+    },
+    "bit_depth": {
+      "type": "integer",
+      "enum": [16, 24],
+      "description": "Bit depth of the audio file"
+    },
+    "blob": {
+      "type": "string",
+      "description": "Opaque CDN delivery token"
+    }
+  },
+  "required": ["track_id", "url", "format_id"]
+}

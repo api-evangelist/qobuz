@@ -60,6 +60,8 @@ apis:
       and the app_secret. Access requires a valid Qobuz subscription (Studio or Sublime)
       and partner credentials issued by Qobuz.
     properties:
+      - type: OpenAPI
+        url: openapi/openapi.yml
       - type: Documentation
         url: https://github.com/DJDoubleD/QobuzApiSharp
       - type: Documentation

@@ -1,0 +1,10 @@
+{
+  "track_id": 47683835,
+  "duration": 334,
+  "url": "https://streaming.qobuz.com/file?uid=12345&track_id=47683835&format_id=7&intent=stream&...",
+  "format_id": 7,
+  "mime_type": "audio/flac",
+  "sampling_rate": 96.0,
+  "bit_depth": 24,
+  "blob": "c2FtcGxlLW9wYXF1ZS1ibG9iLXRva2Vu"
+}

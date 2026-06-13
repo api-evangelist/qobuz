@@ -1,0 +1,30 @@
+{
+  "user": {
+    "id": 9876543,
+    "publicId": "abc123def456",
+    "email": "listener@example.com",
+    "login": "listener@example.com",
+    "firstname": "Jane",
+    "lastname": "Audiophile",
+    "display_name": "Jane Audiophile",
+    "country_code": "US",
+    "language_code": "en",
+    "zone": "US",
+    "store": "us",
+    "country": "United States",
+    "avatar": "https://static.qobuz.com/images/avatars/default.jpg",
+    "creation_date": "2022-03-15",
+    "subscription": {
+      "offer": "Studio",
+      "periodicity": "yearly",
+      "start_date": "2025-03-15",
+      "end_date": "2026-03-15"
+    },
+    "credential": {
+      "id": 5,
+      "label": "Studio",
+      "description": "Unlimited Hi-Res streaming"
+    }
+  },
+  "user_auth_token": "AbCdEfGhIjKlMnOpQrStUvWxYz0123456789"
+}

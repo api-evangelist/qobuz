@@ -1,0 +1,41 @@
+{
+  "id": 47683835,
+  "title": "Wish You Were Here",
+  "version": null,
+  "isrc": "GBAYE7400099",
+  "maximum_bit_depth": 24,
+  "maximum_channel_count": 2,
+  "maximum_sampling_rate": 96.0,
+  "performer": {
+    "id": 183536,
+    "name": "Pink Floyd"
+  },
+  "performers": "Pink Floyd",
+  "copyright": "© 1975 Pink Floyd Music Ltd.",
+  "track_number": 5,
+  "media_number": 1,
+  "release_date_original": "1975-09-12",
+  "release_date_stream": "2014-09-01",
+  "purchasable": true,
+  "streamable": true,
+  "previewable": true,
+  "sampleable": false,
+  "downloadable": true,
+  "displayable": true,
+  "hires": true,
+  "hires_streamable": true,
+  "parental_warning": false,
+  "duration": 334,
+  "album": {
+    "id": "0825646283590",
+    "title": "Wish You Were Here",
+    "image": {
+      "small": "https://static.qobuz.com/images/covers/90/35/0825646283590_230.jpg",
+      "large": "https://static.qobuz.com/images/covers/90/35/0825646283590_600.jpg"
+    },
+    "maximum_bit_depth": 24,
+    "maximum_sampling_rate": 96.0,
+    "hires": true,
+    "hires_streamable": true
+  }
+}
