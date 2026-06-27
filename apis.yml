@@ -107,7 +107,7 @@ common:
     url: https://static.qobuz.com/apps/api/Qobuz-AppsGuidelines-V1.0.pdf
   - type: Contact
     url: mailto:api@qobuz.com
-  - type: SignUp
+  - type: Signup
     url: https://www.qobuz.com/us-en/music/streaming/offers
   - type: Pricing
     url: https://www.qobuz.com/us-en/music/streaming/offers
