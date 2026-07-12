@@ -1,0 +1,24 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/openapi.yml
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+  - query
+schemes:
+- name: AppId
+  type: apiKey
+  in: query
+  parameter: app_id
+  description: Qobuz application identifier issued to partners
+  sources:
+  - openapi/openapi.yml
+- name: UserAuthToken
+  type: apiKey
+  in: header
+  parameter: X-User-Auth-Token
+  description: User authentication token obtained from /user/login
+  sources:
+  - openapi/openapi.yml

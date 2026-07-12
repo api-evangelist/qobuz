@@ -97,6 +97,10 @@ apis:
       - Squeezebox / Logitech Media Server
       - Connected Hi-Fi hardware (Cambridge Audio, Naim, Bluesound, etc.)
 common:
+  - type: DomainSecurity
+    url: security/qobuz-domain-security.yml
+  - type: Authentication
+    url: authentication/qobuz-authentication.yml
   - type: Portal
     url: https://www.qobuz.com/
   - type: Documentation
