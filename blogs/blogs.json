@@ -2,13 +2,14 @@
   "repo": "qobuz",
   "feeds": [
     {
-      "source": "https://www.qobuz.com/us-en/magazine",
-      "feed_url": "",
-      "saved": 4,
-      "method": "agent-scrape"
+      "source": "https://status.qobuz.com/",
+      "feed_url": "https://status.qobuz.com/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
     }
   ],
-  "post_count": 7,
-  "fetched": "2026-06-27T13:03:48Z",
-  "agent_pulled": "2026-06-27"
+  "post_count": 11,
+  "fetched": "2026-07-11T11:50:51Z",
+  "agent_pulled": "2026-07-04"
 }
