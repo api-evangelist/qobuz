@@ -1,0 +1,519 @@
+openapi: 3.0.3
+info:
+  title: Qobuz Music Albums Playlists API
+  description: 'The Qobuz Music API (v0.2) is a REST interface served at https://www.qobuz.com/api.json/0.2 returning JSON responses. It covers user authentication (email/password or token-based with MD5-hashed credentials plus app_id and app_secret), catalog operations (search albums, artists, tracks, and playlists), detailed metadata retrieval, streaming and download URL generation, and user account management.
+
+    API access requires a valid Qobuz subscription (Studio or Sublime) and partner credentials (app_id and app_secret) issued by Qobuz. Contact api@qobuz.com to request access.
+
+    Request signing for protected endpoints (e.g. track/getFileUrl) uses an MD5 hash of concatenated path parameters, a unix timestamp, and the app_secret.'
+  version: '0.2'
+  contact:
+    name: Qobuz API Support
+    email: api@qobuz.com
+    url: https://www.qobuz.com/us-en/discover/apps-partners
+  termsOfService: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+  license:
+    name: Qobuz API Terms of Use
+    url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+servers:
+- url: https://www.qobuz.com/api.json/0.2
+  description: Qobuz REST API v0.2
+security:
+- AppId: []
+tags:
+- name: Playlists
+  description: Playlist retrieval and search
+paths:
+  /playlist/get:
+    get:
+      operationId: playlistGet
+      summary: Retrieve a playlist
+      description: Returns metadata and track listing for a single playlist identified by its playlist_id.
+      tags:
+      - Playlists
+      parameters:
+      - name: app_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your Qobuz application identifier
+      - name: playlist_id
+        in: query
+        required: true
+        schema:
+          type: integer
+        description: Qobuz playlist identifier
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 25
+        description: Maximum number of tracks to include
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+        description: Pagination offset
+      - name: extra
+        in: query
+        required: false
+        schema:
+          type: string
+        description: Comma-separated additional fields (e.g. tracks)
+      security:
+      - AppId: []
+      - UserAuthToken: []
+      responses:
+        '200':
+          description: Playlist metadata and tracks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playlist'
+        '404':
+          description: Playlist not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+  /playlist/search:
+    get:
+      operationId: playlistSearch
+      summary: Search playlists
+      description: Search the Qobuz catalog for playlists matching the supplied query string. Returns a paginated list of Playlist objects.
+      tags:
+      - Playlists
+      parameters:
+      - name: app_id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Your Qobuz application identifier
+      - name: query
+        in: query
+        required: true
+        schema:
+          type: string
+        description: Search query string
+      - name: limit
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 50
+        description: Maximum number of results to return
+      - name: offset
+        in: query
+        required: false
+        schema:
+          type: integer
+          default: 0
+        description: Pagination offset
+      security:
+      - AppId: []
+      responses:
+        '200':
+          description: Paginated list of playlists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaylistList'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+components:
+  schemas:
+    Genre:
+      type: object
+      description: Music genre
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        color:
+          type: string
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned by all endpoints on failure
+      properties:
+        status:
+          type: string
+          example: error
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Bad Request
+    TrackList:
+      type: object
+      description: Paginated list of tracks
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+    AlbumList:
+      type: object
+      description: Paginated list of albums
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Album'
+    Image:
+      type: object
+      description: Set of image URLs at various resolutions
+      properties:
+        small:
+          type: string
+          format: uri
+        medium:
+          type: string
+          format: uri
+        large:
+          type: string
+          format: uri
+        extralarge:
+          type: string
+          format: uri
+        mega:
+          type: string
+          format: uri
+    Label:
+      type: object
+      description: Record label
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        albums_count:
+          type: integer
+    Biography:
+      type: object
+      description: Artist biography
+      properties:
+        summary:
+          type: string
+        content:
+          type: string
+        source:
+          type: string
+        language:
+          type: string
+    PlaylistList:
+      type: object
+      description: Paginated list of playlists
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Playlist'
+    Artist:
+      type: object
+      description: Qobuz artist metadata
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        albums_as_primary_artist_count:
+          type: integer
+        albums_as_primary_composer_count:
+          type: integer
+        albums_count:
+          type: integer
+        slug:
+          type: string
+        picture:
+          type: string
+          format: uri
+        image:
+          $ref: '#/components/schemas/Image'
+        similar_artist_ids:
+          type: array
+          items:
+            type: integer
+        biography:
+          $ref: '#/components/schemas/Biography'
+        album_last_release:
+          $ref: '#/components/schemas/Album'
+        albums:
+          $ref: '#/components/schemas/AlbumList'
+    Track:
+      type: object
+      description: Qobuz track metadata
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        version:
+          type: string
+        isrc:
+          type: string
+          description: International Standard Recording Code
+        maximum_bit_depth:
+          type: integer
+          description: Maximum available bit depth (e.g. 16, 24)
+        maximum_channel_count:
+          type: integer
+          description: Number of audio channels
+        maximum_sampling_rate:
+          type: number
+          description: Maximum sampling rate in kHz (e.g. 44.1, 96.0, 192.0)
+        performer:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        performers:
+          type: string
+        composer:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        copyright:
+          type: string
+        album:
+          $ref: '#/components/schemas/Album'
+        track_number:
+          type: integer
+        media_number:
+          type: integer
+        release_date_original:
+          type: string
+        release_date_download:
+          type: string
+        release_date_stream:
+          type: string
+        release_date_purchase:
+          type: string
+        purchasable:
+          type: boolean
+        streamable:
+          type: boolean
+        previewable:
+          type: boolean
+        sampleable:
+          type: boolean
+        downloadable:
+          type: boolean
+        displayable:
+          type: boolean
+        hires:
+          type: boolean
+        hires_streamable:
+          type: boolean
+        parental_warning:
+          type: boolean
+        duration:
+          type: integer
+          description: Track duration in seconds
+    Playlist:
+      type: object
+      description: Qobuz playlist metadata and tracks
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: integer
+          description: Unix timestamp of creation
+        updated_at:
+          type: integer
+          description: Unix timestamp of last update
+        public_at:
+          type: integer
+        duration:
+          type: integer
+          description: Total duration in seconds
+        tracks_count:
+          type: integer
+        users_count:
+          type: integer
+        is_public:
+          type: boolean
+        is_collaborative:
+          type: boolean
+        is_featured:
+          type: boolean
+        owner:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        images150:
+          type: array
+          items:
+            type: string
+            format: uri
+        images300:
+          type: array
+          items:
+            type: string
+            format: uri
+        featured_artists:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
+        genres:
+          type: array
+          items:
+            $ref: '#/components/schemas/Genre'
+        stores:
+          type: array
+          items:
+            type: string
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+        tracks_ids:
+          type: array
+          items:
+            type: integer
+    Album:
+      type: object
+      description: Qobuz album metadata
+      properties:
+        id:
+          type: string
+        qobuz_id:
+          type: integer
+        title:
+          type: string
+        subtitle:
+          type: string
+        version:
+          type: string
+        slug:
+          type: string
+        url:
+          type: string
+          format: uri
+        released_at:
+          type: integer
+          description: Unix timestamp of release
+        release_date_original:
+          type: string
+        release_date_download:
+          type: string
+        release_date_stream:
+          type: string
+        maximum_bit_depth:
+          type: integer
+        maximum_sampling_rate:
+          type: number
+        maximum_channel_count:
+          type: integer
+        hires:
+          type: boolean
+        hires_streamable:
+          type: boolean
+        purchasable:
+          type: boolean
+        streamable:
+          type: boolean
+        previewable:
+          type: boolean
+        sampleable:
+          type: boolean
+        downloadable:
+          type: boolean
+        displayable:
+          type: boolean
+        parental_warning:
+          type: boolean
+        artist:
+          $ref: '#/components/schemas/Artist'
+        label:
+          $ref: '#/components/schemas/Label'
+        genre:
+          $ref: '#/components/schemas/Genre'
+        description:
+          type: string
+        description_language:
+          type: string
+        catchline:
+          type: string
+        copyright:
+          type: string
+        recording_information:
+          type: string
+        upc:
+          type: string
+          description: Universal Product Code
+        popularity:
+          type: number
+        tracks_count:
+          type: integer
+        media_count:
+          type: integer
+        duration:
+          type: integer
+          description: Total album duration in seconds
+        tracks:
+          $ref: '#/components/schemas/TrackList'
+        image:
+          $ref: '#/components/schemas/Image'
+  securitySchemes:
+    AppId:
+      type: apiKey
+      in: query
+      name: app_id
+      description: Qobuz application identifier issued to partners
+    UserAuthToken:
+      type: apiKey
+      in: header
+      name: X-User-Auth-Token
+      description: User authentication token obtained from /user/login
