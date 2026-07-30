@@ -2,7 +2,20 @@ aid: qobuz
 url: https://raw.githubusercontent.com/api-evangelist/qobuz/refs/heads/main/apis.yml
 name: Qobuz
 kind: company
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/qobuz.png
 tags:
   - Music Streaming
   - Hi-Res Audio
@@ -31,72 +44,117 @@ description: >-
   deployed across France, Germany, and Canada infrastructure nodes monitored via a public status
   page.
 apis:
-  - aid: qobuz:music-api
-    name: Qobuz Music API
-    tags:
-      - Catalog Search
-      - Albums
-      - Artists
-      - Tracks
-      - Playlists
-      - Streaming URLs
-      - Hi-Res Audio
-      - User Favorites
-      - Authentication
-      - Downloads
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    baseURL: https://www.qobuz.com/api.json/0.2
-    humanURL: https://github.com/DJDoubleD/QobuzApiSharp
-    description: >-
-      The Qobuz Music API (v0.2) is a REST interface served at
-      https://www.qobuz.com/api.json/0.2 returning JSON responses. It covers user
-      authentication (email/password or token-based with MD5-hashed credentials plus
-      app_id and app_secret), catalog operations (search albums, artists, tracks, and
-      playlists), detailed metadata retrieval (album/get, artist/get, track/get,
-      playlist/get), streaming and download URL generation (track/getFileUrl with
-      format codes 5=MP3-320, 6=FLAC-CD, 7=FLAC-HiRes-96kHz, 27=FLAC-HiRes-192kHz),
-      and user account management (favorite/getUserFavorites). Request signing for
-      protected endpoints uses an MD5 hash of concatenated path parameters, a timestamp,
-      and the app_secret. Access requires a valid Qobuz subscription (Studio or Sublime)
-      and partner credentials issued by Qobuz.
-    properties:
-      - type: OpenAPI
-        url: openapi/openapi.yml
-      - type: Documentation
-        url: https://github.com/DJDoubleD/QobuzApiSharp
-      - type: Documentation
-        url: https://pkg.go.dev/github.com/markhc/gobuz
-      - type: TermsOfService
-        url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
-      - type: Authentication
-        url: https://github.com/DJDoubleD/QobuzApiSharp#authentication
-    x-features:
-      - Catalog search across albums, artists, tracks, and playlists
-      - Album metadata retrieval with track listings and artwork
-      - Artist discography and biography retrieval
-      - Track metadata including ISRC and audio quality details
-      - Streaming URL generation for MP3 and FLAC formats (including 24-bit/192kHz)
-      - User authentication via email/password or auth token
-      - User favorites management (add, remove, retrieve)
-      - Playlist creation and retrieval
-      - Hi-res download URL generation for purchased content
-      - Paginated results with limit and offset parameters
-    x-use-cases:
-      - Hi-fi hardware integration (Roon, Volumio, Audirvana, DAPs)
-      - Third-party music player applications
-      - Music metadata enrichment tools
-      - Hi-res audio download automation
-      - Music library management applications
-      - Connected speaker and streaming device integration
-      - Audiophile-focused mobile and desktop applications
-    x-integrations:
-      - Roon (music player)
-      - Volumio (Linux audio player)
-      - Audirvana (audiophile player)
-      - Sonos (connected speaker)
-      - Squeezebox / Logitech Media Server
-      - Connected Hi-Fi hardware (Cambridge Audio, Naim, Bluesound, etc.)
+- aid: qobuz:qobuz-albums-api
+  name: Qobuz Albums API
+  description: Album metadata retrieval and search
+  humanURL: https://github.com/DJDoubleD/QobuzApiSharp
+  baseURL: https://www.qobuz.com/api.json/0.2
+  tags:
+  - Albums
+  properties:
+  - type: OpenAPI
+    url: openapi/qobuz-albums-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/DJDoubleD/QobuzApiSharp
+  - type: Documentation
+    url: https://pkg.go.dev/github.com/markhc/gobuz
+  - type: TermsOfService
+    url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+  - type: Authentication
+    url: https://github.com/DJDoubleD/QobuzApiSharp#authentication
+- aid: qobuz:qobuz-artists-api
+  name: Qobuz Artists API
+  description: Artist metadata retrieval and search
+  humanURL: https://github.com/DJDoubleD/QobuzApiSharp
+  baseURL: https://www.qobuz.com/api.json/0.2
+  tags:
+  - Artists
+  properties:
+  - type: OpenAPI
+    url: openapi/qobuz-artists-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/DJDoubleD/QobuzApiSharp
+  - type: Documentation
+    url: https://pkg.go.dev/github.com/markhc/gobuz
+  - type: TermsOfService
+    url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+  - type: Authentication
+    url: https://github.com/DJDoubleD/QobuzApiSharp#authentication
+- aid: qobuz:qobuz-authentication-api
+  name: Qobuz Authentication API
+  description: User login and session management
+  humanURL: https://github.com/DJDoubleD/QobuzApiSharp
+  baseURL: https://www.qobuz.com/api.json/0.2
+  tags:
+  - Authentication
+  properties:
+  - type: OpenAPI
+    url: openapi/qobuz-authentication-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/DJDoubleD/QobuzApiSharp
+  - type: Documentation
+    url: https://pkg.go.dev/github.com/markhc/gobuz
+  - type: TermsOfService
+    url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+  - type: Authentication
+    url: https://github.com/DJDoubleD/QobuzApiSharp#authentication
+- aid: qobuz:qobuz-playlists-api
+  name: Qobuz Playlists API
+  description: Playlist retrieval and search
+  humanURL: https://github.com/DJDoubleD/QobuzApiSharp
+  baseURL: https://www.qobuz.com/api.json/0.2
+  tags:
+  - Playlists
+  properties:
+  - type: OpenAPI
+    url: openapi/qobuz-playlists-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/DJDoubleD/QobuzApiSharp
+  - type: Documentation
+    url: https://pkg.go.dev/github.com/markhc/gobuz
+  - type: TermsOfService
+    url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+  - type: Authentication
+    url: https://github.com/DJDoubleD/QobuzApiSharp#authentication
+- aid: qobuz:qobuz-search-api
+  name: Qobuz Search API
+  description: Cross-catalog search across all content types
+  humanURL: https://github.com/DJDoubleD/QobuzApiSharp
+  baseURL: https://www.qobuz.com/api.json/0.2
+  tags:
+  - Search
+  properties:
+  - type: OpenAPI
+    url: openapi/qobuz-search-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/DJDoubleD/QobuzApiSharp
+  - type: Documentation
+    url: https://pkg.go.dev/github.com/markhc/gobuz
+  - type: TermsOfService
+    url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+  - type: Authentication
+    url: https://github.com/DJDoubleD/QobuzApiSharp#authentication
+- aid: qobuz:qobuz-tracks-api
+  name: Qobuz Tracks API
+  description: Track metadata, streaming, and download URL generation
+  humanURL: https://github.com/DJDoubleD/QobuzApiSharp
+  baseURL: https://www.qobuz.com/api.json/0.2
+  tags:
+  - Tracks
+  properties:
+  - type: OpenAPI
+    url: openapi/qobuz-tracks-api-openapi.yml
+  - type: Documentation
+    url: https://github.com/DJDoubleD/QobuzApiSharp
+  - type: Documentation
+    url: https://pkg.go.dev/github.com/markhc/gobuz
+  - type: TermsOfService
+    url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+  - type: Authentication
+    url: https://github.com/DJDoubleD/QobuzApiSharp#authentication
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/qobuz/overview
   - type: AgenticAccess
     url: agentic-access/qobuz-agentic-access.yml
   - type: DomainSecurity
