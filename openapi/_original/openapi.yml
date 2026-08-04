@@ -1,0 +1,1330 @@
+openapi: 3.0.3
+info:
+  title: Qobuz Music API
+  description: >-
+    The Qobuz Music API (v0.2) is a REST interface served at
+    https://www.qobuz.com/api.json/0.2 returning JSON responses. It covers
+    user authentication (email/password or token-based with MD5-hashed
+    credentials plus app_id and app_secret), catalog operations (search
+    albums, artists, tracks, and playlists), detailed metadata retrieval,
+    streaming and download URL generation, and user account management.
+
+    API access requires a valid Qobuz subscription (Studio or Sublime) and
+    partner credentials (app_id and app_secret) issued by Qobuz. Contact
+    api@qobuz.com to request access.
+
+    Request signing for protected endpoints (e.g. track/getFileUrl) uses an
+    MD5 hash of concatenated path parameters, a unix timestamp, and the
+    app_secret.
+  version: '0.2'
+  contact:
+    name: Qobuz API Support
+    email: api@qobuz.com
+    url: https://www.qobuz.com/us-en/discover/apps-partners
+  termsOfService: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+  license:
+    name: Qobuz API Terms of Use
+    url: http://static.qobuz.com/apps/api/QobuzAPI-TermsofUse.pdf
+
+servers:
+  - url: https://www.qobuz.com/api.json/0.2
+    description: Qobuz REST API v0.2
+
+security:
+  - AppId: []
+
+tags:
+  - name: Authentication
+    description: User login and session management
+  - name: Albums
+    description: Album metadata retrieval and search
+  - name: Artists
+    description: Artist metadata retrieval and search
+  - name: Tracks
+    description: Track metadata, streaming, and download URL generation
+  - name: Playlists
+    description: Playlist retrieval and search
+  - name: Search
+    description: Cross-catalog search across all content types
+
+paths:
+  /user/login:
+    get:
+      operationId: userLogin
+      summary: Authenticate a user
+      description: >-
+        Authenticates a user with email and password. Returns a
+        user_auth_token that must be supplied in the X-User-Auth-Token
+        header for protected endpoints. The password should be sent as
+        an MD5 hash. Requires app_id.
+      tags:
+        - Authentication
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          description: Your Qobuz application identifier
+          schema:
+            type: string
+        - name: email
+          in: query
+          required: true
+          description: User's email address
+          schema:
+            type: string
+            format: email
+        - name: password
+          in: query
+          required: true
+          description: MD5 hash of the user's password
+          schema:
+            type: string
+      responses:
+        '200':
+          description: Successful authentication
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoginResponse'
+        '400':
+          description: Bad request or invalid credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized — invalid app_id or credentials
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /album/get:
+    get:
+      operationId: albumGet
+      summary: Retrieve album metadata
+      description: >-
+        Returns detailed metadata for a single album including track
+        listing, artist, label, genre, audio quality details, and
+        availability flags.
+      tags:
+        - Albums
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: album_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Qobuz album identifier
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 1200
+          description: Maximum number of tracks to include in the response
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset for track listings
+        - name: extra
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated list of additional fields to include (e.g. tracks,artist)
+      security:
+        - AppId: []
+        - UserAuthToken: []
+      responses:
+        '200':
+          description: Album metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Album'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '404':
+          description: Album not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /album/search:
+    get:
+      operationId: albumSearch
+      summary: Search albums
+      description: >-
+        Search the Qobuz catalog for albums matching the supplied query
+        string. Returns a paginated list of Album objects.
+      tags:
+        - Albums
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+          description: Maximum number of results to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+      security:
+        - AppId: []
+      responses:
+        '200':
+          description: Paginated list of albums
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AlbumList'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /artist/get:
+    get:
+      operationId: artistGet
+      summary: Retrieve artist metadata
+      description: >-
+        Returns detailed metadata for a single artist including biography,
+        image, discography summary, and similar artist IDs.
+      tags:
+        - Artists
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: artist_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Qobuz artist identifier
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+          description: Maximum number of albums to include
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+        - name: extra
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated additional fields (e.g. albums,biography)
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Sort field for album list
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+          description: Sort order
+      security:
+        - AppId: []
+      responses:
+        '200':
+          description: Artist metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Artist'
+        '404':
+          description: Artist not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /artist/search:
+    get:
+      operationId: artistSearch
+      summary: Search artists
+      description: >-
+        Search the Qobuz catalog for artists matching the supplied query
+        string. Returns a paginated list of Artist objects.
+      tags:
+        - Artists
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+          description: Maximum number of results to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Sort field
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+          description: Sort order
+      security:
+        - AppId: []
+      responses:
+        '200':
+          description: Paginated list of artists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ArtistList'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /track/get:
+    get:
+      operationId: trackGet
+      summary: Retrieve track metadata
+      description: >-
+        Returns detailed metadata for a single track including ISRC,
+        audio quality specifications, performer details, and
+        availability flags.
+      tags:
+        - Tracks
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: track_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Qobuz track identifier
+      security:
+        - AppId: []
+      responses:
+        '200':
+          description: Track metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Track'
+        '404':
+          description: Track not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /track/search:
+    get:
+      operationId: trackSearch
+      summary: Search tracks
+      description: >-
+        Search the Qobuz catalog for tracks matching the supplied query
+        string. Returns a paginated list of Track objects.
+      tags:
+        - Tracks
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+          description: Maximum number of results to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+      security:
+        - AppId: []
+      responses:
+        '200':
+          description: Paginated list of tracks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TrackList'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /track/getFileUrl:
+    get:
+      operationId: trackGetFileUrl
+      summary: Generate streaming or download URL for a track
+      description: >-
+        Generates an authenticated streaming or download URL for a track
+        in the specified audio format. Requires a valid user_auth_token
+        (X-User-Auth-Token header) and a signed request.
+
+        The request_sig is computed as:
+          MD5(intent + "trackid" + track_id + "formatid" + format_id + request_ts + app_secret)
+
+        Format IDs:
+          5  = MP3 320 kbps CBR
+          6  = FLAC 16-bit/44.1 kHz (CD quality)
+          7  = FLAC 24-bit/96 kHz (Hi-Res)
+          27 = FLAC 24-bit/192 kHz (Hi-Res)
+      tags:
+        - Tracks
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: track_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Qobuz track identifier
+        - name: format_id
+          in: query
+          required: true
+          schema:
+            type: integer
+            enum:
+              - 5
+              - 6
+              - 7
+              - 27
+          description: Audio format code (5=MP3-320, 6=FLAC-CD, 7=FLAC-HiRes-96kHz, 27=FLAC-HiRes-192kHz)
+        - name: intent
+          in: query
+          required: true
+          schema:
+            type: string
+            enum:
+              - stream
+              - download
+          description: Intended use — stream or download
+        - name: request_ts
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Current Unix timestamp used in signature
+        - name: request_sig
+          in: query
+          required: true
+          schema:
+            type: string
+          description: MD5 signature authenticating the request
+      security:
+        - AppId: []
+        - UserAuthToken: []
+      responses:
+        '200':
+          description: Streaming or download URL and audio metadata
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/FileUrl'
+        '400':
+          description: Bad request or invalid signature
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Unauthorized — invalid or expired auth token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '403':
+          description: Forbidden — subscription does not permit this format
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /playlist/get:
+    get:
+      operationId: playlistGet
+      summary: Retrieve a playlist
+      description: >-
+        Returns metadata and track listing for a single playlist
+        identified by its playlist_id.
+      tags:
+        - Playlists
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: playlist_id
+          in: query
+          required: true
+          schema:
+            type: integer
+          description: Qobuz playlist identifier
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 25
+          description: Maximum number of tracks to include
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+        - name: extra
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Comma-separated additional fields (e.g. tracks)
+      security:
+        - AppId: []
+        - UserAuthToken: []
+      responses:
+        '200':
+          description: Playlist metadata and tracks
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Playlist'
+        '404':
+          description: Playlist not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /playlist/search:
+    get:
+      operationId: playlistSearch
+      summary: Search playlists
+      description: >-
+        Search the Qobuz catalog for playlists matching the supplied
+        query string. Returns a paginated list of Playlist objects.
+      tags:
+        - Playlists
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+          description: Maximum number of results to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+      security:
+        - AppId: []
+      responses:
+        '200':
+          description: Paginated list of playlists
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PlaylistList'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /catalog/search:
+    get:
+      operationId: catalogSearch
+      summary: Cross-catalog search
+      description: >-
+        Searches across all content types (albums, artists, tracks,
+        playlists, articles, focus, stories) and returns aggregated
+        results. Use the limit and offset parameters for pagination
+        within each content-type bucket.
+      tags:
+        - Search
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Search query string
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+          description: Maximum number of results per content type
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+        - name: sort
+          in: query
+          required: false
+          schema:
+            type: string
+          description: Sort field
+        - name: order
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - asc
+              - desc
+          description: Sort order
+      security:
+        - AppId: []
+      responses:
+        '200':
+          description: Aggregated search results across content types
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SearchResults'
+        '400':
+          description: Bad request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+  /favorite/getUserFavorites:
+    get:
+      operationId: favoriteGetUserFavorites
+      summary: Retrieve user favorites
+      description: >-
+        Returns the authenticated user's favorited albums, artists,
+        and tracks. Requires a valid user_auth_token.
+      tags:
+        - Authentication
+      parameters:
+        - name: app_id
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Your Qobuz application identifier
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 50
+          description: Maximum number of results to return
+        - name: offset
+          in: query
+          required: false
+          schema:
+            type: integer
+            default: 0
+          description: Pagination offset
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum:
+              - albums
+              - artists
+              - tracks
+          description: Filter favorites by content type
+      security:
+        - AppId: []
+        - UserAuthToken: []
+      responses:
+        '200':
+          description: User's favorites
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserFavorites'
+        '401':
+          description: Unauthorized — invalid or expired auth token
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  securitySchemes:
+    AppId:
+      type: apiKey
+      in: query
+      name: app_id
+      description: Qobuz application identifier issued to partners
+    UserAuthToken:
+      type: apiKey
+      in: header
+      name: X-User-Auth-Token
+      description: User authentication token obtained from /user/login
+
+  schemas:
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned by all endpoints on failure
+      properties:
+        status:
+          type: string
+          example: error
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Bad Request
+
+    LoginResponse:
+      type: object
+      description: Response returned by /user/login on successful authentication
+      properties:
+        user:
+          $ref: '#/components/schemas/User'
+        user_auth_token:
+          type: string
+          description: Authentication token to use in X-User-Auth-Token header
+
+    User:
+      type: object
+      description: Qobuz user account details
+      properties:
+        id:
+          type: integer
+        publicId:
+          type: string
+        email:
+          type: string
+          format: email
+        login:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        display_name:
+          type: string
+        country_code:
+          type: string
+          example: US
+        language_code:
+          type: string
+          example: en
+        zone:
+          type: string
+        store:
+          type: string
+        country:
+          type: string
+        avatar:
+          type: string
+          format: uri
+        creation_date:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+        credential:
+          $ref: '#/components/schemas/Credential'
+
+    Subscription:
+      type: object
+      description: User subscription details
+      properties:
+        offer:
+          type: string
+          description: Subscription plan name (e.g. Studio, Sublime)
+        periodicity:
+          type: string
+          description: Billing period (e.g. monthly, yearly)
+        start_date:
+          type: string
+        end_date:
+          type: string
+
+    Credential:
+      type: object
+      description: User credential / entitlement details
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        description:
+          type: string
+        parameters:
+          type: object
+          additionalProperties: true
+
+    Image:
+      type: object
+      description: Set of image URLs at various resolutions
+      properties:
+        small:
+          type: string
+          format: uri
+        medium:
+          type: string
+          format: uri
+        large:
+          type: string
+          format: uri
+        extralarge:
+          type: string
+          format: uri
+        mega:
+          type: string
+          format: uri
+
+    Artist:
+      type: object
+      description: Qobuz artist metadata
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        albums_as_primary_artist_count:
+          type: integer
+        albums_as_primary_composer_count:
+          type: integer
+        albums_count:
+          type: integer
+        slug:
+          type: string
+        picture:
+          type: string
+          format: uri
+        image:
+          $ref: '#/components/schemas/Image'
+        similar_artist_ids:
+          type: array
+          items:
+            type: integer
+        biography:
+          $ref: '#/components/schemas/Biography'
+        album_last_release:
+          $ref: '#/components/schemas/Album'
+        albums:
+          $ref: '#/components/schemas/AlbumList'
+
+    Biography:
+      type: object
+      description: Artist biography
+      properties:
+        summary:
+          type: string
+        content:
+          type: string
+        source:
+          type: string
+        language:
+          type: string
+
+    ArtistList:
+      type: object
+      description: Paginated list of artists
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
+
+    Genre:
+      type: object
+      description: Music genre
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        color:
+          type: string
+
+    Label:
+      type: object
+      description: Record label
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        albums_count:
+          type: integer
+
+    Track:
+      type: object
+      description: Qobuz track metadata
+      properties:
+        id:
+          type: integer
+        title:
+          type: string
+        version:
+          type: string
+        isrc:
+          type: string
+          description: International Standard Recording Code
+        maximum_bit_depth:
+          type: integer
+          description: Maximum available bit depth (e.g. 16, 24)
+        maximum_channel_count:
+          type: integer
+          description: Number of audio channels
+        maximum_sampling_rate:
+          type: number
+          description: Maximum sampling rate in kHz (e.g. 44.1, 96.0, 192.0)
+        performer:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        performers:
+          type: string
+        composer:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        copyright:
+          type: string
+        album:
+          $ref: '#/components/schemas/Album'
+        track_number:
+          type: integer
+        media_number:
+          type: integer
+        release_date_original:
+          type: string
+        release_date_download:
+          type: string
+        release_date_stream:
+          type: string
+        release_date_purchase:
+          type: string
+        purchasable:
+          type: boolean
+        streamable:
+          type: boolean
+        previewable:
+          type: boolean
+        sampleable:
+          type: boolean
+        downloadable:
+          type: boolean
+        displayable:
+          type: boolean
+        hires:
+          type: boolean
+        hires_streamable:
+          type: boolean
+        parental_warning:
+          type: boolean
+        duration:
+          type: integer
+          description: Track duration in seconds
+
+    TrackList:
+      type: object
+      description: Paginated list of tracks
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+
+    FileUrl:
+      type: object
+      description: Streaming or download URL for a track
+      properties:
+        track_id:
+          type: integer
+        duration:
+          type: integer
+          description: Track duration in seconds
+        url:
+          type: string
+          format: uri
+          description: Authenticated CDN URL for the audio file
+        format_id:
+          type: integer
+          description: Audio format code (5=MP3-320, 6=FLAC-CD, 7=FLAC-HiRes-96kHz, 27=FLAC-HiRes-192kHz)
+        mime_type:
+          type: string
+          example: audio/flac
+        sampling_rate:
+          type: number
+          description: Sampling rate in kHz
+        bit_depth:
+          type: integer
+          description: Bit depth (16 or 24)
+        blob:
+          type: string
+          description: Opaque CDN delivery token
+
+    Album:
+      type: object
+      description: Qobuz album metadata
+      properties:
+        id:
+          type: string
+        qobuz_id:
+          type: integer
+        title:
+          type: string
+        subtitle:
+          type: string
+        version:
+          type: string
+        slug:
+          type: string
+        url:
+          type: string
+          format: uri
+        released_at:
+          type: integer
+          description: Unix timestamp of release
+        release_date_original:
+          type: string
+        release_date_download:
+          type: string
+        release_date_stream:
+          type: string
+        maximum_bit_depth:
+          type: integer
+        maximum_sampling_rate:
+          type: number
+        maximum_channel_count:
+          type: integer
+        hires:
+          type: boolean
+        hires_streamable:
+          type: boolean
+        purchasable:
+          type: boolean
+        streamable:
+          type: boolean
+        previewable:
+          type: boolean
+        sampleable:
+          type: boolean
+        downloadable:
+          type: boolean
+        displayable:
+          type: boolean
+        parental_warning:
+          type: boolean
+        artist:
+          $ref: '#/components/schemas/Artist'
+        label:
+          $ref: '#/components/schemas/Label'
+        genre:
+          $ref: '#/components/schemas/Genre'
+        description:
+          type: string
+        description_language:
+          type: string
+        catchline:
+          type: string
+        copyright:
+          type: string
+        recording_information:
+          type: string
+        upc:
+          type: string
+          description: Universal Product Code
+        popularity:
+          type: number
+        tracks_count:
+          type: integer
+        media_count:
+          type: integer
+        duration:
+          type: integer
+          description: Total album duration in seconds
+        tracks:
+          $ref: '#/components/schemas/TrackList'
+        image:
+          $ref: '#/components/schemas/Image'
+
+    AlbumList:
+      type: object
+      description: Paginated list of albums
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Album'
+
+    Playlist:
+      type: object
+      description: Qobuz playlist metadata and tracks
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: integer
+          description: Unix timestamp of creation
+        updated_at:
+          type: integer
+          description: Unix timestamp of last update
+        public_at:
+          type: integer
+        duration:
+          type: integer
+          description: Total duration in seconds
+        tracks_count:
+          type: integer
+        users_count:
+          type: integer
+        is_public:
+          type: boolean
+        is_collaborative:
+          type: boolean
+        is_featured:
+          type: boolean
+        owner:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        images150:
+          type: array
+          items:
+            type: string
+            format: uri
+        images300:
+          type: array
+          items:
+            type: string
+            format: uri
+        featured_artists:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
+        genres:
+          type: array
+          items:
+            $ref: '#/components/schemas/Genre'
+        stores:
+          type: array
+          items:
+            type: string
+        tracks:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+        tracks_ids:
+          type: array
+          items:
+            type: integer
+
+    PlaylistList:
+      type: object
+      description: Paginated list of playlists
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Playlist'
+
+    SearchResults:
+      type: object
+      description: Aggregated search results across all content types
+      properties:
+        query:
+          type: string
+        albums:
+          $ref: '#/components/schemas/AlbumList'
+        artists:
+          $ref: '#/components/schemas/ArtistList'
+        tracks:
+          $ref: '#/components/schemas/TrackList'
+        playlists:
+          $ref: '#/components/schemas/PlaylistList'
+
+    UserFavorites:
+      type: object
+      description: Authenticated user's favorited content
+      properties:
+        albums:
+          $ref: '#/components/schemas/AlbumList'
+        artists:
+          $ref: '#/components/schemas/ArtistList'
+        tracks:
+          $ref: '#/components/schemas/TrackList'

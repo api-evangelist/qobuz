@@ -1,0 +1,484 @@
+{
+  "info": {
+    "_postman_id": "9a4a24cf-ec52-4846-a4ba-1ceaa5871091",
+    "name": "Qobuz Music Albums Authentication API",
+    "description": "The Qobuz Music API (v0.2) is a REST interface served at https://www.qobuz.com/api.json/0.2 returning JSON responses. It covers user authentication (email/password or token-based with MD5-hashed credentials plus app_id and app_secret), catalog operations (search albums, artists, tracks, and playlists), detailed metadata retrieval, streaming and download URL generation, and user account management.\nAPI access requires a valid Qobuz subscription (Studio or Sublime) and partner credentials (app_id and app_secret) issued by Qobuz. Contact api@qobuz.com to request access.\nRequest signing for protected endpoints (e.g. track/getFileUrl) uses an MD5 hash of concatenated path parameters, a unix timestamp, and the app_secret.\n\nContact Support:\n Name: Qobuz API Support\n Email: api@qobuz.com",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T02:42:00.000Z",
+    "updatedAt": "2026-07-28T02:42:00.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-9a4a24cf-ec52-4846-a4ba-1ceaa5871091"
+  },
+  "item": [
+    {
+      "name": "user",
+      "item": [
+        {
+          "name": "login",
+          "item": [
+            {
+              "name": "Authenticate a user",
+              "id": "0e8a8956-ba72-495c-a6aa-32948103d517",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/user/login?app_id=<string>&email=<email>&password=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "user",
+                    "login"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Your Qobuz application identifier",
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "(Required) User's email address",
+                      "key": "email",
+                      "value": "<email>"
+                    },
+                    {
+                      "description": "(Required) MD5 hash of the user's password",
+                      "key": "password",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Authenticates a user with email and password. Returns a user_auth_token that must be supplied in the X-User-Auth-Token header for protected endpoints. The password should be sent as an MD5 hash. Requires app_id."
+              },
+              "response": [
+                {
+                  "id": "9df93620-b618-4fd9-8f1e-c3414c5023e9",
+                  "name": "Successful authentication",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/login?app_id=<API Key>&email=<email>&password=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "login"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Qobuz application identifier",
+                          "key": "app_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) User's email address",
+                          "key": "email",
+                          "value": "<email>"
+                        },
+                        {
+                          "description": "(Required) MD5 hash of the user's password",
+                          "key": "password",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"user\": {\n    \"id\": \"<integer>\",\n    \"publicId\": \"<string>\",\n    \"email\": \"<email>\",\n    \"login\": \"<string>\",\n    \"firstname\": \"<string>\",\n    \"lastname\": \"<string>\",\n    \"display_name\": \"<string>\",\n    \"country_code\": \"<string>\",\n    \"language_code\": \"<string>\",\n    \"zone\": \"<string>\",\n    \"store\": \"<string>\",\n    \"country\": \"<string>\",\n    \"avatar\": \"<uri>\",\n    \"creation_date\": \"<string>\",\n    \"subscription\": {\n      \"offer\": \"<string>\",\n      \"periodicity\": \"<string>\",\n      \"start_date\": \"<string>\",\n      \"end_date\": \"<string>\"\n    },\n    \"credential\": {\n      \"id\": \"<integer>\",\n      \"label\": \"<string>\",\n      \"description\": \"<string>\",\n      \"parameters\": {\n        \"ad5ea\": 96530088.67579535\n      }\n    }\n  },\n  \"user_auth_token\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:42:00.000Z",
+                  "updatedAt": "2026-07-28T02:42:00.000Z",
+                  "uid": "35240-9df93620-b618-4fd9-8f1e-c3414c5023e9"
+                },
+                {
+                  "id": "d0c6d30c-c5e4-4c39-9c77-42617766933d",
+                  "name": "Bad request or invalid credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/login?app_id=<API Key>&email=<email>&password=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "login"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Qobuz application identifier",
+                          "key": "app_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) User's email address",
+                          "key": "email",
+                          "value": "<email>"
+                        },
+                        {
+                          "description": "(Required) MD5 hash of the user's password",
+                          "key": "password",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:42:00.000Z",
+                  "updatedAt": "2026-07-28T02:42:00.000Z",
+                  "uid": "35240-d0c6d30c-c5e4-4c39-9c77-42617766933d"
+                },
+                {
+                  "id": "6ff0df2f-aa3a-4c81-9839-23fbb076e979",
+                  "name": "Unauthorized \u2014 invalid app_id or credentials",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/user/login?app_id=<API Key>&email=<email>&password=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "user",
+                        "login"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Qobuz application identifier",
+                          "key": "app_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "(Required) User's email address",
+                          "key": "email",
+                          "value": "<email>"
+                        },
+                        {
+                          "description": "(Required) MD5 hash of the user's password",
+                          "key": "password",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:42:00.000Z",
+                  "updatedAt": "2026-07-28T02:42:00.000Z",
+                  "uid": "35240-6ff0df2f-aa3a-4c81-9839-23fbb076e979"
+                }
+              ],
+              "createdAt": "2026-07-28T02:42:00.000Z",
+              "updatedAt": "2026-07-28T02:42:00.000Z",
+              "uid": "35240-0e8a8956-ba72-495c-a6aa-32948103d517"
+            }
+          ],
+          "id": "5ba9710c-7d4b-4a20-95dd-98812ed0a984",
+          "createdAt": "2026-07-28T02:42:00.000Z",
+          "updatedAt": "2026-07-28T02:42:00.000Z",
+          "uid": "35240-5ba9710c-7d4b-4a20-95dd-98812ed0a984"
+        }
+      ],
+      "id": "52a5dfec-ddef-42da-82cb-e735fc0fdeb3",
+      "createdAt": "2026-07-28T02:42:00.000Z",
+      "updatedAt": "2026-07-28T02:42:00.000Z",
+      "uid": "35240-52a5dfec-ddef-42da-82cb-e735fc0fdeb3"
+    },
+    {
+      "name": "favorite",
+      "item": [
+        {
+          "name": "getUserFavorites",
+          "item": [
+            {
+              "name": "Retrieve user favorites",
+              "id": "81834bb2-1801-42a4-9c47-89f43903583f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "auth": {
+                  "type": "apikey",
+                  "apikey": [
+                    {
+                      "key": "key",
+                      "value": "app_id",
+                      "type": "string"
+                    },
+                    {
+                      "key": "value",
+                      "value": "{{apiKey}}",
+                      "type": "string"
+                    },
+                    {
+                      "key": "in",
+                      "value": "query",
+                      "type": "string"
+                    }
+                  ]
+                },
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/favorite/getUserFavorites?app_id=<string>&limit=50&offset=0&type=albums",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "favorite",
+                    "getUserFavorites"
+                  ],
+                  "query": [
+                    {
+                      "description": "(Required) Your Qobuz application identifier",
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Maximum number of results to return",
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "description": "Pagination offset",
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "description": "Filter favorites by content type",
+                      "key": "type",
+                      "value": "albums"
+                    }
+                  ]
+                },
+                "description": "Returns the authenticated user's favorited albums, artists, and tracks. Requires a valid user_auth_token."
+              },
+              "response": [
+                {
+                  "id": "0db35058-d3a2-419d-b0bd-917e075b9589",
+                  "name": "User's favorites",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/favorite/getUserFavorites?app_id=<API Key>&limit=50&offset=0&type=albums",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "favorite",
+                        "getUserFavorites"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Qobuz application identifier",
+                          "key": "app_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filter favorites by content type",
+                          "key": "type",
+                          "value": "albums"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"albums\": {\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"items\": [\n      {\n        \"id\": \"<string>\",\n        \"qobuz_id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"subtitle\": \"<string>\",\n        \"version\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"released_at\": \"<integer>\",\n        \"release_date_original\": \"<string>\",\n        \"release_date_download\": \"<string>\",\n        \"release_date_stream\": \"<string>\",\n        \"maximum_bit_depth\": \"<integer>\",\n        \"maximum_sampling_rate\": \"<number>\",\n        \"maximum_channel_count\": \"<integer>\",\n        \"hires\": \"<boolean>\",\n        \"hires_streamable\": \"<boolean>\",\n        \"purchasable\": \"<boolean>\",\n        \"streamable\": \"<boolean>\",\n        \"previewable\": \"<boolean>\",\n        \"sampleable\": \"<boolean>\",\n        \"downloadable\": \"<boolean>\",\n        \"displayable\": \"<boolean>\",\n        \"parental_warning\": \"<boolean>\",\n        \"artist\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"albums_as_primary_artist_count\": \"<integer>\",\n          \"albums_as_primary_composer_count\": \"<integer>\",\n          \"albums_count\": \"<integer>\",\n          \"slug\": \"<string>\",\n          \"picture\": \"<uri>\",\n          \"image\": {\n            \"small\": \"<uri>\",\n            \"medium\": \"<uri>\",\n            \"large\": \"<uri>\",\n            \"extralarge\": \"<uri>\",\n            \"mega\": \"<uri>\"\n          },\n          \"similar_artist_ids\": [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          \"biography\": {\n            \"summary\": \"<string>\",\n            \"content\": \"<string>\",\n            \"source\": \"<string>\",\n            \"language\": \"<string>\"\n          },\n          \"album_last_release\": {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          },\n          \"albums\": {\n            \"value\": \"<Circular reference to #/components/schemas/AlbumList detected>\"\n          }\n        },\n        \"label\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"slug\": \"<string>\",\n          \"albums_count\": \"<integer>\"\n        },\n        \"genre\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"slug\": \"<string>\",\n          \"color\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"description_language\": \"<string>\",\n        \"catchline\": \"<string>\",\n        \"copyright\": \"<string>\",\n        \"recording_information\": \"<string>\",\n        \"upc\": \"<string>\",\n        \"popularity\": \"<number>\",\n        \"tracks_count\": \"<integer>\",\n        \"media_count\": \"<integer>\",\n        \"duration\": \"<integer>\",\n        \"tracks\": {\n          \"limit\": \"<integer>\",\n          \"offset\": \"<integer>\",\n          \"total\": \"<integer>\",\n          \"items\": [\n            {\n              \"id\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"version\": \"<string>\",\n              \"isrc\": \"<string>\",\n              \"maximum_bit_depth\": \"<integer>\",\n              \"maximum_channel_count\": \"<integer>\",\n              \"maximum_sampling_rate\": \"<number>\",\n              \"performer\": {\n                \"id\": \"<integer>\",\n                \"name\": \"<string>\"\n              },\n              \"performers\": \"<string>\",\n              \"composer\": {\n                \"id\": \"<integer>\",\n                \"name\": \"<string>\"\n              },\n              \"copyright\": \"<string>\",\n              \"album\": {\n                \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n              },\n              \"track_number\": \"<integer>\",\n              \"media_number\": \"<integer>\",\n              \"release_date_original\": \"<string>\",\n              \"release_date_download\": \"<string>\",\n              \"release_date_stream\": \"<string>\",\n              \"release_date_purchase\": \"<string>\",\n              \"purchasable\": \"<boolean>\",\n              \"streamable\": \"<boolean>\",\n              \"previewable\": \"<boolean>\",\n              \"sampleable\": \"<boolean>\",\n              \"downloadable\": \"<boolean>\",\n              \"displayable\": \"<boolean>\",\n              \"hires\": \"<boolean>\",\n              \"hires_streamable\": \"<boolean>\",\n              \"parental_warning\": \"<boolean>\",\n              \"duration\": \"<integer>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"version\": \"<string>\",\n              \"isrc\": \"<string>\",\n              \"maximum_bit_depth\": \"<integer>\",\n              \"maximum_channel_count\": \"<integer>\",\n              \"maximum_sampling_rate\": \"<number>\",\n              \"performer\": {\n                \"id\": \"<integer>\",\n                \"name\": \"<string>\"\n              },\n              \"performers\": \"<string>\",\n              \"composer\": {\n                \"id\": \"<integer>\",\n                \"name\": \"<string>\"\n              },\n              \"copyright\": \"<string>\",\n              \"album\": {\n                \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n              },\n              \"track_number\": \"<integer>\",\n              \"media_number\": \"<integer>\",\n              \"release_date_original\": \"<string>\",\n              \"release_date_download\": \"<string>\",\n              \"release_date_stream\": \"<string>\",\n              \"release_date_purchase\": \"<string>\",\n              \"purchasable\": \"<boolean>\",\n              \"streamable\": \"<boolean>\",\n              \"previewable\": \"<boolean>\",\n              \"sampleable\": \"<boolean>\",\n              \"downloadable\": \"<boolean>\",\n              \"displayable\": \"<boolean>\",\n              \"hires\": \"<boolean>\",\n              \"hires_streamable\": \"<boolean>\",\n              \"parental_warning\": \"<boolean>\",\n              \"duration\": \"<integer>\"\n            }\n          ]\n        },\n        \"image\": {\n          \"small\": \"<uri>\",\n          \"medium\": \"<uri>\",\n          \"large\": \"<uri>\",\n          \"extralarge\": \"<uri>\",\n          \"mega\": \"<uri>\"\n        }\n      },\n      {\n        \"id\": \"<string>\",\n        \"qobuz_id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"subtitle\": \"<string>\",\n        \"version\": \"<string>\",\n        \"slug\": \"<string>\",\n        \"url\": \"<uri>\",\n        \"released_at\": \"<integer>\",\n        \"release_date_original\": \"<string>\",\n        \"release_date_download\": \"<string>\",\n        \"release_date_stream\": \"<string>\",\n        \"maximum_bit_depth\": \"<integer>\",\n        \"maximum_sampling_rate\": \"<number>\",\n        \"maximum_channel_count\": \"<integer>\",\n        \"hires\": \"<boolean>\",\n        \"hires_streamable\": \"<boolean>\",\n        \"purchasable\": \"<boolean>\",\n        \"streamable\": \"<boolean>\",\n        \"previewable\": \"<boolean>\",\n        \"sampleable\": \"<boolean>\",\n        \"downloadable\": \"<boolean>\",\n        \"displayable\": \"<boolean>\",\n        \"parental_warning\": \"<boolean>\",\n        \"artist\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"albums_as_primary_artist_count\": \"<integer>\",\n          \"albums_as_primary_composer_count\": \"<integer>\",\n          \"albums_count\": \"<integer>\",\n          \"slug\": \"<string>\",\n          \"picture\": \"<uri>\",\n          \"image\": {\n            \"small\": \"<uri>\",\n            \"medium\": \"<uri>\",\n            \"large\": \"<uri>\",\n            \"extralarge\": \"<uri>\",\n            \"mega\": \"<uri>\"\n          },\n          \"similar_artist_ids\": [\n            \"<integer>\",\n            \"<integer>\"\n          ],\n          \"biography\": {\n            \"summary\": \"<string>\",\n            \"content\": \"<string>\",\n            \"source\": \"<string>\",\n            \"language\": \"<string>\"\n          },\n          \"album_last_release\": {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          },\n          \"albums\": {\n            \"value\": \"<Circular reference to #/components/schemas/AlbumList detected>\"\n          }\n        },\n        \"label\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"slug\": \"<string>\",\n          \"albums_count\": \"<integer>\"\n        },\n        \"genre\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\",\n          \"slug\": \"<string>\",\n          \"color\": \"<string>\"\n        },\n        \"description\": \"<string>\",\n        \"description_language\": \"<string>\",\n        \"catchline\": \"<string>\",\n        \"copyright\": \"<string>\",\n        \"recording_information\": \"<string>\",\n        \"upc\": \"<string>\",\n        \"popularity\": \"<number>\",\n        \"tracks_count\": \"<integer>\",\n        \"media_count\": \"<integer>\",\n        \"duration\": \"<integer>\",\n        \"tracks\": {\n          \"limit\": \"<integer>\",\n          \"offset\": \"<integer>\",\n          \"total\": \"<integer>\",\n          \"items\": [\n            {\n              \"id\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"version\": \"<string>\",\n              \"isrc\": \"<string>\",\n              \"maximum_bit_depth\": \"<integer>\",\n              \"maximum_channel_count\": \"<integer>\",\n              \"maximum_sampling_rate\": \"<number>\",\n              \"performer\": {\n                \"id\": \"<integer>\",\n                \"name\": \"<string>\"\n              },\n              \"performers\": \"<string>\",\n              \"composer\": {\n                \"id\": \"<integer>\",\n                \"name\": \"<string>\"\n              },\n              \"copyright\": \"<string>\",\n              \"album\": {\n                \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n              },\n              \"track_number\": \"<integer>\",\n              \"media_number\": \"<integer>\",\n              \"release_date_original\": \"<string>\",\n              \"release_date_download\": \"<string>\",\n              \"release_date_stream\": \"<string>\",\n              \"release_date_purchase\": \"<string>\",\n              \"purchasable\": \"<boolean>\",\n              \"streamable\": \"<boolean>\",\n              \"previewable\": \"<boolean>\",\n              \"sampleable\": \"<boolean>\",\n              \"downloadable\": \"<boolean>\",\n              \"displayable\": \"<boolean>\",\n              \"hires\": \"<boolean>\",\n              \"hires_streamable\": \"<boolean>\",\n              \"parental_warning\": \"<boolean>\",\n              \"duration\": \"<integer>\"\n            },\n            {\n              \"id\": \"<integer>\",\n              \"title\": \"<string>\",\n              \"version\": \"<string>\",\n              \"isrc\": \"<string>\",\n              \"maximum_bit_depth\": \"<integer>\",\n              \"maximum_channel_count\": \"<integer>\",\n              \"maximum_sampling_rate\": \"<number>\",\n              \"performer\": {\n                \"id\": \"<integer>\",\n                \"name\": \"<string>\"\n              },\n              \"performers\": \"<string>\",\n              \"composer\": {\n                \"id\": \"<integer>\",\n                \"name\": \"<string>\"\n              },\n              \"copyright\": \"<string>\",\n              \"album\": {\n                \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n              },\n              \"track_number\": \"<integer>\",\n              \"media_number\": \"<integer>\",\n              \"release_date_original\": \"<string>\",\n              \"release_date_download\": \"<string>\",\n              \"release_date_stream\": \"<string>\",\n              \"release_date_purchase\": \"<string>\",\n              \"purchasable\": \"<boolean>\",\n              \"streamable\": \"<boolean>\",\n              \"previewable\": \"<boolean>\",\n              \"sampleable\": \"<boolean>\",\n              \"downloadable\": \"<boolean>\",\n              \"displayable\": \"<boolean>\",\n              \"hires\": \"<boolean>\",\n              \"hires_streamable\": \"<boolean>\",\n              \"parental_warning\": \"<boolean>\",\n              \"duration\": \"<integer>\"\n            }\n          ]\n        },\n        \"image\": {\n          \"small\": \"<uri>\",\n          \"medium\": \"<uri>\",\n          \"large\": \"<uri>\",\n          \"extralarge\": \"<uri>\",\n          \"mega\": \"<uri>\"\n        }\n      }\n    ]\n  },\n  \"artists\": {\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"items\": [\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"albums_as_primary_artist_count\": \"<integer>\",\n        \"albums_as_primary_composer_count\": \"<integer>\",\n        \"albums_count\": \"<integer>\",\n        \"slug\": \"<string>\",\n        \"picture\": \"<uri>\",\n        \"image\": {\n          \"small\": \"<uri>\",\n          \"medium\": \"<uri>\",\n          \"large\": \"<uri>\",\n          \"extralarge\": \"<uri>\",\n          \"mega\": \"<uri>\"\n        },\n        \"similar_artist_ids\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"biography\": {\n          \"summary\": \"<string>\",\n          \"content\": \"<string>\",\n          \"source\": \"<string>\",\n          \"language\": \"<string>\"\n        },\n        \"album_last_release\": {\n          \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n        },\n        \"albums\": {\n          \"value\": \"<Circular reference to #/components/schemas/AlbumList detected>\"\n        }\n      },\n      {\n        \"id\": \"<integer>\",\n        \"name\": \"<string>\",\n        \"albums_as_primary_artist_count\": \"<integer>\",\n        \"albums_as_primary_composer_count\": \"<integer>\",\n        \"albums_count\": \"<integer>\",\n        \"slug\": \"<string>\",\n        \"picture\": \"<uri>\",\n        \"image\": {\n          \"small\": \"<uri>\",\n          \"medium\": \"<uri>\",\n          \"large\": \"<uri>\",\n          \"extralarge\": \"<uri>\",\n          \"mega\": \"<uri>\"\n        },\n        \"similar_artist_ids\": [\n          \"<integer>\",\n          \"<integer>\"\n        ],\n        \"biography\": {\n          \"summary\": \"<string>\",\n          \"content\": \"<string>\",\n          \"source\": \"<string>\",\n          \"language\": \"<string>\"\n        },\n        \"album_last_release\": {\n          \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n        },\n        \"albums\": {\n          \"value\": \"<Circular reference to #/components/schemas/AlbumList detected>\"\n        }\n      }\n    ]\n  },\n  \"tracks\": {\n    \"limit\": \"<integer>\",\n    \"offset\": \"<integer>\",\n    \"total\": \"<integer>\",\n    \"items\": [\n      {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"version\": \"<string>\",\n        \"isrc\": \"<string>\",\n        \"maximum_bit_depth\": \"<integer>\",\n        \"maximum_channel_count\": \"<integer>\",\n        \"maximum_sampling_rate\": \"<number>\",\n        \"performer\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"performers\": \"<string>\",\n        \"composer\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"copyright\": \"<string>\",\n        \"album\": {\n          \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n        },\n        \"track_number\": \"<integer>\",\n        \"media_number\": \"<integer>\",\n        \"release_date_original\": \"<string>\",\n        \"release_date_download\": \"<string>\",\n        \"release_date_stream\": \"<string>\",\n        \"release_date_purchase\": \"<string>\",\n        \"purchasable\": \"<boolean>\",\n        \"streamable\": \"<boolean>\",\n        \"previewable\": \"<boolean>\",\n        \"sampleable\": \"<boolean>\",\n        \"downloadable\": \"<boolean>\",\n        \"displayable\": \"<boolean>\",\n        \"hires\": \"<boolean>\",\n        \"hires_streamable\": \"<boolean>\",\n        \"parental_warning\": \"<boolean>\",\n        \"duration\": \"<integer>\"\n      },\n      {\n        \"id\": \"<integer>\",\n        \"title\": \"<string>\",\n        \"version\": \"<string>\",\n        \"isrc\": \"<string>\",\n        \"maximum_bit_depth\": \"<integer>\",\n        \"maximum_channel_count\": \"<integer>\",\n        \"maximum_sampling_rate\": \"<number>\",\n        \"performer\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"performers\": \"<string>\",\n        \"composer\": {\n          \"id\": \"<integer>\",\n          \"name\": \"<string>\"\n        },\n        \"copyright\": \"<string>\",\n        \"album\": {\n          \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n        },\n        \"track_number\": \"<integer>\",\n        \"media_number\": \"<integer>\",\n        \"release_date_original\": \"<string>\",\n        \"release_date_download\": \"<string>\",\n        \"release_date_stream\": \"<string>\",\n        \"release_date_purchase\": \"<string>\",\n        \"purchasable\": \"<boolean>\",\n        \"streamable\": \"<boolean>\",\n        \"previewable\": \"<boolean>\",\n        \"sampleable\": \"<boolean>\",\n        \"downloadable\": \"<boolean>\",\n        \"displayable\": \"<boolean>\",\n        \"hires\": \"<boolean>\",\n        \"hires_streamable\": \"<boolean>\",\n        \"parental_warning\": \"<boolean>\",\n        \"duration\": \"<integer>\"\n      }\n    ]\n  }\n}",
+                  "createdAt": "2026-07-28T02:42:00.000Z",
+                  "updatedAt": "2026-07-28T02:42:00.000Z",
+                  "uid": "35240-0db35058-d3a2-419d-b0bd-917e075b9589"
+                },
+                {
+                  "id": "345aaa56-b75a-468f-8161-8bff9eb55960",
+                  "name": "Unauthorized \u2014 invalid or expired auth token",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/favorite/getUserFavorites?app_id=<API Key>&limit=50&offset=0&type=albums",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "favorite",
+                        "getUserFavorites"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Your Qobuz application identifier",
+                          "key": "app_id",
+                          "value": "<API Key>"
+                        },
+                        {
+                          "description": "Maximum number of results to return",
+                          "key": "limit",
+                          "value": "50"
+                        },
+                        {
+                          "description": "Pagination offset",
+                          "key": "offset",
+                          "value": "0"
+                        },
+                        {
+                          "description": "Filter favorites by content type",
+                          "key": "type",
+                          "value": "albums"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"status\": \"<string>\",\n  \"code\": \"<integer>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T02:42:00.000Z",
+                  "updatedAt": "2026-07-28T02:42:00.000Z",
+                  "uid": "35240-345aaa56-b75a-468f-8161-8bff9eb55960"
+                }
+              ],
+              "createdAt": "2026-07-28T02:42:00.000Z",
+              "updatedAt": "2026-07-28T02:42:00.000Z",
+              "uid": "35240-81834bb2-1801-42a4-9c47-89f43903583f"
+            }
+          ],
+          "id": "1f3cdca3-6e5d-4269-b526-c666b4728182",
+          "createdAt": "2026-07-28T02:42:00.000Z",
+          "updatedAt": "2026-07-28T02:42:00.000Z",
+          "uid": "35240-1f3cdca3-6e5d-4269-b526-c666b4728182"
+        }
+      ],
+      "id": "0e443f89-f56e-475b-862c-53109722cb49",
+      "createdAt": "2026-07-28T02:42:00.000Z",
+      "updatedAt": "2026-07-28T02:42:00.000Z",
+      "uid": "35240-0e443f89-f56e-475b-862c-53109722cb49"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "app_id",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "query",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://www.qobuz.com/api.json/0.2"
+    }
+  ]
+}

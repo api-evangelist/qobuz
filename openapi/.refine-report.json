@@ -1,0 +1,24 @@
+{
+  "provider": "qobuz",
+  "sources": [
+    "qobuz-albums-api-openapi.yml",
+    "qobuz-artists-api-openapi.yml",
+    "qobuz-authentication-api-openapi.yml",
+    "qobuz-playlists-api-openapi.yml",
+    "qobuz-search-api-openapi.yml",
+    "qobuz-tracks-api-openapi.yml"
+  ],
+  "outputs": [
+    "qobuz-albums-api-openapi.yml",
+    "qobuz-artists-api-openapi.yml",
+    "qobuz-authentication-api-openapi.yml",
+    "qobuz-playlists-api-openapi.yml",
+    "qobuz-search-api-openapi.yml",
+    "qobuz-tracks-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
