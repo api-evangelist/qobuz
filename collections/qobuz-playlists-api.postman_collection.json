@@ -1,0 +1,445 @@
+{
+  "item": [
+    {
+      "id": "5b9b37b1-7f01-4674-8a1f-b2082edcef28",
+      "name": "Playlists",
+      "description": {
+        "content": "Playlist retrieval and search",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "acfeb7ef-96ce-4207-9c23-ed7094c5a977",
+          "name": "Retrieve a playlist",
+          "request": {
+            "name": "Retrieve a playlist",
+            "description": {
+              "content": "Returns metadata and track listing for a single playlist identified by its playlist_id.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "playlist",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Qobuz application identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "playlist_id",
+                  "value": "<integer>",
+                  "description": "(Required) Qobuz playlist identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "25",
+                  "description": "Maximum number of tracks to include"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                },
+                {
+                  "disabled": false,
+                  "key": "extra",
+                  "value": "<string>",
+                  "description": "Comma-separated additional fields (e.g. tracks)"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "app_id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "b05610e4-43e1-4b4a-a6eb-9e9a0476ae66",
+              "name": "Playlist metadata and tracks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playlist",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "playlist_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extra",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 9281,\n  \"name\": \"string\",\n  \"slug\": \"string\",\n  \"description\": \"string\",\n  \"created_at\": 5367,\n  \"updated_at\": 1666,\n  \"public_at\": 7198,\n  \"duration\": 3940,\n  \"tracks_count\": 5529,\n  \"users_count\": 9752,\n  \"is_public\": false,\n  \"is_collaborative\": false,\n  \"is_featured\": true,\n  \"owner\": {\n    \"id\": 7693,\n    \"name\": \"string\"\n  },\n  \"images\": [\n    \"https://VFUbILpedvTrwVglLKomG.ldwmSWJ89xhSeYRfsaRgri\",\n    \"https://RmHRNBaOekTttQvGgA.clpqp.7mOwY+AbmU7HmJ\"\n  ],\n  \"images150\": [\n    \"http://zrWWiORiYKcfTLJMGpKFaAKCKQP.vbQnN+CC8TcDeN5Se0E9fKERrJ528GLojQBqOXksWRGbvI02F5r3hMRC9SASOay\",\n    \"http://vSqZJHzmKs.krmd4TW1Tb+jtCsqIWcPJnXAvFPSVLFGMOTQOjWPAjugNWOhxZUwmYhP,B-9rv4ZOQ07ECGoQz\"\n  ],\n  \"images300\": [\n    \"https://ctbEiMiQqQyJIdRIUOZJsI.titRHBIEAj,N\",\n    \"http://CwyGOZXfkUoD.cpnequMQvMsvtzdewaOj5vlebkhDAqcMRVlRbd,gmdVFP+EXrOQGg0Y7dEV31PlzVfZ6aY.t\"\n  ],\n  \"featured_artists\": [\n    {\n      \"id\": 2248,\n      \"name\": \"string\",\n      \"albums_as_primary_artist_count\": 4141,\n      \"albums_as_primary_composer_count\": 5992,\n      \"albums_count\": 4598,\n      \"slug\": \"string\",\n      \"picture\": \"https://FKLlEwyURrDXVTSyZTZPXQhciVeS.yxjT.fNIH3C-DT.sxakiilEEILO.nokinwnRzGZz8hR-zo0u.7GHPT59Qosm3XsUqiNT,npV+8nkfaZ1\",\n      \"image\": {\n        \"small\": \"https://CTWGX.fvSl..V1Mj+RbjaclGIR+OCoBSlgelqSbhfY6h,0Vm\",\n        \"medium\": \"http://BsHg.rsoaWpabEKweNbM8kL.cPTvJ3PFAaCn1\",\n        \"large\": \"http://eOpriPwNdPIQzn.lbgoFMNcM0mcEAglVPHnMZ6A\",\n        \"extralarge\": \"http://zwXxKXgUKOnKAerEvwNkyEARA.fhpcV2\",\n        \"mega\": \"http://ybDMMyEr.enoDyYZbOGcBRBf7xPnH8,aNQWULvicTfujy1+m7rm3LuxCwaIXdV,WwAwJRyAwKLPgpPN-xUNK21SGDmV0\"\n      },\n      \"similar_artist_ids\": [\n        4882,\n        4117\n      ],\n      \"biography\": {\n        \"summary\": \"string\",\n        \"content\": \"string\",\n        \"source\": \"string\",\n        \"language\": \"string\"\n      },\n      \"album_last_release\": {\n        \"id\": \"string\",\n        \"qobuz_id\": 4525,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"version\": \"string\",\n        \"slug\": \"string\",\n        \"url\": \"http://FGBpIQA.djVPqsV3bAWK\",\n        \"released_at\": 5967,\n        \"release_date_original\": \"string\",\n        \"release_date_download\": \"string\",\n        \"release_date_stream\": \"string\",\n        \"maximum_bit_depth\": 7536,\n        \"maximum_sampling_rate\": 5567.998958359348,\n        \"maximum_channel_count\": 2147,\n        \"hires\": true,\n        \"hires_streamable\": true,\n        \"purchasable\": true,\n        \"streamable\": true,\n        \"previewable\": false,\n        \"sampleable\": false,\n        \"downloadable\": false,\n        \"displayable\": false,\n        \"parental_warning\": false,\n        \"artist\": {\n          \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n        },\n        \"label\": {\n          \"id\": 1148,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"albums_count\": 4246\n        },\n        \"genre\": {\n          \"id\": 7282,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        },\n        \"description\": \"string\",\n        \"description_language\": \"string\",\n        \"catchline\": \"string\",\n        \"copyright\": \"string\",\n        \"recording_information\": \"string\",\n        \"upc\": \"string\",\n        \"popularity\": 7555.262023280685,\n        \"tracks_count\": 968,\n        \"media_count\": 8771,\n        \"duration\": 7736,\n        \"tracks\": {\n          \"limit\": 9533,\n          \"offset\": 5828,\n          \"total\": 2011,\n          \"items\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"image\": {\n          \"small\": \"https://jPVBXiwoIlldgOuc.nicmo8vXcz7\",\n          \"medium\": \"https://xRqRUTOFhFwykaNegx.dzE5e,g-BoxPSEPD68VZEbiqsdmx1jWepposZ2JGe+wbabo6-wsrJf\",\n          \"large\": \"https://sYivlkMkxv.ldfQgGCzJLMB5bca8vSuUP4CSPAmHtw+lbSFgRs.SXdIbjYj-7dO-\",\n          \"extralarge\": \"https://jfPaLJjRgPQ.rvjoJv+\",\n          \"mega\": \"https://UAkuHlykDQRxUYwhpfb.itqlwQ,SnQ638LMdI5JfnaWdjFK9ULDhnKTxwVYPrBo\"\n        }\n      },\n      \"albums\": {\n        \"limit\": 154,\n        \"offset\": 1179,\n        \"total\": 1122,\n        \"items\": [\n          {\n            \"id\": \"string\",\n            \"qobuz_id\": 7253,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"http://QlSfiWrxfApwQxK.unhou8Yd--ytsuqd+8FttNLupL\",\n            \"released_at\": 2125,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 8763,\n            \"maximum_sampling_rate\": 7069.604142121157,\n            \"maximum_channel_count\": 6766,\n            \"hires\": false,\n            \"hires_streamable\": false,\n            \"purchasable\": false,\n            \"streamable\": true,\n            \"previewable\": false,\n            \"sampleable\": true,\n            \"downloadable\": false,\n            \"displayable\": false,\n            \"parental_warning\": false,\n            \"artist\": {\n              \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 2289.7278423776347,\n            \"tracks_count\": 3633,\n            \"media_count\": 4991,\n            \"duration\": 7999,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"qobuz_id\": 8346,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"https://rUWJvcgkwKyFyrydQll.stdTdfqjVskfzADpusqAqURgQJ8zBfFF3sQ2vhXADQKPOWKOM,+iFV-SUlBccS\",\n            \"released_at\": 3851,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 389,\n            \"maximum_sampling_rate\": 9888.775725734913,\n            \"maximum_channel_count\": 1550,\n            \"hires\": false,\n            \"hires_streamable\": true,\n            \"purchasable\": false,\n            \"streamable\": false,\n            \"previewable\": false,\n            \"sampleable\": false,\n            \"downloadable\": false,\n            \"displayable\": false,\n            \"parental_warning\": true,\n            \"artist\": {\n              \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 2276.1135732076955,\n            \"tracks_count\": 1232,\n            \"media_count\": 1724,\n            \"duration\": 7496,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    },\n    {\n      \"id\": 8943,\n      \"name\": \"string\",\n      \"albums_as_primary_artist_count\": 3271,\n      \"albums_as_primary_composer_count\": 9385,\n      \"albums_count\": 5400,\n      \"slug\": \"string\",\n      \"picture\": \"https://bgiHbQdjuBxEeBlObYwOtZrVPhPoDGV.kwJA4ssivZvQF-pQiEeOJIL9yZu3y\",\n      \"image\": {\n        \"small\": \"https://MqWDahdUeueAjDUbSWjMReVsRaY.vsvP7fVgqYWKFbu6T+bqxQcZF9zbk\",\n        \"medium\": \"https://PmLyVuqLlsiVMVDLKwYoUifhUfAOFBPR.buxs,1Hz8nXLUbz.EB+5v6Gv4Y7S.RpI96WOq,98eX0ZWH3yKrrFvCuYvF2RE0D\",\n        \"large\": \"https://JC.vgaqCwHwTYia4fcB3497kuAPwFpzDdstM,d1\",\n        \"extralarge\": \"http://UfZnBRxMrDzIDGHsEQlxcfVeMcxyWc.dbgzdRcGxkvf7z+orMl-MEg+B8bbpzOqTO+\",\n        \"mega\": \"https://elCaGPeHrLFONeE.nxkNjLNXb8V5LkAfi+jQUTLIi9wz,CGpiLpx-VvDgK8QxVm-YJ96u8FCU\"\n      },\n      \"similar_artist_ids\": [\n        8963,\n        3685\n      ],\n      \"biography\": {\n        \"summary\": \"string\",\n        \"content\": \"string\",\n        \"source\": \"string\",\n        \"language\": \"string\"\n      },\n      \"album_last_release\": {\n        \"id\": \"string\",\n        \"qobuz_id\": 6324,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"version\": \"string\",\n        \"slug\": \"string\",\n        \"url\": \"http://JEwxVJ.revkO7hPBFCoBoQJZd3pyHavFn9-mVybnfJhZ,cckqPO35kDH+2mdpKGnxz\",\n        \"released_at\": 9996,\n        \"release_date_original\": \"string\",\n        \"release_date_download\": \"string\",\n        \"release_date_stream\": \"string\",\n        \"maximum_bit_depth\": 6092,\n        \"maximum_sampling_rate\": 2684.2722601644787,\n        \"maximum_channel_count\": 5693,\n        \"hires\": true,\n        \"hires_streamable\": true,\n        \"purchasable\": false,\n        \"streamable\": true,\n        \"previewable\": false,\n        \"sampleable\": false,\n        \"downloadable\": false,\n        \"displayable\": false,\n        \"parental_warning\": true,\n        \"artist\": {\n          \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n        },\n        \"label\": {\n          \"id\": 4529,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"albums_count\": 7900\n        },\n        \"genre\": {\n          \"id\": 2814,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        },\n        \"description\": \"string\",\n        \"description_language\": \"string\",\n        \"catchline\": \"string\",\n        \"copyright\": \"string\",\n        \"recording_information\": \"string\",\n        \"upc\": \"string\",\n        \"popularity\": 2273.1467891203415,\n        \"tracks_count\": 969,\n        \"media_count\": 5803,\n        \"duration\": 5532,\n        \"tracks\": {\n          \"limit\": 7983,\n          \"offset\": 4974,\n          \"total\": 3770,\n          \"items\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ]\n        },\n        \"image\": {\n          \"small\": \"http://ZNjdFCyBUAjPEhkYJbRMRvQOFbjF.xqpetUwNb.kq\",\n          \"medium\": \"http://HNhfdWCojBXDFcfdbrA.nrwF3LjTIRFCOnbFih0cnuZrCqlbA8kjm0vnrVd1OwdfW0pSYsN6kmqSXNRVOYSBEfVgY\",\n          \"large\": \"https://AhnPzLmQDrwbQiMaerHj.puDUcxIcGej\",\n          \"extralarge\": \"http://uRqsCGOYSftTipyWu.gdGmCqCoCgAacU6Z1mhCv\",\n          \"mega\": \"https://UKNlqamzYqXFfIOOcG.bvwWCXXGTO5H5P\"\n        }\n      },\n      \"albums\": {\n        \"limit\": 1992,\n        \"offset\": 4873,\n        \"total\": 3284,\n        \"items\": [\n          {\n            \"id\": \"string\",\n            \"qobuz_id\": 6112,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"http://iYBNllPjT.qlmB,KgRPLXZ-usr,0sNqys.9YgCmAAvpnzw7B+EhHtgRlapGXr2S1uaI\",\n            \"released_at\": 85,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 2968,\n            \"maximum_sampling_rate\": 7405.577213992983,\n            \"maximum_channel_count\": 2554,\n            \"hires\": false,\n            \"hires_streamable\": true,\n            \"purchasable\": true,\n            \"streamable\": true,\n            \"previewable\": false,\n            \"sampleable\": true,\n            \"downloadable\": false,\n            \"displayable\": false,\n            \"parental_warning\": false,\n            \"artist\": {\n              \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 2307.846584702691,\n            \"tracks_count\": 5289,\n            \"media_count\": 4315,\n            \"duration\": 3533,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"id\": \"string\",\n            \"qobuz_id\": 9322,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"http://wGBfVNfdjOJpuhEQGtBeqKMPBCFOzeXqg.epdqEYzDwfP+adr9.gL2nXUHvApK3u-yeb8FIV\",\n            \"released_at\": 4005,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 5198,\n            \"maximum_sampling_rate\": 358.632597266868,\n            \"maximum_channel_count\": 9245,\n            \"hires\": true,\n            \"hires_streamable\": true,\n            \"purchasable\": false,\n            \"streamable\": false,\n            \"previewable\": true,\n            \"sampleable\": false,\n            \"downloadable\": true,\n            \"displayable\": false,\n            \"parental_warning\": false,\n            \"artist\": {\n              \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 8348.948902405644,\n            \"tracks_count\": 7447,\n            \"media_count\": 6007,\n            \"duration\": 3373,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      }\n    }\n  ],\n  \"genres\": [\n    {\n      \"id\": 1929,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"color\": \"string\"\n    },\n    {\n      \"id\": 3262,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"color\": \"string\"\n    }\n  ],\n  \"stores\": [\n    \"string\",\n    \"string\"\n  ],\n  \"tracks\": [\n    {\n      \"id\": 1458,\n      \"title\": \"string\",\n      \"version\": \"string\",\n      \"isrc\": \"string\",\n      \"maximum_bit_depth\": 7953,\n      \"maximum_channel_count\": 4035,\n      \"maximum_sampling_rate\": 2316.1137030774325,\n      \"performer\": {\n        \"id\": 5679,\n        \"name\": \"string\"\n      },\n      \"performers\": \"string\",\n      \"composer\": {\n        \"id\": 3095,\n        \"name\": \"string\"\n      },\n      \"copyright\": \"string\",\n      \"album\": {\n        \"id\": \"string\",\n        \"qobuz_id\": 3380,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"version\": \"string\",\n        \"slug\": \"string\",\n        \"url\": \"http://VfDGXU.skQRLaOCewXuJedr6oJiUWKn7PmqvJROmC7de7ZlS\",\n        \"released_at\": 9081,\n        \"release_date_original\": \"string\",\n        \"release_date_download\": \"string\",\n        \"release_date_stream\": \"string\",\n        \"maximum_bit_depth\": 5746,\n        \"maximum_sampling_rate\": 3969.253333043714,\n        \"maximum_channel_count\": 4198,\n        \"hires\": true,\n        \"hires_streamable\": true,\n        \"purchasable\": false,\n        \"streamable\": true,\n        \"previewable\": false,\n        \"sampleable\": true,\n        \"downloadable\": true,\n        \"displayable\": false,\n        \"parental_warning\": false,\n        \"artist\": {\n          \"id\": 7465,\n          \"name\": \"string\",\n          \"albums_as_primary_artist_count\": 2209,\n          \"albums_as_primary_composer_count\": 5313,\n          \"albums_count\": 7131,\n          \"slug\": \"string\",\n          \"picture\": \"http://FLnBIiggkKknJWWXsu.yqvli4qaCeSj0x4gnMX5IALoiBZlJg6Q-iW6\",\n          \"image\": {\n            \"small\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extralarge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mega\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"similar_artist_ids\": [\n            1997,\n            7861\n          ],\n          \"biography\": {\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"album_last_release\": {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          },\n          \"albums\": {\n            \"limit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"offset\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"items\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"label\": {\n          \"id\": 9699,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"albums_count\": 3567\n        },\n        \"genre\": {\n          \"id\": 630,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        },\n        \"description\": \"string\",\n        \"description_language\": \"string\",\n        \"catchline\": \"string\",\n        \"copyright\": \"string\",\n        \"recording_information\": \"string\",\n        \"upc\": \"string\",\n        \"popularity\": 4104.477907206293,\n        \"tracks_count\": 4920,\n        \"media_count\": 9751,\n        \"duration\": 1071,\n        \"tracks\": {\n          \"limit\": 9330,\n          \"offset\": 3541,\n          \"total\": 904,\n          \"items\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Track detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Track detected>\"\n            }\n          ]\n        },\n        \"image\": {\n          \"small\": \"http://clekKVZ.vishZtj+r8rjzQXwgqYpNLKQilYGvMUtiUhh1zp0BuTDUwoCk,0KVAlNh6no\",\n          \"medium\": \"http://UzFxIAeZVrZLMhjJesPDR.mhXiJ4RMPR57tRC+\",\n          \"large\": \"http://S.whotj3PtB+1BgxKxjwsCDKwRMFfAg,kBDm4WfxYsdV6U3f6\",\n          \"extralarge\": \"http://XoNlJCP.pdVrT03VFntg,gyudCwbe0bgHrhUcgJMzk.HsA8mn,TCAtUDfJ-KZQfz1YkmE\",\n          \"mega\": \"https://ndqPzAfkvGkYyg.kcpnT860w+p+NMYUWyM.kJJcuGPdVDPHxCG21\"\n        }\n      },\n      \"track_number\": 5086,\n      \"media_number\": 7181,\n      \"release_date_original\": \"string\",\n      \"release_date_download\": \"string\",\n      \"release_date_stream\": \"string\",\n      \"release_date_purchase\": \"string\",\n      \"purchasable\": true,\n      \"streamable\": true,\n      \"previewable\": false,\n      \"sampleable\": true,\n      \"downloadable\": true,\n      \"displayable\": false,\n      \"hires\": false,\n      \"hires_streamable\": true,\n      \"parental_warning\": false,\n      \"duration\": 3247\n    },\n    {\n      \"id\": 7758,\n      \"title\": \"string\",\n      \"version\": \"string\",\n      \"isrc\": \"string\",\n      \"maximum_bit_depth\": 8636,\n      \"maximum_channel_count\": 763,\n      \"maximum_sampling_rate\": 8349.355447420972,\n      \"performer\": {\n        \"id\": 8491,\n        \"name\": \"string\"\n      },\n      \"performers\": \"string\",\n      \"composer\": {\n        \"id\": 3415,\n        \"name\": \"string\"\n      },\n      \"copyright\": \"string\",\n      \"album\": {\n        \"id\": \"string\",\n        \"qobuz_id\": 8802,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"version\": \"string\",\n        \"slug\": \"string\",\n        \"url\": \"http://CPpMMwFcGsDvFTFQKQaMxMEiiUNz.epeem0It\",\n        \"released_at\": 5997,\n        \"release_date_original\": \"string\",\n        \"release_date_download\": \"string\",\n        \"release_date_stream\": \"string\",\n        \"maximum_bit_depth\": 3362,\n        \"maximum_sampling_rate\": 2559.775980643211,\n        \"maximum_channel_count\": 1968,\n        \"hires\": false,\n        \"hires_streamable\": false,\n        \"purchasable\": true,\n        \"streamable\": true,\n        \"previewable\": false,\n        \"sampleable\": false,\n        \"downloadable\": true,\n        \"displayable\": true,\n        \"parental_warning\": false,\n        \"artist\": {\n          \"id\": 2699,\n          \"name\": \"string\",\n          \"albums_as_primary_artist_count\": 7794,\n          \"albums_as_primary_composer_count\": 3312,\n          \"albums_count\": 4713,\n          \"slug\": \"string\",\n          \"picture\": \"https://BgIOWxlBiqIuhpjtl.hizfL8v.YAXEI8N5p\",\n          \"image\": {\n            \"small\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extralarge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mega\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"similar_artist_ids\": [\n            8130,\n            1777\n          ],\n          \"biography\": {\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"album_last_release\": {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          },\n          \"albums\": {\n            \"limit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"offset\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"items\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"label\": {\n          \"id\": 8983,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"albums_count\": 6374\n        },\n        \"genre\": {\n          \"id\": 4545,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        },\n        \"description\": \"string\",\n        \"description_language\": \"string\",\n        \"catchline\": \"string\",\n        \"copyright\": \"string\",\n        \"recording_information\": \"string\",\n        \"upc\": \"string\",\n        \"popularity\": 2778.4690513506494,\n        \"tracks_count\": 6754,\n        \"media_count\": 8299,\n        \"duration\": 5104,\n        \"tracks\": {\n          \"limit\": 3643,\n          \"offset\": 7083,\n          \"total\": 8006,\n          \"items\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Track detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Track detected>\"\n            }\n          ]\n        },\n        \"image\": {\n          \"small\": \"https://uKecMAENBucbXKW.kpM3.P4HSeQcV\",\n          \"medium\": \"http://iOuhRzwOsHqzQFV.mbutV.PvysQlOJ\",\n          \"large\": \"http://OCvMwgvydbsl.bdTQ0NWlZPyUNN0kyYYNL1IHAx.1FwEqTPT4EPGkVZojq\",\n          \"extralarge\": \"http://ejtFEqbTHMwOMNn.pcoUqE5vDz\",\n          \"mega\": \"https://jvOkCvSvi.csTlCSII-c1ZCewhfeBsQWZiDFXlL\"\n        }\n      },\n      \"track_number\": 581,\n      \"media_number\": 6817,\n      \"release_date_original\": \"string\",\n      \"release_date_download\": \"string\",\n      \"release_date_stream\": \"string\",\n      \"release_date_purchase\": \"string\",\n      \"purchasable\": true,\n      \"streamable\": true,\n      \"previewable\": true,\n      \"sampleable\": false,\n      \"downloadable\": false,\n      \"displayable\": false,\n      \"hires\": true,\n      \"hires_streamable\": false,\n      \"parental_warning\": true,\n      \"duration\": 961\n    }\n  ],\n  \"tracks_ids\": [\n    1786,\n    5267\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "96475286-849a-4354-835c-d98d1d863907",
+              "name": "Playlist not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playlist",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "playlist_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "25"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "extra",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1bae3879-cae3-4f1e-b5dc-466fbd355946",
+          "name": "Search playlists",
+          "request": {
+            "name": "Search playlists",
+            "description": {
+              "content": "Search the Qobuz catalog for playlists matching the supplied query string. Returns a paginated list of Playlist objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "playlist",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Qobuz application identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Search query string"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "app_id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0f6164ab-25ae-40ae-9da9-8fa68c68d4fe",
+              "name": "Paginated list of playlists",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playlist",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 3282,\n  \"offset\": 1237,\n  \"total\": 5344,\n  \"items\": [\n    {\n      \"id\": 3866,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"created_at\": 9675,\n      \"updated_at\": 7876,\n      \"public_at\": 7681,\n      \"duration\": 9772,\n      \"tracks_count\": 8394,\n      \"users_count\": 5973,\n      \"is_public\": true,\n      \"is_collaborative\": false,\n      \"is_featured\": false,\n      \"owner\": {\n        \"id\": 6395,\n        \"name\": \"string\"\n      },\n      \"images\": [\n        \"http://AKuOgz.rzHVD9isv.0vr-XtlDP-UUlrOIl00MtoZo6qfS8j.4wbZKKEHgPT\",\n        \"https://vOwS.awtyfFV\"\n      ],\n      \"images150\": [\n        \"https://zMyaTiLM.qqqrKrv2Q4lI6VKO5hVxJ4auWVmbSHF2NsyLw,TGnIDvRkiPlNHQQl+CWVyfUgnqG.W6r\",\n        \"https://uFjsVBIdMXFMYREOVMJoCRZMFjj.wcywE4wP-jDtgNrCsgmYgwTBUfR2VT-xkuy2sainty70bUq-Ky\"\n      ],\n      \"images300\": [\n        \"http://SoNwRKkWzLRFeopLTpkcbCOKPcdX.vzpUwaQCOM3+4wkDWPEr-ylZFegEcND1koFgWn.j2vNL\",\n        \"https://gvGnolnhBfltiKbhqtkgzHOCIUyiFiX.hpwUMtnpQ,8Sl5fbTekJQr8xP2QKo+\"\n      ],\n      \"featured_artists\": [\n        {\n          \"id\": 4670,\n          \"name\": \"string\",\n          \"albums_as_primary_artist_count\": 9505,\n          \"albums_as_primary_composer_count\": 3604,\n          \"albums_count\": 8557,\n          \"slug\": \"string\",\n          \"picture\": \"http://LotMYxggGvQJyqbAZgwXWMNP.zxu6yQpIVL0UKj.UMgSBx+,mHw\",\n          \"image\": {\n            \"small\": \"http://WlaWRqWgtAwvCCnsl.fdaaLrPbgo.g1NW\",\n            \"medium\": \"https://NtcFTtXJpzTZXgBuXsJLJj.pwkeItmCEFGWQ-IUZK0s9dW5Q1JAZLVvEo9n2nh6UQ4Dzm1xLRfvL\",\n            \"large\": \"http://xVgLcTa.ldsCx25JpVszvuqyKTOs8hChxRQDtL0JEd2e0sCBela-ODooEbWoLJaqZ.EW3AGrS,Hv6\",\n            \"extralarge\": \"http://gDUKnOCmaIEwcDeIzLmq.xlYZdolHi1.Kf6AxyJ+\",\n            \"mega\": \"http://QCuUHaRYp.laofCafDUEcztS4dwkLJh\"\n          },\n          \"similar_artist_ids\": [\n            6500,\n            839\n          ],\n          \"biography\": {\n            \"summary\": \"string\",\n            \"content\": \"string\",\n            \"source\": \"string\",\n            \"language\": \"string\"\n          },\n          \"album_last_release\": {\n            \"id\": \"string\",\n            \"qobuz_id\": 1193,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"https://GsqhyjMwQbahOXHNFzCx.myievcjz4m0avLvqWKe6-KpCSWaC6Mu12EHwwgTTA6Xf\",\n            \"released_at\": 7917,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 2366,\n            \"maximum_sampling_rate\": 9249.87150605408,\n            \"maximum_channel_count\": 1830,\n            \"hires\": true,\n            \"hires_streamable\": true,\n            \"purchasable\": false,\n            \"streamable\": true,\n            \"previewable\": false,\n            \"sampleable\": true,\n            \"downloadable\": false,\n            \"displayable\": true,\n            \"parental_warning\": false,\n            \"artist\": {\n              \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 3664.955137357877,\n            \"tracks_count\": 2867,\n            \"media_count\": 8360,\n            \"duration\": 8592,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"albums\": {\n            \"limit\": 859,\n            \"offset\": 820,\n            \"total\": 7724,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": 4286,\n          \"name\": \"string\",\n          \"albums_as_primary_artist_count\": 2597,\n          \"albums_as_primary_composer_count\": 5050,\n          \"albums_count\": 663,\n          \"slug\": \"string\",\n          \"picture\": \"http://NoTYYlUZTUpRZTmWFxRMgzExl.eabG2AMAskc1.nw5IFt6wv5cAaqA4yOwsjqV7XnawNmaDEqEBQDnzYrko01+RRwcFArh+IMiD\",\n          \"image\": {\n            \"small\": \"https://OHlJpYv.rtg7hEvBNqJO1rAiK-yzm8ec9\",\n            \"medium\": \"https://pKKsNKGcScqvOVTMhHS.ejsximO2DNIjclbm2Y.OjFlskDha8+lqBc5IGSo6YGWnUsgVPHtRmRNTr-HjToE-TsfXaY.hT2O\",\n            \"large\": \"https://NtFQfyriZpYtuC.jdqiio52mE.3xColg6vmsoGs81rl74n,BSymLmTtRl,oBbe\",\n            \"extralarge\": \"http://XZSnIJFPQKnlcjyTAKJkFHRYWIhelxlTu.kkheblLvRPX-oo,XudUkUWVm03L0zisLPe\",\n            \"mega\": \"https://aEVgVvBMxLacUV.fjFfNP42Br-S5cth2y,ra\"\n          },\n          \"similar_artist_ids\": [\n            2201,\n            9040\n          ],\n          \"biography\": {\n            \"summary\": \"string\",\n            \"content\": \"string\",\n            \"source\": \"string\",\n            \"language\": \"string\"\n          },\n          \"album_last_release\": {\n            \"id\": \"string\",\n            \"qobuz_id\": 1711,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"http://gimtKgLFydwNUUmlfGhzgFgBiJfIUl.jupbp2sI+hM1xBhUCQTzKi8\",\n            \"released_at\": 8723,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 3048,\n            \"maximum_sampling_rate\": 1468.4931970495209,\n            \"maximum_channel_count\": 34,\n            \"hires\": true,\n            \"hires_streamable\": false,\n            \"purchasable\": true,\n            \"streamable\": true,\n            \"previewable\": true,\n            \"sampleable\": true,\n            \"downloadable\": false,\n            \"displayable\": false,\n            \"parental_warning\": true,\n            \"artist\": {\n              \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 5447.466582547428,\n            \"tracks_count\": 4055,\n            \"media_count\": 5583,\n            \"duration\": 3153,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"albums\": {\n            \"limit\": 4392,\n            \"offset\": 5806,\n            \"total\": 6158,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"genres\": [\n        {\n          \"id\": 2951,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        },\n        {\n          \"id\": 9077,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        }\n      ],\n      \"stores\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tracks\": [\n        {\n          \"id\": 5055,\n          \"title\": \"string\",\n          \"version\": \"string\",\n          \"isrc\": \"string\",\n          \"maximum_bit_depth\": 3746,\n          \"maximum_channel_count\": 989,\n          \"maximum_sampling_rate\": 3589.9145109552333,\n          \"performer\": {\n            \"id\": 170,\n            \"name\": \"string\"\n          },\n          \"performers\": \"string\",\n          \"composer\": {\n            \"id\": 958,\n            \"name\": \"string\"\n          },\n          \"copyright\": \"string\",\n          \"album\": {\n            \"id\": \"string\",\n            \"qobuz_id\": 4204,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"https://govcPlNJqTVuofDCfPQcPuXEDTp.fmsad6xLOEiZEfJ2LEk7q.phhbukwyjkFjsj56E3StIOd,wpzUPxSTX.hAZhjQ\",\n            \"released_at\": 3981,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 9341,\n            \"maximum_sampling_rate\": 2027.0080427034532,\n            \"maximum_channel_count\": 5777,\n            \"hires\": true,\n            \"hires_streamable\": false,\n            \"purchasable\": true,\n            \"streamable\": true,\n            \"previewable\": false,\n            \"sampleable\": true,\n            \"downloadable\": false,\n            \"displayable\": true,\n            \"parental_warning\": false,\n            \"artist\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 2303.7289133305426,\n            \"tracks_count\": 5754,\n            \"media_count\": 2345,\n            \"duration\": 1754,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"track_number\": 4944,\n          \"media_number\": 6840,\n          \"release_date_original\": \"string\",\n          \"release_date_download\": \"string\",\n          \"release_date_stream\": \"string\",\n          \"release_date_purchase\": \"string\",\n          \"purchasable\": true,\n          \"streamable\": true,\n          \"previewable\": false,\n          \"sampleable\": false,\n          \"downloadable\": false,\n          \"displayable\": false,\n          \"hires\": false,\n          \"hires_streamable\": false,\n          \"parental_warning\": true,\n          \"duration\": 4940\n        },\n        {\n          \"id\": 2870,\n          \"title\": \"string\",\n          \"version\": \"string\",\n          \"isrc\": \"string\",\n          \"maximum_bit_depth\": 7035,\n          \"maximum_channel_count\": 6623,\n          \"maximum_sampling_rate\": 7667.733077382739,\n          \"performer\": {\n            \"id\": 858,\n            \"name\": \"string\"\n          },\n          \"performers\": \"string\",\n          \"composer\": {\n            \"id\": 961,\n            \"name\": \"string\"\n          },\n          \"copyright\": \"string\",\n          \"album\": {\n            \"id\": \"string\",\n            \"qobuz_id\": 5461,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"http://uMVKrJjuYnFbrwYjmmERONtZCGAzeBJe.svvUccSKZNjASvGrSFad2lbT\",\n            \"released_at\": 4312,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 6484,\n            \"maximum_sampling_rate\": 5787.353036254389,\n            \"maximum_channel_count\": 8479,\n            \"hires\": true,\n            \"hires_streamable\": false,\n            \"purchasable\": true,\n            \"streamable\": false,\n            \"previewable\": false,\n            \"sampleable\": true,\n            \"downloadable\": false,\n            \"displayable\": true,\n            \"parental_warning\": true,\n            \"artist\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 6077.805253053055,\n            \"tracks_count\": 5522,\n            \"media_count\": 8942,\n            \"duration\": 3866,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"track_number\": 2980,\n          \"media_number\": 5711,\n          \"release_date_original\": \"string\",\n          \"release_date_download\": \"string\",\n          \"release_date_stream\": \"string\",\n          \"release_date_purchase\": \"string\",\n          \"purchasable\": true,\n          \"streamable\": true,\n          \"previewable\": false,\n          \"sampleable\": true,\n          \"downloadable\": true,\n          \"displayable\": false,\n          \"hires\": false,\n          \"hires_streamable\": false,\n          \"parental_warning\": false,\n          \"duration\": 6589\n        }\n      ],\n      \"tracks_ids\": [\n        4737,\n        7413\n      ]\n    },\n    {\n      \"id\": 3318,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"description\": \"string\",\n      \"created_at\": 7084,\n      \"updated_at\": 4630,\n      \"public_at\": 4412,\n      \"duration\": 8035,\n      \"tracks_count\": 6081,\n      \"users_count\": 4989,\n      \"is_public\": false,\n      \"is_collaborative\": false,\n      \"is_featured\": true,\n      \"owner\": {\n        \"id\": 3570,\n        \"name\": \"string\"\n      },\n      \"images\": [\n        \"https://rXPhsPCVUGzorhqFDjVSMGx.cweiHKjAwve5,icCNKKKJrYie5A-eO2LMN4.WysToBXpbORWxyo-vfan+\",\n        \"http://FYRtNjKqLgWHY.lxzhgbHnX09bAtjaPLO0,M0mdtgYqmVmdAJiWR.h89qk1HCq9W\"\n      ],\n      \"images150\": [\n        \"http://MnWPYejvOMiQqh.wazivlmK5rfMAptNgPhgAeIleqWpybFuP-XpNKqs7OJJj4fF.foMWnac3MKDEd\",\n        \"http://ZhNcniMThrGTuNnUJEdCQNPNrACnK.ttjzjZkBMXOuWQRNpbh\"\n      ],\n      \"images300\": [\n        \"http://XYudMQuepRmfMrtgkiwUHOKJiIg.akT0n+QZ+XHBzkj5F4yxDCHSBCu2+\",\n        \"http://XUrdEQWCoeBMCjrWszJ.ohhWLdGzo+BxzaHxMVyeA9yQbzLNyT4Lr9qJEdpjGreHMDvlftK5P3J9xH\"\n      ],\n      \"featured_artists\": [\n        {\n          \"id\": 6785,\n          \"name\": \"string\",\n          \"albums_as_primary_artist_count\": 9719,\n          \"albums_as_primary_composer_count\": 9148,\n          \"albums_count\": 1687,\n          \"slug\": \"string\",\n          \"picture\": \"https://qmMQ.prdaDoWrZQDCQ\",\n          \"image\": {\n            \"small\": \"http://swXrtKvIFmnp.loeKWz4wHzRtmO2phrGM4yeMADwsTImsykxuHVLkC4o\",\n            \"medium\": \"http://esWgklGOiqJizvJFrPWay.jpmwIZHdmO\",\n            \"large\": \"http://ssmR.rrZtP-MVdcgi0FEM.1a6z-y.nS+gQgd3YyBB9joK.-8Y5xsiyiLLM5Blnc8YXNL+DG6oHX\",\n            \"extralarge\": \"https://zmYqulNNpn.qmuoilXEh6xBjuDj-f0PDqzQgYjRB.A6AuRflJNdpA3Bx\",\n            \"mega\": \"http://LxVvefpMRSvOhVZQveQQqdhnP.gzBvTgXR09WRMzQzfeJAz,.thOnDuS-,6bXwfzr9vmLh.4eoQqD2U-TkcaUP93sw4wf7kEV\"\n          },\n          \"similar_artist_ids\": [\n            7977,\n            6858\n          ],\n          \"biography\": {\n            \"summary\": \"string\",\n            \"content\": \"string\",\n            \"source\": \"string\",\n            \"language\": \"string\"\n          },\n          \"album_last_release\": {\n            \"id\": \"string\",\n            \"qobuz_id\": 5339,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"http://q.pftLb,NwWWCtEU5VSCAc-oJ2j78cY7Y4Xunw3aM\",\n            \"released_at\": 2972,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 5207,\n            \"maximum_sampling_rate\": 4674.645864690448,\n            \"maximum_channel_count\": 5754,\n            \"hires\": false,\n            \"hires_streamable\": false,\n            \"purchasable\": true,\n            \"streamable\": false,\n            \"previewable\": false,\n            \"sampleable\": true,\n            \"downloadable\": true,\n            \"displayable\": false,\n            \"parental_warning\": true,\n            \"artist\": {\n              \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 7539.860607923221,\n            \"tracks_count\": 3569,\n            \"media_count\": 240,\n            \"duration\": 9250,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"albums\": {\n            \"limit\": 9964,\n            \"offset\": 3986,\n            \"total\": 7468,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        },\n        {\n          \"id\": 337,\n          \"name\": \"string\",\n          \"albums_as_primary_artist_count\": 1247,\n          \"albums_as_primary_composer_count\": 3099,\n          \"albums_count\": 9170,\n          \"slug\": \"string\",\n          \"picture\": \"http://srBbnmqXwZmxlnNJ.vtbtJvOJnn7sM6JRrfrUjD+Bh\",\n          \"image\": {\n            \"small\": \"https://gAPqzrCi.wluZzmnCjMbMIVT8Cc5xfm0RHIk2Q-evwF.dDbp2a.zsO\",\n            \"medium\": \"https://tTMEOrnQHiJdKRvJqCwNIzLgooIMKV.kzpCiIsWW.2nHCez0nk09Rt9qA3fgZk9Ye.xKEg34EvMMsQCwsIf\",\n            \"large\": \"http://FoWuslnHBeXeDufOfjIqbFrgtCoG.lvMbRnvCx198wM8EljG0iqY5AfHgxShO59PXFjR9M+eaUfBrrA5SWoKVRtQSlqST\",\n            \"extralarge\": \"https://HygOfElbUBnNa.aopLK8KRA3UOlMcJlhByjoJghGo\",\n            \"mega\": \"https://gzfE.rfUbgNKLtsAnCxMSlg6z8.-6.gAMsARl6UQe-ubsHhogo.69OtueYWvq\"\n          },\n          \"similar_artist_ids\": [\n            5534,\n            8377\n          ],\n          \"biography\": {\n            \"summary\": \"string\",\n            \"content\": \"string\",\n            \"source\": \"string\",\n            \"language\": \"string\"\n          },\n          \"album_last_release\": {\n            \"id\": \"string\",\n            \"qobuz_id\": 3115,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"http://WxGukOaUxymZkOaIym.wikdXQb+crDfdfouvIK3MCiihLRdeISCmk3OPJ7mduCaWzbtg4K8eM.hn-lAflIKonD\",\n            \"released_at\": 73,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 5168,\n            \"maximum_sampling_rate\": 2485.0721865008663,\n            \"maximum_channel_count\": 3588,\n            \"hires\": true,\n            \"hires_streamable\": false,\n            \"purchasable\": false,\n            \"streamable\": false,\n            \"previewable\": false,\n            \"sampleable\": false,\n            \"downloadable\": false,\n            \"displayable\": true,\n            \"parental_warning\": true,\n            \"artist\": {\n              \"value\": \"<Circular reference to #/components/schemas/Artist detected>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 4029.889757855064,\n            \"tracks_count\": 2961,\n            \"media_count\": 954,\n            \"duration\": 7882,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"albums\": {\n            \"limit\": 4240,\n            \"offset\": 9821,\n            \"total\": 9500,\n            \"items\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          }\n        }\n      ],\n      \"genres\": [\n        {\n          \"id\": 8828,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        },\n        {\n          \"id\": 5702,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        }\n      ],\n      \"stores\": [\n        \"string\",\n        \"string\"\n      ],\n      \"tracks\": [\n        {\n          \"id\": 7347,\n          \"title\": \"string\",\n          \"version\": \"string\",\n          \"isrc\": \"string\",\n          \"maximum_bit_depth\": 9037,\n          \"maximum_channel_count\": 8268,\n          \"maximum_sampling_rate\": 3781.3089433132695,\n          \"performer\": {\n            \"id\": 8818,\n            \"name\": \"string\"\n          },\n          \"performers\": \"string\",\n          \"composer\": {\n            \"id\": 7308,\n            \"name\": \"string\"\n          },\n          \"copyright\": \"string\",\n          \"album\": {\n            \"id\": \"string\",\n            \"qobuz_id\": 4809,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"http://ElgNMQmzpwAhTqKKXIlcUuvNqtHSRVkla.abpTHnDYLdZAM-PNen38r9iLu0zS0mCligBpijNhgYScc0ah2kmIEGiLqYD9n2aRExl2N9UImtCU\",\n            \"released_at\": 2695,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 9702,\n            \"maximum_sampling_rate\": 2899.7919457818866,\n            \"maximum_channel_count\": 1787,\n            \"hires\": false,\n            \"hires_streamable\": true,\n            \"purchasable\": false,\n            \"streamable\": false,\n            \"previewable\": true,\n            \"sampleable\": true,\n            \"downloadable\": false,\n            \"displayable\": true,\n            \"parental_warning\": true,\n            \"artist\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 2368.3589940658144,\n            \"tracks_count\": 1004,\n            \"media_count\": 124,\n            \"duration\": 3115,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"track_number\": 1351,\n          \"media_number\": 2868,\n          \"release_date_original\": \"string\",\n          \"release_date_download\": \"string\",\n          \"release_date_stream\": \"string\",\n          \"release_date_purchase\": \"string\",\n          \"purchasable\": true,\n          \"streamable\": true,\n          \"previewable\": true,\n          \"sampleable\": true,\n          \"downloadable\": true,\n          \"displayable\": true,\n          \"hires\": false,\n          \"hires_streamable\": false,\n          \"parental_warning\": true,\n          \"duration\": 2153\n        },\n        {\n          \"id\": 2161,\n          \"title\": \"string\",\n          \"version\": \"string\",\n          \"isrc\": \"string\",\n          \"maximum_bit_depth\": 9137,\n          \"maximum_channel_count\": 9038,\n          \"maximum_sampling_rate\": 6096.239055664182,\n          \"performer\": {\n            \"id\": 5273,\n            \"name\": \"string\"\n          },\n          \"performers\": \"string\",\n          \"composer\": {\n            \"id\": 2000,\n            \"name\": \"string\"\n          },\n          \"copyright\": \"string\",\n          \"album\": {\n            \"id\": \"string\",\n            \"qobuz_id\": 1985,\n            \"title\": \"string\",\n            \"subtitle\": \"string\",\n            \"version\": \"string\",\n            \"slug\": \"string\",\n            \"url\": \"https://TPGpXDdREGgBDDSlnNXNnyFUfqp.psNUJjUJAiOhD95bx.zpes,DmYnnwdRZ.HGaWVG2uYK0VJwWsYtYn.KcorTHwk1.YGsLo0\",\n            \"released_at\": 7642,\n            \"release_date_original\": \"string\",\n            \"release_date_download\": \"string\",\n            \"release_date_stream\": \"string\",\n            \"maximum_bit_depth\": 2304,\n            \"maximum_sampling_rate\": 2719.5799098540365,\n            \"maximum_channel_count\": 8677,\n            \"hires\": false,\n            \"hires_streamable\": false,\n            \"purchasable\": true,\n            \"streamable\": false,\n            \"previewable\": true,\n            \"sampleable\": true,\n            \"downloadable\": false,\n            \"displayable\": false,\n            \"parental_warning\": false,\n            \"artist\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"label\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"genre\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"description\": \"string\",\n            \"description_language\": \"string\",\n            \"catchline\": \"string\",\n            \"copyright\": \"string\",\n            \"recording_information\": \"string\",\n            \"upc\": \"string\",\n            \"popularity\": 6947.120736106886,\n            \"tracks_count\": 8998,\n            \"media_count\": 8417,\n            \"duration\": 8234,\n            \"tracks\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"image\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"track_number\": 7254,\n          \"media_number\": 4732,\n          \"release_date_original\": \"string\",\n          \"release_date_download\": \"string\",\n          \"release_date_stream\": \"string\",\n          \"release_date_purchase\": \"string\",\n          \"purchasable\": true,\n          \"streamable\": false,\n          \"previewable\": true,\n          \"sampleable\": false,\n          \"downloadable\": true,\n          \"displayable\": true,\n          \"hires\": true,\n          \"hires_streamable\": true,\n          \"parental_warning\": true,\n          \"duration\": 2618\n        }\n      ],\n      \"tracks_ids\": [\n        6791,\n        1845\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3192efd1-354b-4a7c-bb17-154b797e234b",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "playlist",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.qobuz.com/api.json/0.2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "app_id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fb171ab3-7660-4aab-9946-8521b040469e",
+    "name": "Qobuz Music Albums Playlists API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Qobuz Music API (v0.2) is a REST interface served at https://www.qobuz.com/api.json/0.2 returning JSON responses. It covers user authentication (email/password or token-based with MD5-hashed credentials plus app_id and app_secret), catalog operations (search albums, artists, tracks, and playlists), detailed metadata retrieval, streaming and download URL generation, and user account management.\nAPI access requires a valid Qobuz subscription (Studio or Sublime) and partner credentials (app_id and app_secret) issued by Qobuz. Contact api@qobuz.com to request access.\nRequest signing for protected endpoints (e.g. track/getFileUrl) uses an MD5 hash of concatenated path parameters, a unix timestamp, and the app_secret.\n\nContact Support:\n Name: Qobuz API Support\n Email: api@qobuz.com",
+      "type": "text/plain"
+    }
+  }
+}

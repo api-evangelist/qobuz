@@ -1,0 +1,155 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Qobuz Music Albums Tracks API",
+    "version": "0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "app_id",
+      "value": "{{app_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tracks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve track metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/track/get",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "track_id",
+                "value": "",
+                "type": "query",
+                "description": "Qobuz track identifier"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns detailed metadata for a single track including ISRC, audio quality specifications, performer details, and availability flags."
+        },
+        {
+          "info": {
+            "name": "Search tracks",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/track/search",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Search the Qobuz catalog for tracks matching the supplied query string. Returns a paginated list of Track objects."
+        },
+        {
+          "info": {
+            "name": "Generate streaming or download URL for a track",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/track/getFileUrl",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "track_id",
+                "value": "",
+                "type": "query",
+                "description": "Qobuz track identifier"
+              },
+              {
+                "name": "format_id",
+                "value": "",
+                "type": "query",
+                "description": "Audio format code (5=MP3-320, 6=FLAC-CD, 7=FLAC-HiRes-96kHz, 27=FLAC-HiRes-192kHz)"
+              },
+              {
+                "name": "intent",
+                "value": "",
+                "type": "query",
+                "description": "Intended use — stream or download"
+              },
+              {
+                "name": "request_ts",
+                "value": "",
+                "type": "query",
+                "description": "Current Unix timestamp used in signature"
+              },
+              {
+                "name": "request_sig",
+                "value": "",
+                "type": "query",
+                "description": "MD5 signature authenticating the request"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Generates an authenticated streaming or download URL for a track in the specified audio format. Requires a valid user_auth_token (X-User-Auth-Token header) and a signed request.\nThe request_sig is computed as:\n  MD5(intent + \"trackid\" + track_id + \"formatid\" + format_id + request_ts + app_secret)\n\nFormat IDs:\n  5  = MP3 320 kbps CBR\n  6  = FLAC 16-bit/44.1 kHz (CD quality)\n  7  = FLAC 24-bit/96 kHz (Hi-Res)\n  27 = FLAC 24-bit/192 kHz (Hi-Res)"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

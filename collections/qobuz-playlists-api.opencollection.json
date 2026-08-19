@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Qobuz Music Albums Playlists API",
+    "version": "0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "app_id",
+      "value": "{{app_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Playlists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a playlist",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/playlist/get",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "playlist_id",
+                "value": "",
+                "type": "query",
+                "description": "Qobuz playlist identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of tracks to include"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "extra",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated additional fields (e.g. tracks)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns metadata and track listing for a single playlist identified by its playlist_id."
+        },
+        {
+          "info": {
+            "name": "Search playlists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/playlist/search",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Search the Qobuz catalog for playlists matching the supplied query string. Returns a paginated list of Playlist objects."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

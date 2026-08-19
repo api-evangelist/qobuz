@@ -1,0 +1,118 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Qobuz Music Albums API",
+    "version": "0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "app_id",
+      "value": "{{app_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Albums",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve album metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/album/get",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "album_id",
+                "value": "",
+                "type": "query",
+                "description": "Qobuz album identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of tracks to include in the response"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset for track listings"
+              },
+              {
+                "name": "extra",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of additional fields to include (e.g. tracks,artist)"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns detailed metadata for a single album including track listing, artist, label, genre, audio quality details, and availability flags."
+        },
+        {
+          "info": {
+            "name": "Search albums",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/album/search",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Search the Qobuz catalog for albums matching the supplied query string. Returns a paginated list of Album objects."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

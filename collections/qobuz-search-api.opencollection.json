@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Qobuz Music Albums Search API",
+    "version": "0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "app_id",
+      "value": "{{app_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Search",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Cross-catalog search",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/catalog/search",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results per content type"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Searches across all content types (albums, artists, tracks, playlists, articles, focus, stories) and returns aggregated results. Use the limit and offset parameters for pagination within each content-type bucket."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,752 @@
+{
+  "item": [
+    {
+      "id": "dbea3545-19d8-4223-ac3f-3a9e8d37ceb8",
+      "name": "Tracks",
+      "description": {
+        "content": "Track metadata, streaming, and download URL generation",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "13990630-1e34-4cfc-b8ae-e3a865122602",
+          "name": "Retrieve track metadata",
+          "request": {
+            "name": "Retrieve track metadata",
+            "description": {
+              "content": "Returns detailed metadata for a single track including ISRC, audio quality specifications, performer details, and availability flags.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "track",
+                "get"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Qobuz application identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "track_id",
+                  "value": "<integer>",
+                  "description": "(Required) Qobuz track identifier"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "app_id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "7b386ffc-611a-4764-a97d-05c43e44c2c0",
+              "name": "Track metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": 1949,\n  \"title\": \"string\",\n  \"version\": \"string\",\n  \"isrc\": \"string\",\n  \"maximum_bit_depth\": 3732,\n  \"maximum_channel_count\": 5163,\n  \"maximum_sampling_rate\": 8611.354248323676,\n  \"performer\": {\n    \"id\": 2193,\n    \"name\": \"string\"\n  },\n  \"performers\": \"string\",\n  \"composer\": {\n    \"id\": 1519,\n    \"name\": \"string\"\n  },\n  \"copyright\": \"string\",\n  \"album\": {\n    \"id\": \"string\",\n    \"qobuz_id\": 8349,\n    \"title\": \"string\",\n    \"subtitle\": \"string\",\n    \"version\": \"string\",\n    \"slug\": \"string\",\n    \"url\": \"http://XjodltErSZMebFcMZUJaej.esqk+ViWpaW+vbEyeUqksiu2BiWwaoyegWVRMuG-\",\n    \"released_at\": 746,\n    \"release_date_original\": \"string\",\n    \"release_date_download\": \"string\",\n    \"release_date_stream\": \"string\",\n    \"maximum_bit_depth\": 3147,\n    \"maximum_sampling_rate\": 9785.709041368074,\n    \"maximum_channel_count\": 3729,\n    \"hires\": true,\n    \"hires_streamable\": true,\n    \"purchasable\": false,\n    \"streamable\": false,\n    \"previewable\": false,\n    \"sampleable\": false,\n    \"downloadable\": false,\n    \"displayable\": false,\n    \"parental_warning\": false,\n    \"artist\": {\n      \"id\": 4045,\n      \"name\": \"string\",\n      \"albums_as_primary_artist_count\": 6098,\n      \"albums_as_primary_composer_count\": 8323,\n      \"albums_count\": 3593,\n      \"slug\": \"string\",\n      \"picture\": \"https://HwLzzJZIezZyKSzXypD.wxxshOBjuYXISKBipsaZB9+YsV,84S\",\n      \"image\": {\n        \"small\": \"https://tIeTXIyYMtpAgnSrDsLykaterNDlZ.ccja8yga5szZ8lvMgqrV,B\",\n        \"medium\": \"https://gx.edvkBqfrc04HhW5YOGW,ej.,.E-yCxCevzIM6gsX.qDjNlSt6UpsXP,54FrPqtuLsVg7ymHhJx6\",\n        \"large\": \"https://dqQaXqaJPImSvN.yhwBr2yJkH11Mt9UyvioFiWi2wZ6JK5kJ+zRnTFQLcvBEmzGEulelb4\",\n        \"extralarge\": \"https://okjbZDKDdEZmWSGLlKnB.vzWSPCl+ISv-h.smcN6HOxyovi7Qflwka+za6uYmcCjyj8FQWoNkiziHFlPbrQu2scoUt\",\n        \"mega\": \"http://k.yxvNOVFQ\"\n      },\n      \"similar_artist_ids\": [\n        5315,\n        4464\n      ],\n      \"biography\": {\n        \"summary\": \"string\",\n        \"content\": \"string\",\n        \"source\": \"string\",\n        \"language\": \"string\"\n      },\n      \"album_last_release\": {\n        \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n      },\n      \"albums\": {\n        \"limit\": 5995,\n        \"offset\": 6499,\n        \"total\": 7685,\n        \"items\": [\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          },\n          {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          }\n        ]\n      }\n    },\n    \"label\": {\n      \"id\": 2664,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"albums_count\": 8092\n    },\n    \"genre\": {\n      \"id\": 1483,\n      \"name\": \"string\",\n      \"slug\": \"string\",\n      \"color\": \"string\"\n    },\n    \"description\": \"string\",\n    \"description_language\": \"string\",\n    \"catchline\": \"string\",\n    \"copyright\": \"string\",\n    \"recording_information\": \"string\",\n    \"upc\": \"string\",\n    \"popularity\": 5139.784945574052,\n    \"tracks_count\": 5913,\n    \"media_count\": 1683,\n    \"duration\": 3851,\n    \"tracks\": {\n      \"limit\": 1277,\n      \"offset\": 7819,\n      \"total\": 1833,\n      \"items\": [\n        {\n          \"id\": 280,\n          \"title\": \"string\",\n          \"version\": \"string\",\n          \"isrc\": \"string\",\n          \"maximum_bit_depth\": 1086,\n          \"maximum_channel_count\": 4237,\n          \"maximum_sampling_rate\": 6545.35680509633,\n          \"performer\": {\n            \"id\": 1771,\n            \"name\": \"string\"\n          },\n          \"performers\": \"string\",\n          \"composer\": {\n            \"id\": 682,\n            \"name\": \"string\"\n          },\n          \"copyright\": \"string\",\n          \"album\": {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          },\n          \"track_number\": 1355,\n          \"media_number\": 3112,\n          \"release_date_original\": \"string\",\n          \"release_date_download\": \"string\",\n          \"release_date_stream\": \"string\",\n          \"release_date_purchase\": \"string\",\n          \"purchasable\": true,\n          \"streamable\": false,\n          \"previewable\": true,\n          \"sampleable\": true,\n          \"downloadable\": true,\n          \"displayable\": true,\n          \"hires\": false,\n          \"hires_streamable\": true,\n          \"parental_warning\": true,\n          \"duration\": 9854\n        },\n        {\n          \"id\": 30,\n          \"title\": \"string\",\n          \"version\": \"string\",\n          \"isrc\": \"string\",\n          \"maximum_bit_depth\": 5194,\n          \"maximum_channel_count\": 2677,\n          \"maximum_sampling_rate\": 7657.440392863142,\n          \"performer\": {\n            \"id\": 201,\n            \"name\": \"string\"\n          },\n          \"performers\": \"string\",\n          \"composer\": {\n            \"id\": 6262,\n            \"name\": \"string\"\n          },\n          \"copyright\": \"string\",\n          \"album\": {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          },\n          \"track_number\": 3080,\n          \"media_number\": 7991,\n          \"release_date_original\": \"string\",\n          \"release_date_download\": \"string\",\n          \"release_date_stream\": \"string\",\n          \"release_date_purchase\": \"string\",\n          \"purchasable\": true,\n          \"streamable\": true,\n          \"previewable\": true,\n          \"sampleable\": false,\n          \"downloadable\": true,\n          \"displayable\": false,\n          \"hires\": false,\n          \"hires_streamable\": false,\n          \"parental_warning\": true,\n          \"duration\": 2233\n        }\n      ]\n    },\n    \"image\": {\n      \"small\": \"http://xVKNGaNOsrPrBPgJBWUNjrbU.crfvbPk\",\n      \"medium\": \"http://PtBJsEi.pwjH9VH,3uZ11\",\n      \"large\": \"http://YujPBTAbxOUjfpGRwLMEoSANIZVVE.cmapiEqlcZvrOv1oU.MTWmV8G,l2j.m\",\n      \"extralarge\": \"http://DCpcIaowNnyKRAytIoL.jdujTa5X3r4rn\",\n      \"mega\": \"https://ywvnSYGrHPjpYETfEMggW.xyg5hBMES.d4T1QJNSornVs+ZhTaEPJsxCR\"\n    }\n  },\n  \"track_number\": 7758,\n  \"media_number\": 6170,\n  \"release_date_original\": \"string\",\n  \"release_date_download\": \"string\",\n  \"release_date_stream\": \"string\",\n  \"release_date_purchase\": \"string\",\n  \"purchasable\": false,\n  \"streamable\": false,\n  \"previewable\": false,\n  \"sampleable\": true,\n  \"downloadable\": true,\n  \"displayable\": false,\n  \"hires\": true,\n  \"hires_streamable\": false,\n  \"parental_warning\": false,\n  \"duration\": 6564\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b3a1428f-be30-41a8-b23a-8e944c386afe",
+              "name": "Track not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "get"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "eae46a30-6ff0-4a53-84a2-7e759e27900e",
+          "name": "Search tracks",
+          "request": {
+            "name": "Search tracks",
+            "description": {
+              "content": "Search the Qobuz catalog for tracks matching the supplied query string. Returns a paginated list of Track objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "track",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Qobuz application identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "query",
+                  "value": "<string>",
+                  "description": "(Required) Search query string"
+                },
+                {
+                  "disabled": false,
+                  "key": "limit",
+                  "value": "50",
+                  "description": "Maximum number of results to return"
+                },
+                {
+                  "disabled": false,
+                  "key": "offset",
+                  "value": "0",
+                  "description": "Pagination offset"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "app_id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "089b49d2-d014-4b38-b133-feda53f43211",
+              "name": "Paginated list of tracks",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"limit\": 5,\n  \"offset\": 4894,\n  \"total\": 4608,\n  \"items\": [\n    {\n      \"id\": 3904,\n      \"title\": \"string\",\n      \"version\": \"string\",\n      \"isrc\": \"string\",\n      \"maximum_bit_depth\": 936,\n      \"maximum_channel_count\": 3472,\n      \"maximum_sampling_rate\": 7428.104016858532,\n      \"performer\": {\n        \"id\": 1468,\n        \"name\": \"string\"\n      },\n      \"performers\": \"string\",\n      \"composer\": {\n        \"id\": 7788,\n        \"name\": \"string\"\n      },\n      \"copyright\": \"string\",\n      \"album\": {\n        \"id\": \"string\",\n        \"qobuz_id\": 2406,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"version\": \"string\",\n        \"slug\": \"string\",\n        \"url\": \"https://rGOUuPeQpXnEzZz.gfREE-uWRbNzTCOKQgXuiC009zQT2XC+si3\",\n        \"released_at\": 5036,\n        \"release_date_original\": \"string\",\n        \"release_date_download\": \"string\",\n        \"release_date_stream\": \"string\",\n        \"maximum_bit_depth\": 4858,\n        \"maximum_sampling_rate\": 230.46233462708508,\n        \"maximum_channel_count\": 6864,\n        \"hires\": true,\n        \"hires_streamable\": true,\n        \"purchasable\": false,\n        \"streamable\": true,\n        \"previewable\": true,\n        \"sampleable\": true,\n        \"downloadable\": false,\n        \"displayable\": true,\n        \"parental_warning\": true,\n        \"artist\": {\n          \"id\": 8162,\n          \"name\": \"string\",\n          \"albums_as_primary_artist_count\": 4373,\n          \"albums_as_primary_composer_count\": 2172,\n          \"albums_count\": 8137,\n          \"slug\": \"string\",\n          \"picture\": \"https://iQpLZdDMJgxbNxxMnJljvfWLLohUN.hzux.aDHy2tlBvdSvoW44kwoxsLCbUoi3knBVK\",\n          \"image\": {\n            \"small\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extralarge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mega\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"similar_artist_ids\": [\n            3686,\n            1854\n          ],\n          \"biography\": {\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"album_last_release\": {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          },\n          \"albums\": {\n            \"limit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"offset\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"items\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"label\": {\n          \"id\": 3803,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"albums_count\": 9760\n        },\n        \"genre\": {\n          \"id\": 5756,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        },\n        \"description\": \"string\",\n        \"description_language\": \"string\",\n        \"catchline\": \"string\",\n        \"copyright\": \"string\",\n        \"recording_information\": \"string\",\n        \"upc\": \"string\",\n        \"popularity\": 7165.3000101354155,\n        \"tracks_count\": 876,\n        \"media_count\": 5581,\n        \"duration\": 5857,\n        \"tracks\": {\n          \"limit\": 6015,\n          \"offset\": 6269,\n          \"total\": 9866,\n          \"items\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Track detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Track detected>\"\n            }\n          ]\n        },\n        \"image\": {\n          \"small\": \"https://WyQPFZtGnYi.otvdPTDW5BZ6JGacsuyGUJfFgkx.vXp6WG65MA\",\n          \"medium\": \"https://dUXBxtfWnCLppISelSC.kqhp+lBGFqo3GbbuxVQQDQImcJicviMqbfb24\",\n          \"large\": \"http://qIuJUvbLv.ugzoQspt4FQhLxLRLc2UZ0e7jiyj7tUbpjwODISJpBJbPqp8Z\",\n          \"extralarge\": \"http://TWBnB.wftnhJxmsCpDRH\",\n          \"mega\": \"http://YqA.icefpfx7hbU0IASI3zDkJAuOxa86B9+3NWG-NFGX2\"\n        }\n      },\n      \"track_number\": 2979,\n      \"media_number\": 7922,\n      \"release_date_original\": \"string\",\n      \"release_date_download\": \"string\",\n      \"release_date_stream\": \"string\",\n      \"release_date_purchase\": \"string\",\n      \"purchasable\": true,\n      \"streamable\": true,\n      \"previewable\": false,\n      \"sampleable\": false,\n      \"downloadable\": true,\n      \"displayable\": false,\n      \"hires\": false,\n      \"hires_streamable\": true,\n      \"parental_warning\": false,\n      \"duration\": 9723\n    },\n    {\n      \"id\": 9231,\n      \"title\": \"string\",\n      \"version\": \"string\",\n      \"isrc\": \"string\",\n      \"maximum_bit_depth\": 8957,\n      \"maximum_channel_count\": 9610,\n      \"maximum_sampling_rate\": 9264.615157982706,\n      \"performer\": {\n        \"id\": 8599,\n        \"name\": \"string\"\n      },\n      \"performers\": \"string\",\n      \"composer\": {\n        \"id\": 1755,\n        \"name\": \"string\"\n      },\n      \"copyright\": \"string\",\n      \"album\": {\n        \"id\": \"string\",\n        \"qobuz_id\": 9887,\n        \"title\": \"string\",\n        \"subtitle\": \"string\",\n        \"version\": \"string\",\n        \"slug\": \"string\",\n        \"url\": \"http://eYWsd.urxhHrVoMCFLuJSoTiJn6XjYSX5EY16,pr.8k-JR-sZyQykF2ibeAw-LHMzbvcsObGKkiqAfT\",\n        \"released_at\": 5994,\n        \"release_date_original\": \"string\",\n        \"release_date_download\": \"string\",\n        \"release_date_stream\": \"string\",\n        \"maximum_bit_depth\": 5142,\n        \"maximum_sampling_rate\": 4872.0272492339245,\n        \"maximum_channel_count\": 7775,\n        \"hires\": true,\n        \"hires_streamable\": false,\n        \"purchasable\": false,\n        \"streamable\": true,\n        \"previewable\": true,\n        \"sampleable\": true,\n        \"downloadable\": true,\n        \"displayable\": false,\n        \"parental_warning\": false,\n        \"artist\": {\n          \"id\": 7037,\n          \"name\": \"string\",\n          \"albums_as_primary_artist_count\": 754,\n          \"albums_as_primary_composer_count\": 2662,\n          \"albums_count\": 8546,\n          \"slug\": \"string\",\n          \"picture\": \"https://KcHYeFPhnkkkFfRAjAuRwoYemYwiWo.drS8uxvOfIhP+mBGGwVJPkEjKg\",\n          \"image\": {\n            \"small\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"medium\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"large\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extralarge\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mega\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"similar_artist_ids\": [\n            2763,\n            299\n          ],\n          \"biography\": {\n            \"summary\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"content\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"language\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"album_last_release\": {\n            \"value\": \"<Circular reference to #/components/schemas/Album detected>\"\n          },\n          \"albums\": {\n            \"limit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"offset\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"total\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"items\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"label\": {\n          \"id\": 8753,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"albums_count\": 1634\n        },\n        \"genre\": {\n          \"id\": 8833,\n          \"name\": \"string\",\n          \"slug\": \"string\",\n          \"color\": \"string\"\n        },\n        \"description\": \"string\",\n        \"description_language\": \"string\",\n        \"catchline\": \"string\",\n        \"copyright\": \"string\",\n        \"recording_information\": \"string\",\n        \"upc\": \"string\",\n        \"popularity\": 7610.113085670981,\n        \"tracks_count\": 5040,\n        \"media_count\": 9900,\n        \"duration\": 2677,\n        \"tracks\": {\n          \"limit\": 5028,\n          \"offset\": 6096,\n          \"total\": 1157,\n          \"items\": [\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Track detected>\"\n            },\n            {\n              \"value\": \"<Circular reference to #/components/schemas/Track detected>\"\n            }\n          ]\n        },\n        \"image\": {\n          \"small\": \"http://gKOJGsnzjBheQhZzapb.dlGZ38a5Rt5jA8ePn1fGqZ.D5AMZ6RfFqzMQ+WFphG6hk52w\",\n          \"medium\": \"http://qNkfRqPLUKO.bbxmswYMzduFXMgfQUuPwHVw8Bd1kQ\",\n          \"large\": \"http://cbphrKozPOShkVyzC.quzDviCpHrBoF6qjWLmFCtrkg2WleTL,gJeycuAavLttUaOHKHz3T+Z\",\n          \"extralarge\": \"http://IxKzhlLpCyFlSZwMNwgsroDypNgWfaX.mxfeoqxsKThpJOUFoBOINgRDLDzeDGkt+t\",\n          \"mega\": \"http://RNLYFKIeukXJLyHNBaLbOzvuolCa.lrfbxzBzbSUoR,e0\"\n        }\n      },\n      \"track_number\": 9686,\n      \"media_number\": 3173,\n      \"release_date_original\": \"string\",\n      \"release_date_download\": \"string\",\n      \"release_date_stream\": \"string\",\n      \"release_date_purchase\": \"string\",\n      \"purchasable\": true,\n      \"streamable\": true,\n      \"previewable\": false,\n      \"sampleable\": false,\n      \"downloadable\": false,\n      \"displayable\": false,\n      \"hires\": false,\n      \"hires_streamable\": true,\n      \"parental_warning\": false,\n      \"duration\": 7027\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af712668-15da-4022-a50b-1cec9eff8464",
+              "name": "Bad request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "query",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "limit",
+                      "value": "50"
+                    },
+                    {
+                      "key": "offset",
+                      "value": "0"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cf63a677-ae76-4d95-a6d2-09e13a41337b",
+          "name": "Generate streaming or download URL for a track",
+          "request": {
+            "name": "Generate streaming or download URL for a track",
+            "description": {
+              "content": "Generates an authenticated streaming or download URL for a track in the specified audio format. Requires a valid user_auth_token (X-User-Auth-Token header) and a signed request.\nThe request_sig is computed as:\n  MD5(intent + \"trackid\" + track_id + \"formatid\" + format_id + request_ts + app_secret)\n\nFormat IDs:\n  5  = MP3 320 kbps CBR\n  6  = FLAC 16-bit/44.1 kHz (CD quality)\n  7  = FLAC 24-bit/96 kHz (Hi-Res)\n  27 = FLAC 24-bit/192 kHz (Hi-Res)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "track",
+                "getFileUrl"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "app_id",
+                  "value": "<string>",
+                  "description": "(Required) Your Qobuz application identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "track_id",
+                  "value": "<integer>",
+                  "description": "(Required) Qobuz track identifier"
+                },
+                {
+                  "disabled": false,
+                  "key": "format_id",
+                  "value": "<integer>",
+                  "description": "(Required) Audio format code (5=MP3-320, 6=FLAC-CD, 7=FLAC-HiRes-96kHz, 27=FLAC-HiRes-192kHz)"
+                },
+                {
+                  "disabled": false,
+                  "key": "intent",
+                  "value": "<string>",
+                  "description": "(Required) Intended use — stream or download"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_ts",
+                  "value": "<integer>",
+                  "description": "(Required) Current Unix timestamp used in signature"
+                },
+                {
+                  "disabled": false,
+                  "key": "request_sig",
+                  "value": "<string>",
+                  "description": "(Required) MD5 signature authenticating the request"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": {
+              "type": "apikey",
+              "apikey": [
+                {
+                  "key": "key",
+                  "value": "app_id"
+                },
+                {
+                  "key": "value",
+                  "value": "{{apiKey}}"
+                },
+                {
+                  "key": "in",
+                  "value": "query"
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "0f338c2c-37fe-4bb1-b3b9-8f97dcc03da0",
+              "name": "Streaming or download URL and audio metadata",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "getFileUrl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "intent",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "request_ts",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "request_sig",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"track_id\": 6835,\n  \"duration\": 8268,\n  \"url\": \"https://Zvr.lkuFjOANTaDsIBu306L-2XyNShVxY2OZgYYeJeDAB7PVchoY2M-ll2KADjwhfWxD-uvE6MUtq-YzsJ+pk6LQHaYBZO1AZ0WGw3QKQoISXt\",\n  \"format_id\": 7181,\n  \"mime_type\": \"audio/flac\",\n  \"sampling_rate\": 9822.467492601123,\n  \"bit_depth\": 7493,\n  \"blob\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b72d96f4-7577-45c8-b684-f2c4337f389d",
+              "name": "Bad request or invalid signature",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "getFileUrl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "intent",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "request_ts",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "request_sig",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aca0c70c-5773-4b51-91be-6e11d32296a2",
+              "name": "Unauthorized — invalid or expired auth token",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "getFileUrl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "intent",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "request_ts",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "request_sig",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b558232-2eae-4ae3-ba6f-47970a0341ec",
+              "name": "Forbidden — subscription does not permit this format",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "track",
+                    "getFileUrl"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "app_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "track_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "format_id",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "intent",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "request_ts",
+                      "value": "<integer>"
+                    },
+                    {
+                      "key": "request_sig",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "app_id",
+                      "value": "<API Key>"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"error\",\n  \"code\": 400,\n  \"message\": \"Bad Request\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://www.qobuz.com/api.json/0.2",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "app_id"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "query"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c1bdabfc-aa92-4b4e-8c93-8f2cf93c72eb",
+    "name": "Qobuz Music Albums Tracks API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "The Qobuz Music API (v0.2) is a REST interface served at https://www.qobuz.com/api.json/0.2 returning JSON responses. It covers user authentication (email/password or token-based with MD5-hashed credentials plus app_id and app_secret), catalog operations (search albums, artists, tracks, and playlists), detailed metadata retrieval, streaming and download URL generation, and user account management.\nAPI access requires a valid Qobuz subscription (Studio or Sublime) and partner credentials (app_id and app_secret) issued by Qobuz. Contact api@qobuz.com to request access.\nRequest signing for protected endpoints (e.g. track/getFileUrl) uses an MD5 hash of concatenated path parameters, a unix timestamp, and the app_secret.\n\nContact Support:\n Name: Qobuz API Support\n Email: api@qobuz.com",
+      "type": "text/plain"
+    }
+  }
+}

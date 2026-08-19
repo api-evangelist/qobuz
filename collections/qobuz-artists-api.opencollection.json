@@ -1,0 +1,142 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Qobuz Music Albums Artists API",
+    "version": "0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "app_id",
+      "value": "{{app_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Artists",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve artist metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/artist/get",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "artist_id",
+                "value": "",
+                "type": "query",
+                "description": "Qobuz artist identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of albums to include"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "extra",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated additional fields (e.g. albums,biography)"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field for album list"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns detailed metadata for a single artist including biography, image, discography summary, and similar artist IDs."
+        },
+        {
+          "info": {
+            "name": "Search artists",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/artist/search",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "query",
+                "value": "",
+                "type": "query",
+                "description": "Search query string"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "sort",
+                "value": "",
+                "type": "query",
+                "description": "Sort field"
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Sort order"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Search the Qobuz catalog for artists matching the supplied query string. Returns a paginated list of Artist objects."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

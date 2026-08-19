@@ -1,0 +1,100 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Qobuz Music Albums Authentication API",
+    "version": "0.2"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "app_id",
+      "value": "{{app_id}}",
+      "placement": "query"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Authenticate a user",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/user/login",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "email",
+                "value": "",
+                "type": "query",
+                "description": "User's email address"
+              },
+              {
+                "name": "password",
+                "value": "",
+                "type": "query",
+                "description": "MD5 hash of the user's password"
+              }
+            ]
+          },
+          "docs": "Authenticates a user with email and password. Returns a user_auth_token that must be supplied in the X-User-Auth-Token header for protected endpoints. The password should be sent as an MD5 hash. Requires app_id."
+        },
+        {
+          "info": {
+            "name": "Retrieve user favorites",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://www.qobuz.com/api.json/0.2/favorite/getUserFavorites",
+            "params": [
+              {
+                "name": "app_id",
+                "value": "",
+                "type": "query",
+                "description": "Your Qobuz application identifier"
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of results to return"
+              },
+              {
+                "name": "offset",
+                "value": "",
+                "type": "query",
+                "description": "Pagination offset"
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "Filter favorites by content type"
+              }
+            ],
+            "auth": {
+              "type": "apikey",
+              "key": "app_id",
+              "value": "{{app_id}}",
+              "placement": "query"
+            }
+          },
+          "docs": "Returns the authenticated user's favorited albums, artists, and tracks. Requires a valid user_auth_token."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
