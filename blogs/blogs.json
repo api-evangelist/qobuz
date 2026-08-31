@@ -3,13 +3,10 @@
   "feeds": [
     {
       "source": "https://status.qobuz.com/",
-      "feed_url": "https://status.qobuz.com/",
-      "title": "",
-      "saved": 0,
-      "method": "none"
+      "error": "URLError"
     }
   ],
   "post_count": 11,
-  "fetched": "2026-08-22T20:20:02Z",
+  "fetched": "2026-08-30T22:33:40Z",
   "agent_pulled": "2026-07-04"
 }
