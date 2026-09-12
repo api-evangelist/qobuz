@@ -166,6 +166,8 @@ apis:
   - type: Authentication
     url: https://github.com/DJDoubleD/QobuzApiSharp#authentication
 common:
+  - type: Website
+    url: https://www.qobuz.com/
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/qobuz/overview
   - type: AgenticAccess
