@@ -1,12 +1,7 @@
 {
   "provider": "qobuz",
   "sources": [
-    "qobuz-albums-api-openapi.yml",
-    "qobuz-artists-api-openapi.yml",
-    "qobuz-authentication-api-openapi.yml",
-    "qobuz-playlists-api-openapi.yml",
-    "qobuz-search-api-openapi.yml",
-    "qobuz-tracks-api-openapi.yml"
+    "_original/openapi.yml"
   ],
   "outputs": [
     "qobuz-albums-api-openapi.yml",
@@ -19,6 +14,17 @@
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (1 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "openapi.yml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
+  ],
+  "skipped": [
+    "qobuz-albums-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qobuz-artists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qobuz-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qobuz-playlists-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qobuz-search-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "qobuz-tracks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }

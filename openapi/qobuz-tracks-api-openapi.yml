@@ -1,11 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Qobuz Music Albums Tracks API
-  description: 'The Qobuz Music API (v0.2) is a REST interface served at https://www.qobuz.com/api.json/0.2 returning JSON responses. It covers user authentication (email/password or token-based with MD5-hashed credentials plus app_id and app_secret), catalog operations (search albums, artists, tracks, and playlists), detailed metadata retrieval, streaming and download URL generation, and user account management.
-
-    API access requires a valid Qobuz subscription (Studio or Sublime) and partner credentials (app_id and app_secret) issued by Qobuz. Contact api@qobuz.com to request access.
-
-    Request signing for protected endpoints (e.g. track/getFileUrl) uses an MD5 hash of concatenated path parameters, a unix timestamp, and the app_secret.'
+  title: Qobuz Music Tracks API
+  description: The Qobuz Music API (v0.2) is a REST interface served at https://www.qobuz.com/api.json/0.2 returning JSON responses.
   version: '0.2'
   contact:
     name: Qobuz API Support
@@ -112,7 +108,22 @@ paths:
     get:
       operationId: trackGetFileUrl
       summary: Generate streaming or download URL for a track
-      description: "Generates an authenticated streaming or download URL for a track in the specified audio format. Requires a valid user_auth_token (X-User-Auth-Token header) and a signed request.\nThe request_sig is computed as:\n  MD5(intent + \"trackid\" + track_id + \"formatid\" + format_id + request_ts + app_secret)\n\nFormat IDs:\n  5  = MP3 320 kbps CBR\n  6  = FLAC 16-bit/44.1 kHz (CD quality)\n  7  = FLAC 24-bit/96 kHz (Hi-Res)\n  27 = FLAC 24-bit/192 kHz (Hi-Res)"
+      description: 'Generates an authenticated streaming or download URL for a track in the specified audio format. Requires a valid user_auth_token (X-User-Auth-Token header) and a signed request.
+
+        The request_sig is computed as:
+
+        MD5(intent + "trackid" + track_id + "formatid" + format_id + request_ts + app_secret)
+
+
+        Format IDs:
+
+        5 = MP3 320 kbps CBR
+
+        6 = FLAC 16-bit/44.1 kHz (CD quality)
+
+        7 = FLAC 24-bit/96 kHz (Hi-Res)
+
+        27 = FLAC 24-bit/192 kHz (Hi-Res)'
       tags:
       - Tracks
       parameters:
@@ -190,102 +201,6 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Genre:
-      type: object
-      description: Music genre
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
-        color:
-          type: string
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned by all endpoints on failure
-      properties:
-        status:
-          type: string
-          example: error
-        code:
-          type: integer
-          example: 400
-        message:
-          type: string
-          example: Bad Request
-    TrackList:
-      type: object
-      description: Paginated list of tracks
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
-    Label:
-      type: object
-      description: Record label
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
-        albums_count:
-          type: integer
-    Image:
-      type: object
-      description: Set of image URLs at various resolutions
-      properties:
-        small:
-          type: string
-          format: uri
-        medium:
-          type: string
-          format: uri
-        large:
-          type: string
-          format: uri
-        extralarge:
-          type: string
-          format: uri
-        mega:
-          type: string
-          format: uri
-    AlbumList:
-      type: object
-      description: Paginated list of albums
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Album'
-    Biography:
-      type: object
-      description: Artist biography
-      properties:
-        summary:
-          type: string
-        content:
-          type: string
-        source:
-          type: string
-        language:
-          type: string
     Artist:
       type: object
       description: Qobuz artist metadata
@@ -317,6 +232,18 @@ components:
           $ref: '#/components/schemas/Album'
         albums:
           $ref: '#/components/schemas/AlbumList'
+    Biography:
+      type: object
+      description: Artist biography
+      properties:
+        summary:
+          type: string
+        content:
+          type: string
+        source:
+          type: string
+        language:
+          type: string
     Track:
       type: object
       description: Qobuz track metadata
@@ -392,6 +319,104 @@ components:
         duration:
           type: integer
           description: Track duration in seconds
+    Image:
+      type: object
+      description: Set of image URLs at various resolutions
+      properties:
+        small:
+          type: string
+          format: uri
+        medium:
+          type: string
+          format: uri
+        large:
+          type: string
+          format: uri
+        extralarge:
+          type: string
+          format: uri
+        mega:
+          type: string
+          format: uri
+    Genre:
+      type: object
+      description: Music genre
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        color:
+          type: string
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned by all endpoints on failure
+      properties:
+        status:
+          type: string
+          example: error
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Bad Request
+    FileUrl:
+      type: object
+      description: Streaming or download URL for a track
+      properties:
+        track_id:
+          type: integer
+        duration:
+          type: integer
+          description: Track duration in seconds
+        url:
+          type: string
+          format: uri
+          description: Authenticated CDN URL for the audio file
+        format_id:
+          type: integer
+          description: Audio format code (5=MP3-320, 6=FLAC-CD, 7=FLAC-HiRes-96kHz, 27=FLAC-HiRes-192kHz)
+        mime_type:
+          type: string
+          example: audio/flac
+        sampling_rate:
+          type: number
+          description: Sampling rate in kHz
+        bit_depth:
+          type: integer
+          description: Bit depth (16 or 24)
+        blob:
+          type: string
+          description: Opaque CDN delivery token
+    Label:
+      type: object
+      description: Record label
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        albums_count:
+          type: integer
+    AlbumList:
+      type: object
+      description: Paginated list of albums
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Album'
     Album:
       type: object
       description: Qobuz album metadata
@@ -476,34 +501,20 @@ components:
           $ref: '#/components/schemas/TrackList'
         image:
           $ref: '#/components/schemas/Image'
-    FileUrl:
+    TrackList:
       type: object
-      description: Streaming or download URL for a track
+      description: Paginated list of tracks
       properties:
-        track_id:
+        limit:
           type: integer
-        duration:
+        offset:
           type: integer
-          description: Track duration in seconds
-        url:
-          type: string
-          format: uri
-          description: Authenticated CDN URL for the audio file
-        format_id:
+        total:
           type: integer
-          description: Audio format code (5=MP3-320, 6=FLAC-CD, 7=FLAC-HiRes-96kHz, 27=FLAC-HiRes-192kHz)
-        mime_type:
-          type: string
-          example: audio/flac
-        sampling_rate:
-          type: number
-          description: Sampling rate in kHz
-        bit_depth:
-          type: integer
-          description: Bit depth (16 or 24)
-        blob:
-          type: string
-          description: Opaque CDN delivery token
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
   securitySchemes:
     AppId:
       type: apiKey

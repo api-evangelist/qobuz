@@ -1,0 +1,25 @@
+# Front Door AI Index — qobuz — 2026-09-17
+# AI vocabulary counted on the provider's root page. Generated; do not edit.
+# `score` is null unless ownership is `own` — see front_door_ai.py.
+front_door_ai:
+  slug: qobuz
+  lexicon_version: '1.0'
+  probed_at: '2026-09-17'
+  host: www.qobuz.com
+  final_host: www.qobuz.com
+  ownership: own
+  owner: qobuz
+  shares_host_with: null
+  inherited_from: null
+  verdict: scored
+  score: 1
+  host_score: 1
+  density: 1.35
+  words: 741
+  tiers:
+    agentic: 0
+    core: 1
+    model: 0
+  ambiguous: 0
+  top_terms:
+    AI: 1
