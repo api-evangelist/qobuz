@@ -4,15 +4,19 @@ name: Qobuz
 kind: company
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - djdoubled/qobuzapisharp
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: paid
@@ -40,6 +44,7 @@ tags:
   - Music Metadata
   - Audiophile
   - France
+  - Music
 created: '2026-06-13'
 modified: '2026-06-13'
 specificationVersion: '0.23'

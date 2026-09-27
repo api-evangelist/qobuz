@@ -86,124 +86,20 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Artist:
+    SearchResults:
       type: object
-      description: Qobuz artist metadata
+      description: Aggregated search results across all content types
       properties:
-        id:
-          type: integer
-        name:
+        query:
           type: string
-        albums_as_primary_artist_count:
-          type: integer
-        albums_as_primary_composer_count:
-          type: integer
-        albums_count:
-          type: integer
-        slug:
-          type: string
-        picture:
-          type: string
-          format: uri
-        image:
-          $ref: '#/components/schemas/Image'
-        similar_artist_ids:
-          type: array
-          items:
-            type: integer
-        biography:
-          $ref: '#/components/schemas/Biography'
-        album_last_release:
-          $ref: '#/components/schemas/Album'
         albums:
           $ref: '#/components/schemas/AlbumList'
-    Playlist:
-      type: object
-      description: Qobuz playlist metadata and tracks
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
-        description:
-          type: string
-        created_at:
-          type: integer
-          description: Unix timestamp of creation
-        updated_at:
-          type: integer
-          description: Unix timestamp of last update
-        public_at:
-          type: integer
-        duration:
-          type: integer
-          description: Total duration in seconds
-        tracks_count:
-          type: integer
-        users_count:
-          type: integer
-        is_public:
-          type: boolean
-        is_collaborative:
-          type: boolean
-        is_featured:
-          type: boolean
-        owner:
-          type: object
-          properties:
-            id:
-              type: integer
-            name:
-              type: string
-        images:
-          type: array
-          items:
-            type: string
-            format: uri
-        images150:
-          type: array
-          items:
-            type: string
-            format: uri
-        images300:
-          type: array
-          items:
-            type: string
-            format: uri
-        featured_artists:
-          type: array
-          items:
-            $ref: '#/components/schemas/Artist'
-        genres:
-          type: array
-          items:
-            $ref: '#/components/schemas/Genre'
-        stores:
-          type: array
-          items:
-            type: string
+        artists:
+          $ref: '#/components/schemas/ArtistList'
         tracks:
-          type: array
-          items:
-            $ref: '#/components/schemas/Track'
-        tracks_ids:
-          type: array
-          items:
-            type: integer
-    Biography:
-      type: object
-      description: Artist biography
-      properties:
-        summary:
-          type: string
-        content:
-          type: string
-        source:
-          type: string
-        language:
-          type: string
+          $ref: '#/components/schemas/TrackList'
+        playlists:
+          $ref: '#/components/schemas/PlaylistList'
     Track:
       type: object
       description: Qobuz track metadata
@@ -279,6 +175,18 @@ components:
         duration:
           type: integer
           description: Track duration in seconds
+    Genre:
+      type: object
+      description: Music genre
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        color:
+          type: string
     Image:
       type: object
       description: Set of image URLs at various resolutions
@@ -298,9 +206,9 @@ components:
         mega:
           type: string
           format: uri
-    ArtistList:
+    TrackList:
       type: object
-      description: Paginated list of artists
+      description: Paginated list of tracks
       properties:
         limit:
           type: integer
@@ -311,46 +219,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Artist'
-    Genre:
-      type: object
-      description: Music genre
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
-        color:
-          type: string
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned by all endpoints on failure
-      properties:
-        status:
-          type: string
-          example: error
-        code:
-          type: integer
-          example: 400
-        message:
-          type: string
-          example: Bad Request
-    SearchResults:
-      type: object
-      description: Aggregated search results across all content types
-      properties:
-        query:
-          type: string
-        albums:
-          $ref: '#/components/schemas/AlbumList'
-        artists:
-          $ref: '#/components/schemas/ArtistList'
-        tracks:
-          $ref: '#/components/schemas/TrackList'
-        playlists:
-          $ref: '#/components/schemas/PlaylistList'
+            $ref: '#/components/schemas/Track'
     Label:
       type: object
       description: Record label
@@ -363,20 +232,6 @@ components:
           type: string
         albums_count:
           type: integer
-    PlaylistList:
-      type: object
-      description: Paginated list of playlists
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Playlist'
     AlbumList:
       type: object
       description: Paginated list of albums
@@ -391,6 +246,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Album'
+    ArtistList:
+      type: object
+      description: Paginated list of artists
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
     Album:
       type: object
       description: Qobuz album metadata
@@ -475,9 +344,65 @@ components:
           $ref: '#/components/schemas/TrackList'
         image:
           $ref: '#/components/schemas/Image'
-    TrackList:
+    Biography:
       type: object
-      description: Paginated list of tracks
+      description: Artist biography
+      properties:
+        summary:
+          type: string
+        content:
+          type: string
+        source:
+          type: string
+        language:
+          type: string
+    Artist:
+      type: object
+      description: Qobuz artist metadata
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        albums_as_primary_artist_count:
+          type: integer
+        albums_as_primary_composer_count:
+          type: integer
+        albums_count:
+          type: integer
+        slug:
+          type: string
+        picture:
+          type: string
+          format: uri
+        image:
+          $ref: '#/components/schemas/Image'
+        similar_artist_ids:
+          type: array
+          items:
+            type: integer
+        biography:
+          $ref: '#/components/schemas/Biography'
+        album_last_release:
+          $ref: '#/components/schemas/Album'
+        albums:
+          $ref: '#/components/schemas/AlbumList'
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned by all endpoints on failure
+      properties:
+        status:
+          type: string
+          example: error
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Bad Request
+    PlaylistList:
+      type: object
+      description: Paginated list of playlists
       properties:
         limit:
           type: integer
@@ -488,7 +413,82 @@ components:
         items:
           type: array
           items:
+            $ref: '#/components/schemas/Playlist'
+    Playlist:
+      type: object
+      description: Qobuz playlist metadata and tracks
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        description:
+          type: string
+        created_at:
+          type: integer
+          description: Unix timestamp of creation
+        updated_at:
+          type: integer
+          description: Unix timestamp of last update
+        public_at:
+          type: integer
+        duration:
+          type: integer
+          description: Total duration in seconds
+        tracks_count:
+          type: integer
+        users_count:
+          type: integer
+        is_public:
+          type: boolean
+        is_collaborative:
+          type: boolean
+        is_featured:
+          type: boolean
+        owner:
+          type: object
+          properties:
+            id:
+              type: integer
+            name:
+              type: string
+        images:
+          type: array
+          items:
+            type: string
+            format: uri
+        images150:
+          type: array
+          items:
+            type: string
+            format: uri
+        images300:
+          type: array
+          items:
+            type: string
+            format: uri
+        featured_artists:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
+        genres:
+          type: array
+          items:
+            $ref: '#/components/schemas/Genre'
+        stores:
+          type: array
+          items:
+            type: string
+        tracks:
+          type: array
+          items:
             $ref: '#/components/schemas/Track'
+        tracks_ids:
+          type: array
+          items:
+            type: integer
   securitySchemes:
     AppId:
       type: apiKey

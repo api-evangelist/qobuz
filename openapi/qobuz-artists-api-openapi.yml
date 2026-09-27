@@ -156,48 +156,50 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    Artist:
+    TrackList:
       type: object
-      description: Qobuz artist metadata
+      description: Paginated list of tracks
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Track'
+    Image:
+      type: object
+      description: Set of image URLs at various resolutions
+      properties:
+        small:
+          type: string
+          format: uri
+        medium:
+          type: string
+          format: uri
+        large:
+          type: string
+          format: uri
+        extralarge:
+          type: string
+          format: uri
+        mega:
+          type: string
+          format: uri
+    Genre:
+      type: object
+      description: Music genre
       properties:
         id:
           type: integer
         name:
           type: string
-        albums_as_primary_artist_count:
-          type: integer
-        albums_as_primary_composer_count:
-          type: integer
-        albums_count:
-          type: integer
         slug:
           type: string
-        picture:
-          type: string
-          format: uri
-        image:
-          $ref: '#/components/schemas/Image'
-        similar_artist_ids:
-          type: array
-          items:
-            type: integer
-        biography:
-          $ref: '#/components/schemas/Biography'
-        album_last_release:
-          $ref: '#/components/schemas/Album'
-        albums:
-          $ref: '#/components/schemas/AlbumList'
-    Biography:
-      type: object
-      description: Artist biography
-      properties:
-        summary:
-          type: string
-        content:
-          type: string
-        source:
-          type: string
-        language:
+        color:
           type: string
     Track:
       type: object
@@ -274,64 +276,6 @@ components:
         duration:
           type: integer
           description: Track duration in seconds
-    Image:
-      type: object
-      description: Set of image URLs at various resolutions
-      properties:
-        small:
-          type: string
-          format: uri
-        medium:
-          type: string
-          format: uri
-        large:
-          type: string
-          format: uri
-        extralarge:
-          type: string
-          format: uri
-        mega:
-          type: string
-          format: uri
-    ArtistList:
-      type: object
-      description: Paginated list of artists
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Artist'
-    Genre:
-      type: object
-      description: Music genre
-      properties:
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
-        color:
-          type: string
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned by all endpoints on failure
-      properties:
-        status:
-          type: string
-          example: error
-        code:
-          type: integer
-          example: 400
-        message:
-          type: string
-          example: Bad Request
     Label:
       type: object
       description: Record label
@@ -358,6 +302,20 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Album'
+    ArtistList:
+      type: object
+      description: Paginated list of artists
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
     Album:
       type: object
       description: Qobuz album metadata
@@ -442,20 +400,62 @@ components:
           $ref: '#/components/schemas/TrackList'
         image:
           $ref: '#/components/schemas/Image'
-    TrackList:
+    Biography:
       type: object
-      description: Paginated list of tracks
+      description: Artist biography
       properties:
-        limit:
+        summary:
+          type: string
+        content:
+          type: string
+        source:
+          type: string
+        language:
+          type: string
+    Artist:
+      type: object
+      description: Qobuz artist metadata
+      properties:
+        id:
           type: integer
-        offset:
+        name:
+          type: string
+        albums_as_primary_artist_count:
           type: integer
-        total:
+        albums_as_primary_composer_count:
           type: integer
-        items:
+        albums_count:
+          type: integer
+        slug:
+          type: string
+        picture:
+          type: string
+          format: uri
+        image:
+          $ref: '#/components/schemas/Image'
+        similar_artist_ids:
           type: array
           items:
-            $ref: '#/components/schemas/Track'
+            type: integer
+        biography:
+          $ref: '#/components/schemas/Biography'
+        album_last_release:
+          $ref: '#/components/schemas/Album'
+        albums:
+          $ref: '#/components/schemas/AlbumList'
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned by all endpoints on failure
+      properties:
+        status:
+          type: string
+          example: error
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Bad Request
   securitySchemes:
     AppId:
       type: apiKey
