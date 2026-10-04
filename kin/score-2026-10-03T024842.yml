@@ -1,22 +1,20 @@
-# Kin Score artifact — qobuz — 2026-09-01T210448
+# Kin Score artifact — qobuz — 2026-10-03T024842
 # The API Evangelist rating (https://github.com/api-evangelist/kin-score). Generated; do not edit.
 ---
 kin_score:
   slug: qobuz
-  schema_version: 0.18.0
-  scored_at: '2026-09-01'
-  run_ts: 2026-09-01T210448
-  composite: 53.0
+  schema_version: 0.23.0
+  scored_at: '2026-10-03'
+  run_ts: 2026-10-03T024842
+  composite: 50.4
   band: developing
   facets:
-    discoverability: 68.5
-    contract_quality: 63.3
-    governance: 9.8
-    operational_transparency: 52.6
-    developer_ergonomics: 38.1
-    commercial_clarity: 73.7
+    discoverability: 66.1
+    contract_quality: 57.7
     contract_governance: 9.8
-    access_clarity: 73.7
+    operational_transparency: 49.5
+    developer_ergonomics: 34.5
+    access_clarity: 70.5
   agent_readiness:
     score: 29.6
     band: agent-ready
@@ -40,6 +38,12 @@ kin_score:
       protected_resource_metadata: false
       dynamic_client_registration: false
       agentic_commerce: false
+  regulatory:
+    applies: true
+    regime: Horizontal (data, software, accessibility, platform)
+    regime_id: horizontal
+    score: 20.6
+    matched_via: fallback
   provenance:
     agentic_access: derived
     contracts:
