@@ -122,9 +122,9 @@ paths:
                 $ref: '#/components/schemas/ErrorResponse'
 components:
   schemas:
-    AlbumList:
+    TrackList:
       type: object
-      description: Paginated list of albums
+      description: Paginated list of tracks
       properties:
         limit:
           type: integer
@@ -135,88 +135,7 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Album'
-    ArtistList:
-      type: object
-      description: Paginated list of artists
-      properties:
-        limit:
-          type: integer
-        offset:
-          type: integer
-        total:
-          type: integer
-        items:
-          type: array
-          items:
-            $ref: '#/components/schemas/Artist'
-    User:
-      type: object
-      description: Qobuz user account details
-      properties:
-        id:
-          type: integer
-        publicId:
-          type: string
-        email:
-          type: string
-          format: email
-        login:
-          type: string
-        firstname:
-          type: string
-        lastname:
-          type: string
-        display_name:
-          type: string
-        country_code:
-          type: string
-          example: US
-        language_code:
-          type: string
-          example: en
-        zone:
-          type: string
-        store:
-          type: string
-        country:
-          type: string
-        avatar:
-          type: string
-          format: uri
-        creation_date:
-          type: string
-        subscription:
-          $ref: '#/components/schemas/Subscription'
-        credential:
-          $ref: '#/components/schemas/Credential'
-    ErrorResponse:
-      type: object
-      description: Standard error envelope returned by all endpoints on failure
-      properties:
-        status:
-          type: string
-          example: error
-        code:
-          type: integer
-          example: 400
-        message:
-          type: string
-          example: Bad Request
-    Subscription:
-      type: object
-      description: User subscription details
-      properties:
-        offer:
-          type: string
-          description: Subscription plan name (e.g. Studio, Sublime)
-        periodicity:
-          type: string
-          description: Billing period (e.g. monthly, yearly)
-        start_date:
-          type: string
-        end_date:
-          type: string
+            $ref: '#/components/schemas/Track'
     Track:
       type: object
       description: Qobuz track metadata
@@ -292,28 +211,9 @@ components:
         duration:
           type: integer
           description: Track duration in seconds
-    Image:
+    AlbumList:
       type: object
-      description: Set of image URLs at various resolutions
-      properties:
-        small:
-          type: string
-          format: uri
-        medium:
-          type: string
-          format: uri
-        large:
-          type: string
-          format: uri
-        extralarge:
-          type: string
-          format: uri
-        mega:
-          type: string
-          format: uri
-    TrackList:
-      type: object
-      description: Paginated list of tracks
+      description: Paginated list of albums
       properties:
         limit:
           type: integer
@@ -324,7 +224,19 @@ components:
         items:
           type: array
           items:
-            $ref: '#/components/schemas/Track'
+            $ref: '#/components/schemas/Album'
+    Label:
+      type: object
+      description: Record label
+      properties:
+        id:
+          type: integer
+        name:
+          type: string
+        slug:
+          type: string
+        albums_count:
+          type: integer
     Artist:
       type: object
       description: Qobuz artist metadata
@@ -356,18 +268,16 @@ components:
           $ref: '#/components/schemas/Album'
         albums:
           $ref: '#/components/schemas/AlbumList'
-    Label:
+    UserFavorites:
       type: object
-      description: Record label
+      description: Authenticated user's favorited content
       properties:
-        id:
-          type: integer
-        name:
-          type: string
-        slug:
-          type: string
-        albums_count:
-          type: integer
+        albums:
+          $ref: '#/components/schemas/AlbumList'
+        artists:
+          $ref: '#/components/schemas/ArtistList'
+        tracks:
+          $ref: '#/components/schemas/TrackList'
     Genre:
       type: object
       description: Music genre
@@ -380,41 +290,25 @@ components:
           type: string
         color:
           type: string
-    UserFavorites:
+    Image:
       type: object
-      description: Authenticated user's favorited content
+      description: Set of image URLs at various resolutions
       properties:
-        albums:
-          $ref: '#/components/schemas/AlbumList'
-        artists:
-          $ref: '#/components/schemas/ArtistList'
-        tracks:
-          $ref: '#/components/schemas/TrackList'
-    Credential:
-      type: object
-      description: User credential / entitlement details
-      properties:
-        id:
-          type: integer
-        label:
+        small:
           type: string
-        description:
+          format: uri
+        medium:
           type: string
-        parameters:
-          type: object
-          additionalProperties: true
-    Biography:
-      type: object
-      description: Artist biography
-      properties:
-        summary:
+          format: uri
+        large:
           type: string
-        content:
+          format: uri
+        extralarge:
           type: string
-        source:
+          format: uri
+        mega:
           type: string
-        language:
-          type: string
+          format: uri
     LoginResponse:
       type: object
       description: Response returned by /user/login on successful authentication
@@ -424,6 +318,60 @@ components:
         user_auth_token:
           type: string
           description: Authentication token to use in X-User-Auth-Token header
+    User:
+      type: object
+      description: Qobuz user account details
+      properties:
+        id:
+          type: integer
+        publicId:
+          type: string
+        email:
+          type: string
+          format: email
+        login:
+          type: string
+        firstname:
+          type: string
+        lastname:
+          type: string
+        display_name:
+          type: string
+        country_code:
+          type: string
+          example: US
+        language_code:
+          type: string
+          example: en
+        zone:
+          type: string
+        store:
+          type: string
+        country:
+          type: string
+        avatar:
+          type: string
+          format: uri
+        creation_date:
+          type: string
+        subscription:
+          $ref: '#/components/schemas/Subscription'
+        credential:
+          $ref: '#/components/schemas/Credential'
+    ArtistList:
+      type: object
+      description: Paginated list of artists
+      properties:
+        limit:
+          type: integer
+        offset:
+          type: integer
+        total:
+          type: integer
+        items:
+          type: array
+          items:
+            $ref: '#/components/schemas/Artist'
     Album:
       type: object
       description: Qobuz album metadata
@@ -508,6 +456,58 @@ components:
           $ref: '#/components/schemas/TrackList'
         image:
           $ref: '#/components/schemas/Image'
+    ErrorResponse:
+      type: object
+      description: Standard error envelope returned by all endpoints on failure
+      properties:
+        status:
+          type: string
+          example: error
+        code:
+          type: integer
+          example: 400
+        message:
+          type: string
+          example: Bad Request
+    Biography:
+      type: object
+      description: Artist biography
+      properties:
+        summary:
+          type: string
+        content:
+          type: string
+        source:
+          type: string
+        language:
+          type: string
+    Credential:
+      type: object
+      description: User credential / entitlement details
+      properties:
+        id:
+          type: integer
+        label:
+          type: string
+        description:
+          type: string
+        parameters:
+          type: object
+          additionalProperties: true
+    Subscription:
+      type: object
+      description: User subscription details
+      properties:
+        offer:
+          type: string
+          description: Subscription plan name (e.g. Studio, Sublime)
+        periodicity:
+          type: string
+          description: Billing period (e.g. monthly, yearly)
+        start_date:
+          type: string
+        end_date:
+          type: string
   securitySchemes:
     AppId:
       type: apiKey
